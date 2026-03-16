@@ -26,7 +26,7 @@ export function Header() {
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2 text-sm">
                         <Phone size={16} className="text-amber-500" />
-                        <span>Call Us: +91 98765 43210</span>
+                        <span>Call Us: +91 99280 36938</span>
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
