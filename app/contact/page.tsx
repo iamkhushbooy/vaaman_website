@@ -69,7 +69,7 @@ export default function Contact() {
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                             {/* Contact Info Cards */}
                             <div className="bg-gray-100 p-12 text-center">
-                                <div className="w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div className="w-20 h-20 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Phone size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Phone Number</h3>
@@ -77,14 +77,14 @@ export default function Contact() {
                                 <p className="text-gray-600 mb-6">+91 22 28925400</p>
                                 <Link
                                     href="tel:+919928036938"
-                                    className="inline-flex items-center gap-2 px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                                    className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Call Now <span>→</span>
                                 </Link>
                             </div>
 
                             <div className="bg-gray-100 p-12 text-center">
-                                <div className="w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div className="w-20 h-20 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Mail size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Email Address</h3>
@@ -92,14 +92,14 @@ export default function Contact() {
                                 <p className="text-gray-600 mb-6">support@vaaman.com</p>
                                 <Link
                                     href="mailto:info@vaaman.com"
-                                    className="inline-flex items-center gap-2 px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                                    className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Email Now <span>→</span>
                                 </Link>
                             </div>
 
                             <div className="bg-gray-100 p-12 text-center">
-                                <div className="w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div className="w-20 h-20 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <MapPin size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Office Address</h3>
@@ -107,7 +107,7 @@ export default function Contact() {
                                 <p className="text-gray-600 mb-6">+91 9928036938</p>
                                 <Link
                                     href="#"
-                                    className="inline-flex items-center gap-2 px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                                    className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Direction <span>→</span>
                                 </Link>
@@ -118,7 +118,7 @@ export default function Contact() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                             {/* Left Side - Text */}
                             <div>
-                                <p className="text-amber-500 font-semibold text-lg mb-2">CONTACT US</p>
+                                <p className="text-[rgb(254,94,21)] font-semibold text-lg mb-2">CONTACT US</p>
                                 <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 leading-tight">
                                   Have something on your mind? Don't hesitate to get in touch.
                                 </h2>
@@ -129,7 +129,7 @@ export default function Contact() {
                                 {/* Contact Info with Icons */}
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-14 h-14 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <div className="w-14 h-14 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center flex-shrink-0">
                                             <Phone size={24} className="text-white" />
                                         </div>
                                         <div>
@@ -139,7 +139,7 @@ export default function Contact() {
                                     </div>
 
                                     <div className="flex items-center gap-4">
-                                        <div className="w-14 h-14 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <div className="w-14 h-14 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center flex-shrink-0">
                                             <Mail size={24} className="text-white" />
                                         </div>
                                         <div>
@@ -160,7 +160,7 @@ export default function Contact() {
                                             placeholder="Your Name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                                            className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[rgb(254,94,21)]"
                                         />
                                         <input
                                             type="email"
@@ -168,7 +168,7 @@ export default function Contact() {
                                             placeholder="Your Email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                                            className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[rgb(254,94,21)]"
                                         />
                                     </div>
 
@@ -178,7 +178,7 @@ export default function Contact() {
                                         placeholder="Subject"
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                                        className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[rgb(254,94,21)]"
                                     />
 
                                     <textarea
@@ -187,12 +187,12 @@ export default function Contact() {
                                         rows={6}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                                        className="w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[rgb(254,94,21)]"
                                     ></textarea>
 
                                     <button
                                         type="submit"
-                                        className="w-full px-8 py-3 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                                        className="w-full px-8 py-3 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                     >
                                         {submitted ? 'Message Sent!' : 'Send Message'}
                                     </button>
@@ -226,7 +226,7 @@ export default function Contact() {
                                     a: 'We aim to respond to all inquiries within 24 hours during business days.'
                                 }
                             ].map((faq, index) => (
-                                <div key={index} className="bg-white p-8 border-l-4 border-amber-500">
+                                <div key={index} className="bg-white p-8 border-l-4 border-[rgb(254,94,21)]">
                                     <h4 className="text-lg font-bold text-blue-900 mb-3">{faq.q}</h4>
                                     <p className="text-gray-600">{faq.a}</p>
                                 </div>
