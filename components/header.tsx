@@ -22,11 +22,11 @@ export function Header() {
     return (
         <header className="bg-white sticky top-0 z-50">
             {/* Top Bar */}
-            <div className="bg-slate-900 text-white py-3 px-4 sm:px-6 lg:px-8">
+            <div className="bg-[rgb(3,36,90)] text-white py-3 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2 text-sm">
                         <Phone size={16} className="text-amber-500" />
-                        <span>Call Us: +91 98765 43210</span>
+                        <span>Call Us: +91 9928036938</span>
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
@@ -54,9 +54,9 @@ export function Header() {
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-                            <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                            <div className="w-30 h-30 flex items-center justify-center overflow-hidden">
                                 <img
-                                    src="/logo.jpeg"
+                                    src="/vaamanLogo.jpeg"
                                     alt="Company Logo"
                                     className="w-full h-full object-contain"
                                 />
