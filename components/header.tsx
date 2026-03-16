@@ -5,120 +5,124 @@ import { useState } from 'react';
 import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' },
-  ];
+    const navLinks = [
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+        { href: '/services', label: 'Services' },
+        { href: '/projects', label: 'Projects' },
+        { href: '/contact', label: 'Contact' },
+    ];
 
-  return (
-    <header className="bg-white sticky top-0 z-50">
-      {/* Top Bar */}
-      <div className="bg-slate-900 text-white py-3 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm">
-            <Phone size={16} className="text-amber-500" />
-            <span>Call Us: +91 98765 43210</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm">Follow Us:</span>
-            <div className="flex gap-3">
-              <Link href="#" className="hover:text-amber-500 transition">
-                <Facebook size={16} />
-              </Link>
-              <Link href="#" className="hover:text-amber-500 transition">
-                <Twitter size={16} />
-              </Link>
-              <Link href="#" className="hover:text-amber-500 transition">
-                <Instagram size={16} />
-              </Link>
-              <Link href="#" className="hover:text-amber-500 transition">
-                <Linkedin size={16} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header */}
-      <nav className="border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-              <div className="w-10 h-10 bg-amber-500 text-white flex items-center justify-center font-black text-lg">
-                I
-              </div>
-              <span className="hidden sm:inline text-xl md:text-2xl">Industrio</span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-slate-600 hover:text-amber-500 transition font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
+    return (
+        <header className="bg-white sticky top-0 z-50">
+            {/* Top Bar */}
+            <div className="bg-slate-900 text-white py-3 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-2 text-sm">
+                        <Phone size={16} className="text-amber-500" />
+                        <span>Call Us: +91 98765 43210</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <span className="text-sm">Follow Us:</span>
+                        <div className="flex gap-3">
+                            <Link href="#" className="hover:text-amber-500 transition">
+                                <Facebook size={16} />
+                            </Link>
+                            <Link href="#" className="hover:text-amber-500 transition">
+                                <Twitter size={16} />
+                            </Link>
+                            <Link href="#" className="hover:text-amber-500 transition">
+                                <Instagram size={16} />
+                            </Link>
+                            <Link href="#" className="hover:text-amber-500 transition">
+                                <Linkedin size={16} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* CTA Button - Desktop */}
-            <div className="hidden md:flex gap-4">
-              <Link
-                href="/contact"
-                className="px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
-              >
-                Get Quote
-              </Link>
-            </div>
+            {/* Main Header */}
+            <nav className="border-b border-gray-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16 md:h-20">
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
+                            <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                                <img
+                                    src="/logo.jpeg"
+                                    alt="Company Logo"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                            {/* <span className="hidden sm:inline text-xl md:text-2xl">Manufacturing</span> */}
+                        </Link>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMenu}
-              className="md:hidden p-2 hover:bg-gray-100 rounded transition text-slate-900"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-8">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="text-slate-600 hover:text-amber-500 transition font-medium"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
 
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block text-slate-600 hover:text-amber-500 transition font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="pt-4 border-t border-gray-200">
-                <Link
-                  href="/contact"
-                  className="block px-6 py-2 bg-amber-500 text-white rounded font-semibold hover:bg-amber-600 transition text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get Quote
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-    </header>
-  );
+                        {/* CTA Button - Desktop */}
+                        <div className="hidden md:flex gap-4">
+                            <Link
+                                href="/contact"
+                                className="px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                            >
+                                Get Quote
+                            </Link>
+                        </div>
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={toggleMenu}
+                            className="md:hidden p-2 hover:bg-gray-100 rounded transition text-slate-900"
+                            aria-label="Toggle menu"
+                        >
+                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
+
+                    {/* Mobile Navigation */}
+                    {isOpen && (
+                        <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="block text-slate-600 hover:text-amber-500 transition font-medium"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                            <div className="pt-4 border-t border-gray-200">
+                                <Link
+                                    href="/contact"
+                                    className="block px-6 py-2 bg-amber-500 text-white rounded font-semibold hover:bg-amber-600 transition text-center"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Get Quote
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </nav>
+        </header>
+    );
 }
