@@ -22,25 +22,25 @@ export function Header() {
     return (
         <header className="bg-white sticky top-0 z-50">
             {/* Top Bar */}
-            <div className="bg-slate-900 text-white py-3 px-4 sm:px-6 lg:px-8">
+            <div className="bg-[rgb(3,36,90)] text-white py-3 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2 text-sm">
-                        <Phone size={16} className="text-amber-500" />
-                        <span>Call Us: +91 98765 43210</span>
+                        <Phone size={16} className="text-[rgb(254,94,21)]" />
+                        <span>Call Us: +91 9928036938</span>
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
                         <div className="flex gap-3">
-                            <Link href="#" className="hover:text-amber-500 transition">
+                            <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
                                 <Facebook size={16} />
                             </Link>
-                            <Link href="#" className="hover:text-amber-500 transition">
+                            <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
                                 <Twitter size={16} />
                             </Link>
-                            <Link href="#" className="hover:text-amber-500 transition">
+                            <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
                                 <Instagram size={16} />
                             </Link>
-                            <Link href="#" className="hover:text-amber-500 transition">
+                            <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
                                 <Linkedin size={16} />
                             </Link>
                         </div>
@@ -54,7 +54,7 @@ export function Header() {
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-                            <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
                                 <img
                                     src="/logo.jpeg"
                                     alt="Company Logo"
@@ -70,7 +70,7 @@ export function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-slate-600 hover:text-amber-500 transition font-medium"
+                                    className="text-slate-600 hover:text-[rgb(254,94,21)] transition font-medium"
                                 >
                                     {link.label}
                                 </Link>
@@ -81,7 +81,7 @@ export function Header() {
                         <div className="hidden md:flex gap-4">
                             <Link
                                 href="/contact"
-                                className="px-6 py-2 bg-amber-500 text-white font-semibold hover:bg-amber-600 transition"
+                                className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-[rgb(254,94,21)] transition"
                             >
                                 Get Quote
                             </Link>
@@ -104,7 +104,7 @@ export function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="block text-slate-600 hover:text-amber-500 transition font-medium"
+                                    className="block text-slate-600 hover:text-[rgb(254,94,21)] transition font-medium"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.label}
@@ -113,7 +113,7 @@ export function Header() {
                             <div className="pt-4 border-t border-gray-200">
                                 <Link
                                     href="/contact"
-                                    className="block px-6 py-2 bg-amber-500 text-white rounded font-semibold hover:bg-amber-600 transition text-center"
+                                    className="block px-6 py-2 bg-[rgb(254,94,21)] text-white rounded font-semibold hover:bg-[rgb(255,90,14)] transition text-center"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     Get Quote
