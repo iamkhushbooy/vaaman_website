@@ -2,22 +2,32 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin, ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    const navLinks = [
+    const mainLinks = [
         { href: '/', label: 'Home' },
         { href: '/about', label: 'About' },
         { href: '/services', label: 'Services' },
-        { href: '/projects', label: 'Projects' },
-        { href: '/contact', label: 'Contact' },
     ];
+
+    const pageLinks = [
+        { href: '/projects', label: 'Projects' },
+        { href: '/features', label: 'Features' },
+        { href: '/team', label: 'Our Team' },
+        { href: '/testimonial', label: 'Testimonial' },
+        { href: '/404', label: '404 Page' },
+    ];
+
+    const isPagesActive = pageLinks.some(link => pathname === link.href);
 
     return (
         <header className="bg-white sticky top-0 z-50">
@@ -61,27 +71,71 @@ export function Header() {
                                     className="w-full h-full object-contain"
                                 />
                             </div>
-                            {/* <span className="hidden sm:inline text-xl md:text-2xl">Manufacturing</span> */}
                         </Link>
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-8">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-slate-600 hover:text-[rgb(254,94,21)] transition font-medium"
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                            {/* 1. Home, About, Services */}
+                            {mainLinks.map((link) => {
+                                const isActive = pathname === link.href;
+                                return (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`transition font-medium ${
+                                            isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                        }`}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                );
+                            })}
+
+                            {/* 2. Pages Dropdown */}
+                            <div className="relative group h-full flex items-center">
+                                <button className={`flex items-center gap-1 transition font-medium py-8 ${
+                                    isPagesActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                }`}>
+                                    Pages <ChevronDown size={18} />
+                                </button>
+                                {/* Dropdown menu container */}
+                                <div className="absolute top-full left-0 mt-0 w-48 bg-slate-50 border border-gray-200 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    {pageLinks.map((link) => {
+                                        // Check if this specific dropdown link is active
+                                        const isActive = pathname === link.href;
+                                        return (
+                                            <Link
+                                                key={link.href}
+                                                href={link.href}
+                                                className={`block px-4 py-2.5 transition-colors duration-150 ${
+                                                    isActive 
+                                                    ? 'text-[rgb(254,94,21)] font-bold bg-slate-100' // Active state styling
+                                                    : 'text-slate-700 hover:text-white hover:bg-[#ff3000]' // Default/Hover styling
+                                                }`}
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* 3. Contact Link */}
+                            <Link 
+                                href="/contact" 
+                                className={`transition font-medium ${
+                                    pathname === '/contact' ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                }`}
+                            >
+                                Contact
+                            </Link>
                         </div>
 
                         {/* CTA Button - Desktop */}
                         <div className="hidden md:flex gap-4">
                             <Link
                                 href="/contact"
-                                className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-[rgb(254,94,21)] transition"
+                                className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-orange-600 transition"
                             >
                                 Get Quote
                             </Link>
@@ -90,7 +144,7 @@ export function Header() {
                         {/* Mobile Menu Button */}
                         <button
                             onClick={toggleMenu}
-                            className="md:hidden p-2 hover:bg-gray-100 rounded transition text-slate-900"
+                            className="md:hidden p-2 hover:bg-gray-100 rounded transition text-[#03245a]"
                             aria-label="Toggle menu"
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -100,20 +154,62 @@ export function Header() {
                     {/* Mobile Navigation */}
                     {isOpen && (
                         <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="block text-slate-600 hover:text-[rgb(254,94,21)] transition font-medium"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                            {/* 1. Home, About, Services */}
+                            {mainLinks.map((link) => {
+                                const isActive = pathname === link.href;
+                                return (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`block transition font-medium ${
+                                            isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                        }`}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                );
+                            })}
+                            
+                            {/* 2. Pages links (Mobile view) */}
+                            <div className="pl-4 space-y-3 border-l-2 border-orange-100 ml-2 py-2">
+                                <span className={`text-sm font-bold uppercase tracking-wider ${
+                                    isPagesActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a]'
+                                }`}>
+                                    Pages
+                                </span>
+                                {pageLinks.map((link) => {
+                                    const isActive = pathname === link.href;
+                                    return (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            className={`block transition font-medium ${
+                                                isActive ? 'text-[rgb(254,94,21)]' : 'text-slate-600 hover:text-[rgb(254,94,21)]'
+                                            }`}
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+
+                            {/* 3. Contact Link */}
+                            <Link 
+                                href="/contact" 
+                                className={`block transition font-medium ${
+                                    pathname === '/contact' ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                }`}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Contact
+                            </Link>
+
                             <div className="pt-4 border-t border-gray-200">
                                 <Link
                                     href="/contact"
-                                    className="block px-6 py-2 bg-[rgb(254,94,21)] text-white rounded font-semibold hover:bg-[rgb(255,90,14)] transition text-center"
+                                    className="block px-6 py-2 bg-[rgb(254,94,21)] text-white rounded font-semibold hover:bg-orange-600 transition text-center"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     Get Quote

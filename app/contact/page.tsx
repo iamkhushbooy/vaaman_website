@@ -37,9 +37,7 @@ export default function Contact() {
     return (
         <>
             <main>
-
                 <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
-                    {/* 1. Removed opacity-20 so the image is fully visible */}
                     <div className="absolute inset-0">
                         <img
                             src="/contact/contact-banner.jpeg"
@@ -48,7 +46,6 @@ export default function Contact() {
                         />
                     </div>
 
-                    {/* 2. Updated gradient to fade from dark left to transparent right */}
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
 
                     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -58,7 +55,7 @@ export default function Contact() {
                             {' / '}
                             <Link href="/contact" className="hover:text-white transition">Pages</Link>
                             {' / '}
-                            <span>Contact</span>
+                            <span className="text-[rgb(254,94,21)]">Contact</span>
                         </p>
                     </div>
                 </section>
@@ -89,7 +86,7 @@ export default function Contact() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Email Address</h3>
                                 <p className="text-gray-600 mb-2">info@vaaman.com</p>
-                                <p className="text-gray-600 mb-6">support@vaaman.com</p>
+                                <p className="text-gray-600 mb-6">sales@vaaman.com</p>
                                 <Link
                                     href="mailto:info@vaaman.com"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
@@ -104,7 +101,7 @@ export default function Contact() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Office Address</h3>
                                 <p className="text-gray-600 mb-2">510, Sai Leela Commercial Complex, S.V.Road, Borivali (West), Mumbai-400092, India</p>
-                                <p className="text-gray-600 mb-6">+91 9928036938</p>
+                                {/* <p className="text-gray-600 mb-6">+91 9928036938</p> */}
                                 <Link
                                     href="#"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
@@ -114,13 +111,26 @@ export default function Contact() {
                             </div>
                         </div>
 
+                        {/* Map Section - FIXED to fill the border entirely */}
+                        <div className="w-full mb-16 border border-gray-300 overflow-hidden bg-gray-100">
+                            <iframe
+                                title="Office Location"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.298859611173!2d72.85259827596192!3d19.22580268200986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b0d4306f3127%3A0xe5807e9ddfccfbf5!2sVaaman%20Engineers%20India%20Ltd!5e0!3m2!1sen!2sin!4v1773712698739!5m2!1sen!2sin"
+                                className="w-full h-96 block"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+
                         {/* Contact Form & Description */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                             {/* Left Side - Text */}
                             <div>
                                 <p className="text-[rgb(254,94,21)] font-semibold text-lg mb-2">CONTACT US</p>
                                 <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 leading-tight">
-                                  Have something on your mind? Don't hesitate to get in touch.
+                                    Have something on your mind? Don't hesitate to get in touch.
                                 </h2>
                                 <p className="text-gray-600 mb-8 leading-relaxed">
                                     At Vaaman, we are committed to delivering excellence and innovation in every project. Whether you have a specific inquiry, need a detailed quote, or want to discuss a potential partnership, our team of experts is here to help. Fill out the form, and let's bring your vision to life.

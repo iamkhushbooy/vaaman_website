@@ -26,7 +26,7 @@ export function Footer() {
                             </div>
                             <div className="flex gap-3">
                                 <Mail size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-300">info@example.com</span>
+                                <span className="text-gray-300">info@vaaman.com</span>
                             </div>
                         </div>
                         <div className="flex gap-3 mt-6">
@@ -83,11 +83,11 @@ export function Footer() {
                         <div className="space-y-4">
                             <div>
                                 <p className="text-white font-semibold">Monday - Friday</p>
-                                <p className="text-gray-400">09:00 am - 07:00 pm</p>
+                                <p className="text-gray-400">09:00 am - 05:00 pm</p>
                             </div>
                             <div>
                                 <p className="text-white font-semibold">Saturday</p>
-                                <p className="text-gray-400">09:00 am - 12:00 pm</p>
+                                <p className="text-gray-400">09:00 am - 5:00 pm</p>
                             </div>
                             <div>
                                 <p className="text-white font-semibold">Sunday</p>
