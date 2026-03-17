@@ -45,7 +45,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Images Section */}
-<div className="grid grid-cols-2 gap-5 h-full relative items-start"> {/* items-start ensure karega ki alignment top se ho */}
+<div className="grid grid-cols-2 gap-5 h-full relative items-start"> 
   
   {/* FIRST IMAGE */}
   <motion.div 
@@ -53,7 +53,7 @@ export default function About() {
     whileInView={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     viewport={{ once: true }}
-    className="pt-0" // First image ko top par rakhein
+    className="pt-0" 
   >
     <img
       src="/about_img1.png"
@@ -62,13 +62,13 @@ export default function About() {
     />
   </motion.div>
 
-  {/* SECOND IMAGE: Isko first image ke cap ke level par lane ke liye */}
+  
   <motion.div 
     initial={{ y: -100, opacity: 0 }}
     whileInView={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     viewport={{ once: true }}
-    className="mt-[30%]" // <-- 'self-end' hata kar ye lagayein. % badha ya ghata kar cap ke barabar set karein.
+    className="mt-[30%]" 
   > 
     <img
       src="/about_img2.png"
@@ -77,7 +77,7 @@ export default function About() {
     />
   </motion.div>
 </div>
-          {/* RIGHT CONTENT: Ek dam se Fade-in hoga */}
+         
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -95,10 +95,10 @@ export default function About() {
               excellence, and redefining industry standards through sustainable growth..
             </p>
 
-            {/* Experience Box & List */}
+            
             <div className="flex items-start gap-10 mb-5">
               <motion.div 
-                whileHover={{ scale: 1.05 }} // Chota sa bounce effect on hover
+                whileHover={{ scale: 1.05 }} 
                 className="bg-orange-500 text-white p-8 px-10 text-center rounded-sm flex-shrink-0"
               >
                 <h2 className="text-6xl font-extrabold mb-1">25</h2>
@@ -112,7 +112,7 @@ export default function About() {
                     key={item}
                     initial={{ x: 20, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 * idx }} // Ek-ek karke aayenge list items
+                    transition={{ delay: 0.1 * idx }} 
                     className="flex items-center"
                   >
                     <Check className="text-orange-500 w-5 h-5 stroke-[4px]" />

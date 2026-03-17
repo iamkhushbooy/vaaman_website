@@ -12,7 +12,7 @@ const Counter = ({ value }: { value: number }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    // Number animation duration can be adjusted (currently 2 seconds)
+   
     const controls = animate(count, value, { duration: 2, ease: "easeOut" });
     return controls.stop;
   }, [value]);
