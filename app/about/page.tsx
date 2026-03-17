@@ -155,11 +155,7 @@ export default function About() {
 
       <AboutFacts />
       <TeamSection />
-
-
       <SafetySection />
-
-
     </>
   );
 }
