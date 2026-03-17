@@ -37,14 +37,14 @@ const teamMembers = [
 const foundationData = [
   { 
     title: "Our Vision", 
-    text: "To be the world's most trusted partner for industrial services, setting global standards.", 
+    text: "To become India’s leading service provider with Zero Harm.", 
     icon: faGlobe, 
     color: "text-orange-500",
     bgColor: "bg-orange-50"
   },
   { 
     title: "Our Mission", 
-    text: "Delivering exceptional results through innovative engineering and sustainable practices.", 
+    text: "To focus on productivity, technology and automation with full motivated work force for delivering key results", 
     icon: faBullseye, 
     color: "text-[#002147]",
     bgColor: "bg-blue-50"
