@@ -1,11 +1,8 @@
 'use client';
-
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: '',
@@ -40,7 +37,7 @@ export default function Contact() {
                 <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
                     <div className="absolute inset-0">
                         <img
-                            src="/contact/contact-banner.jpeg"
+                            src="/contact/hero1.jpeg"
                             alt="Contact banner"
                             className="w-full h-full object-cover"
                         />
@@ -112,7 +109,7 @@ export default function Contact() {
                         </div>
 
                         {/* Map Section - FIXED to fill the border entirely */}
-                        <div className="w-full mb-16 border border-gray-300 overflow-hidden bg-gray-100">
+                        {/* <div className="w-full mb-16 border border-gray-300 overflow-hidden bg-gray-100">
                             <iframe
                                 title="Office Location"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.298859611173!2d72.85259827596192!3d19.22580268200986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b0d4306f3127%3A0xe5807e9ddfccfbf5!2sVaaman%20Engineers%20India%20Ltd!5e0!3m2!1sen!2sin!4v1773712698739!5m2!1sen!2sin"
@@ -122,6 +119,17 @@ export default function Contact() {
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                             ></iframe>
+                        </div> */}
+
+
+                        <div className="w-full mb-16 overflow-hidden flex items-center justify-center">
+                            <Image
+                                src="/contact/indiamap.png"
+                                alt="India Map"
+                                width={800}
+                                height={400}
+                                className="object-contain"
+                            />
                         </div>
 
                         {/* Contact Form & Description */}

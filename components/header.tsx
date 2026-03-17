@@ -13,21 +13,40 @@ export function Header() {
         setIsOpen(!isOpen);
     };
 
-    const mainLinks = [
-        { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-        { href: '/services', label: 'Services' },
+    // Unified navigation structure with Sector as a main menu item
+    const navItems = [
+        { label: 'Home', href: '/' },
+        { label: 'About Us', href: '/about' },
+        {
+            label: 'Services',
+            dropdown: [
+                { label: 'Operation and Maintenance', href: '/services/operation-and-maintenance' },
+                { label: 'Material Handling', href: '/services/material-handling' },
+                { label: 'Project Services/EPC', href: '/services/project' },
+                { label: 'Value Engineering', href: '/services/value-engineering' },
+            ]
+        },
+        {
+            label: 'Sector',
+            dropdown: [
+                { label: 'Aluminum', href: '/sector/aluminum' },
+                { label: 'Steel', href: '/sector/steel' },
+                { label: 'Cable & Conductor', href: '/sector/cable-conductor' },
+                { label: 'Port', href: '/sector/port' },
+                { label: 'Zinc', href: '/sector/zinc' },
+            ]
+        },
+        { label: 'Clients', href: '/clients' },
+        { label: 'Careers', href: '/careers' },
+        {
+            label: 'Media',
+            dropdown: [
+                { label: 'Awards', href: '/media/awards' },
+                { label: 'Gallery', href: '/media/gallery' },
+            ]
+        },
+        { label: 'Contact', href: '/contact' }
     ];
-
-    const pageLinks = [
-        { href: '/projects', label: 'Projects' },
-        { href: '/features', label: 'Features' },
-        { href: '/team', label: 'Our Team' },
-        { href: '/testimonial', label: 'Testimonial' },
-        { href: '/404', label: '404 Page' },
-    ];
-
-    const isPagesActive = pageLinks.some(link => pathname === link.href);
 
     return (
         <header className="bg-white sticky top-0 z-50">
@@ -74,65 +93,58 @@ export function Header() {
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-8">
-                            {/* 1. Home, About, Services */}
-                            {mainLinks.map((link) => {
-                                const isActive = pathname === link.href;
+                        <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
+                            {navItems.map((item) => {
+                                // Render Top-Level Dropdown
+                                if (item.dropdown) {
+                                    const isDropdownActive = item.dropdown.some(link => pathname === link.href);
+                                    return (
+                                        <div key={item.label} className="relative group h-full flex items-center">
+                                            <button className={`flex items-center gap-1 transition font-medium py-8 ${isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                                }`}>
+                                                {item.label} <ChevronDown size={18} />
+                                            </button>
+
+                                            {/* Removed fixed inline style. Added w-max to adapt to text length, and min-w-[200px] so smaller menus don't look too thin */}
+                                            <div className="absolute top-full left-0 mt-0 bg-slate-50 border border-gray-200 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-max min-w-[200px]">
+                                                {item.dropdown.map((link) => {
+                                                    const isActive = pathname === link.href;
+                                                    return (
+                                                        <Link
+                                                            key={link.href}
+                                                            href={link.href}
+                                                            // Kept text-base and text-center for a professional look, plus added slightly more horizontal padding (px-6)
+                                                            className={`block px-6 py-3 transition-colors duration-150 text-base text-center whitespace-nowrap ${isActive
+                                                                    ? 'text-[rgb(254,94,21)] font-bold bg-slate-100'
+                                                                    : 'text-slate-700 hover:text-white hover:bg-[#ff3000]'
+                                                                }`}
+                                                        >
+                                                            {link.label}
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    );
+                                }
+
+                                // Render Standard Link
+                                const isActive = pathname === item.href;
                                 return (
                                     <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className={`transition font-medium ${
-                                            isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                        }`}
+                                        key={item.href}
+                                        href={item.href}
+                                        className={`transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                            }`}
                                     >
-                                        {link.label}
+                                        {item.label}
                                     </Link>
                                 );
                             })}
-
-                            {/* 2. Pages Dropdown */}
-                            <div className="relative group h-full flex items-center">
-                                <button className={`flex items-center gap-1 transition font-medium py-8 ${
-                                    isPagesActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                }`}>
-                                    Pages <ChevronDown size={18} />
-                                </button>
-                                {/* Dropdown menu container */}
-                                <div className="absolute top-full left-0 mt-0 w-48 bg-slate-50 border border-gray-200 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                                    {pageLinks.map((link) => {
-                                        // Check if this specific dropdown link is active
-                                        const isActive = pathname === link.href;
-                                        return (
-                                            <Link
-                                                key={link.href}
-                                                href={link.href}
-                                                className={`block px-4 py-2.5 transition-colors duration-150 ${
-                                                    isActive 
-                                                    ? 'text-[rgb(254,94,21)] font-bold bg-slate-100' // Active state styling
-                                                    : 'text-slate-700 hover:text-white hover:bg-[#ff3000]' // Default/Hover styling
-                                                }`}
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-
-                            {/* 3. Contact Link */}
-                            <Link 
-                                href="/contact" 
-                                className={`transition font-medium ${
-                                    pathname === '/contact' ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                }`}
-                            >
-                                Contact
-                            </Link>
                         </div>
 
                         {/* CTA Button - Desktop */}
-                        <div className="hidden md:flex gap-4">
+                        <div className="hidden xl:flex gap-4 shrink-0">
                             <Link
                                 href="/contact"
                                 className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-orange-600 transition"
@@ -153,58 +165,49 @@ export function Header() {
 
                     {/* Mobile Navigation */}
                     {isOpen && (
-                        <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4">
-                            {/* 1. Home, About, Services */}
-                            {mainLinks.map((link) => {
-                                const isActive = pathname === link.href;
+                        <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4 max-h-[70vh] overflow-y-auto">
+                            {navItems.map((item) => {
+                                // Render Mobile Dropdown Section
+                                if (item.dropdown) {
+                                    const isDropdownActive = item.dropdown.some(link => pathname === link.href);
+                                    return (
+                                        <div key={item.label} className="pl-4 space-y-3 border-l-2 border-orange-100 ml-2 py-2">
+                                            <span className={`text-sm font-bold uppercase tracking-wider ${isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a]'
+                                                }`}>
+                                                {item.label}
+                                            </span>
+                                            {item.dropdown.map((link) => {
+                                                const isActive = pathname === link.href;
+                                                return (
+                                                    <Link
+                                                        key={link.href}
+                                                        href={link.href}
+                                                        className={`block transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-slate-600 hover:text-[rgb(254,94,21)]'
+                                                            }`}
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        {link.label}
+                                                    </Link>
+                                                );
+                                            })}
+                                        </div>
+                                    );
+                                }
+
+                                // Render Standard Mobile Link
+                                const isActive = pathname === item.href;
                                 return (
                                     <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className={`block transition font-medium ${
-                                            isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                        }`}
+                                        key={item.href}
+                                        href={item.href}
+                                        className={`block transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                            }`}
                                         onClick={() => setIsOpen(false)}
                                     >
-                                        {link.label}
+                                        {item.label}
                                     </Link>
                                 );
                             })}
-                            
-                            {/* 2. Pages links (Mobile view) */}
-                            <div className="pl-4 space-y-3 border-l-2 border-orange-100 ml-2 py-2">
-                                <span className={`text-sm font-bold uppercase tracking-wider ${
-                                    isPagesActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a]'
-                                }`}>
-                                    Pages
-                                </span>
-                                {pageLinks.map((link) => {
-                                    const isActive = pathname === link.href;
-                                    return (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            className={`block transition font-medium ${
-                                                isActive ? 'text-[rgb(254,94,21)]' : 'text-slate-600 hover:text-[rgb(254,94,21)]'
-                                            }`}
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-
-                            {/* 3. Contact Link */}
-                            <Link 
-                                href="/contact" 
-                                className={`block transition font-medium ${
-                                    pathname === '/contact' ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                }`}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Contact
-                            </Link>
 
                             <div className="pt-4 border-t border-gray-200">
                                 <Link
