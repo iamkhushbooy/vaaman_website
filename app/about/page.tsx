@@ -1,11 +1,12 @@
-'use client'; // Framer motion ke liye zaroori hai
+'use client';
 
 import { Mail, Phone, Check } from 'lucide-react';
 import AboutFacts from '@/components/about_facts';
 import Team from '@/components/team';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
+import TeamSection from '@/components/team';
+import SafetySection from '@/components/SafetySection';
 export default function About() {
   return (
     <>
@@ -14,13 +15,13 @@ export default function About() {
         {/* 1. Removed opacity-20 so the image is fully visible */}
         <div className="absolute inset-0">
           <img
-            src="/about-benner.jpeg"
+            src="/sefty_images/sefty10.jpg"
             alt="About banner"
             className="w-full h-full object-cover"
           />
         </div>
 
-        {/* 2. Updated gradient to fade from dark left to transparent right */}
+        { }
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -82,12 +83,14 @@ export default function About() {
                 About Us
               </p>
               <h1 className="text-4xl font-extrabold text-[#002147] mb-2 ">
-                Leaders in Engineering Excellence
-              </h1>
-              <p className="text-gray-600 mb-10 leading-relaxed text-lg">
-                A trust-driven leader in industrial engineering, Vaaman Engineering provides expert operation and maintenance solutions. We are committed to safety,
-                excellence, and redefining industry standards through sustainable growth..
-              </p>
+  Welcome to Vaaman Engineers
+</h1>
+<p className="text-gray-600 mb-6 leading-relaxed text-lg">
+  Established by <strong>Shri Surendra Pratap Singh</strong>, Vaaman Engineers is an esteemed industry service partner dedicated to providing top-tier industrial services. With a focus on bulk material handling and metal production, we bring over three decades of unparalleled expertise to every project.
+</p>
+<p className="text-gray-600 mb-10 leading-relaxed text-lg">
+  Our ISO 9001:2015 certification stands as a testament to our unwavering dedication to quality, innovation, and sustainability. As we continue our journey, we remain steadfast in our mission to redefine industry standards and exceed client expectations.
+</p>
 
 
               <div className="flex items-start gap-10 mb-5">
@@ -95,13 +98,19 @@ export default function About() {
                   whileHover={{ scale: 1.05 }}
                   className="bg-orange-500 text-white p-8 px-10 text-center rounded-sm flex-shrink-0"
                 >
-                  <h2 className="text-6xl font-extrabold mb-1">25</h2>
-                  <p className="text-sm font-bold uppercase leading-tight">Years of</p>
-                  <p className="text-sm font-bold uppercase leading-tight">Experience</p>
+                  <h2 className="text-6xl font-extrabold mb-1">30+</h2>
+<p className="text-sm font-bold uppercase leading-tight">Years of</p>
+<p className="text-sm font-bold uppercase leading-tight">Legacy</p>
                 </motion.div>
 
                 <div className="space-y-3 text-sm  text-gray-600">
-                  {["Power & Energy", "Civil Engineering", "Chemical Engineering", "Mechanical Engineering", "Oil & Gas Engineering"].map((item, idx) => (
+                 {[
+    "Bulk Material Handling",
+    "Metal Production Services",
+    "Industrial Operations",
+    "Maintenance Solutions",
+    "ISO 9001:2015 Quality Standards"
+  ].map((item, idx) => (
                     <motion.p
                       key={item}
                       initial={{ x: 20, opacity: 0 }}
@@ -145,7 +154,11 @@ export default function About() {
       </section>
 
       <AboutFacts />
-      <Team />
+      <TeamSection />
+
+
+      <SafetySection />
+
 
     </>
   );
