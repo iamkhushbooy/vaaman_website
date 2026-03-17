@@ -54,9 +54,9 @@ export function Header() {
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-                            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+                            <div className="w-30 h-30 flex items-center justify-center overflow-hidden">
                                 <img
-                                    src="/logo.jpeg"
+                                    src="/vaamanLogo.jpeg"
                                     alt="Company Logo"
                                     className="w-full h-full object-contain"
                                 />
