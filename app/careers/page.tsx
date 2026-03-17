@@ -116,7 +116,7 @@ export default function CareersPage() {
                     <h2 className="text-3xl md:text-4xl font-bold text-[#03245a] mb-6">
                         Open Positions at Vaaman Engineers
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-white max-w-2xl mx-auto mb-5">
                         Ready to make a significant impact in the industrial service sector? Vaaman Engineers is looking for motivated individuals to join our team. We are committed to equal opportunity and welcome candidates from diverse backgrounds. Please check our LinkedIn page or website for current openings and apply with your resume and a cover letter. We look forward to discovering how your skills and passions align with our mission.
                     </p>
 
@@ -133,7 +133,7 @@ export default function CareersPage() {
 
                         <a
                             href="mailto:info@vaaman.com"
-                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4  text-[rgb(254,94,21)] font-semibold transition-colors duration-200"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 text-white bg-[rgb(254,94,21)] font-semibold transition-colors duration-200"
                         >
                             <Mail size={20} />
                             Email Your Resume
