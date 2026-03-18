@@ -73,9 +73,9 @@ export const projects = [
 ];
 
 export const team = [
-    { img: '/images/team/team-1.jpg', name: 'S P Singh', role: 'Managing Director' },
-    { img: '/images/team/team-2.jpg', name: 'Rajesh Kundu', role: 'Chief Executive Officer' },
-    { img: '/images/team/team-3.jpg', name: 'Barun Kumar', role: 'Executive Director' },
+    { img: '/images/team/S P Singh.JPG', name: 'S P Singh', role: 'Managing Director' },
+    { img: '/images/team/Rajesh Kundu.JPG', name: 'Rajesh Kundu', role: 'Chief Executive Officer' },
+    { img: '/images/team/BARUN CHAKRABORTY.JPG', name: 'Barun Kumar', role: 'Executive Director' },
 ];
 
 export const testimonials = [
