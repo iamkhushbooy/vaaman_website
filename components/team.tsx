@@ -13,7 +13,7 @@ const teamMembers = [
     name: "S.P. Singh", 
     role: "Managing Director", 
     delay: 0.1, 
-    img: "/sp-sing.jpeg", 
+    img: "/award/S P Singh.JPG", 
     linkedin: "https://www.linkedin.com/in/surendra-singh-3a775bb2/" 
   },
   { 
@@ -21,7 +21,7 @@ const teamMembers = [
     name: "Rajesh Kundu", 
     role: "Chief Executive Officer", 
     delay: 0.3, 
-    img: "/rajesh.jpeg", 
+    img: "/award/CEO'S Corner.jpeg", 
     linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
   },
   { 
@@ -29,7 +29,7 @@ const teamMembers = [
     name: "Barun Kumar", 
     role: "Executive Director", 
     delay: 0.5, 
-    img: "/barun-kumar.jpg", 
+    img: "/award/BARUN CHAKRABORTY.JPG", 
     linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
   },
 ];
