@@ -1,43 +1,51 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import {
     ChevronRight,
-    GraduationCap,
-    Banknote,
     Users,
-    Briefcase,
     HeartPulse,
     Linkedin,
-    Mail
+    Mail,
+    TrendingUp,
+    Wallet,
+    ShieldCheck,
+    Lightbulb
 } from 'lucide-react';
 
 export default function CareersPage() {
     // Array of benefits to map through for a clean grid layout
     const benefits = [
         {
-            title: "Professional Development",
-            description: "Comprehensive professional development and training.",
-            icon: <GraduationCap size={32} className="text-[rgb(254,94,21)]" />
-        },
-        {
-            title: "Competitive Pay",
-            description: "Competitive compensation packages.",
-            icon: <Banknote size={32} className="text-[rgb(254,94,21)]" />
-        },
-        {
-            title: "Diversity & Inclusion",
-            description: "A culture of diversity and inclusion.",
-            icon: <Users size={32} className="text-[rgb(254,94,21)]" />
-        },
-        {
-            title: "Impactful Projects",
-            description: "Opportunities to work on challenging and impactful projects.",
-            icon: <Briefcase size={32} className="text-[rgb(254,94,21)]" />
+            title: "Professional Growth",
+            description: "Continuous learning opportunities, skill development programs, and clear career progression paths.",
+            icon: <TrendingUp className="text-[rgb(254,94,21)]" size={32} />
         },
         {
             title: "Health & Wellness",
-            description: "Health and wellness programs.",
-            icon: <HeartPulse size={32} className="text-[rgb(254,94,21)]" />
+            description: "Comprehensive medical insurance and wellness programs to keep you and your family secure.",
+            icon: <HeartPulse className="text-[rgb(254,94,21)]" size={32} />
+        },
+        {
+            title: "Competitive Pay",
+            description: "Attractive remuneration packages, performance bonuses, and rewards for outstanding contributions.",
+            icon: <Wallet className="text-[rgb(254,94,21)]" size={32} />
+        },
+        {
+            title: "Job Security & Safety",
+            description: "A stable work environment with the highest standards of occupational health and safety.",
+            icon: <ShieldCheck className="text-[rgb(254,94,21)]" size={32} />
+        },
+        {
+            title: "Innovative Projects",
+            description: "Work on cutting-edge engineering projects and operations for India's largest metal and mining giants.",
+            icon: <Lightbulb className="text-[rgb(254,94,21)]" size={32} />
+        },
+        {
+            title: "Inclusive Culture", 
+            description: "A diverse, collaborative, and supportive workplace where every voice is heard and valued.",
+            icon: <Users className="text-[rgb(254,94,21)]" size={32} />
         }
     ];
 
@@ -63,14 +71,13 @@ export default function CareersPage() {
             </div>
 
             {/* Why Join Section */}
-            <section className="max-w-7xl mx-auto px-6 py-8 ">
+            <section className="max-w-7xl mx-auto px-6 py-8 mt-12">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#03245a] mb-6">
                         Why Join Vaaman Engineers
                     </h2>
                     <div className="w-16 h-1.5 bg-[rgb(254,94,21)] mx-auto mb-10"></div>
-                    {/* Increased line-height and constrained width */}
-                    <p className="text-lg text-slate-600 leading-loose ">
+                    <p className="text-lg text-slate-600 leading-relaxed">
                         Embark on a transformative career with Vaaman Engineers, a leader in industrial services. We offer a dynamic environment where innovation, commitment, and excellence are not just valued, they are rewarded. Join us to be a part of a company that is shaping the future of bulk material handling and metal production.
                     </p>
                 </div>
@@ -91,7 +98,7 @@ export default function CareersPage() {
                     {benefits.map((benefit, index) => (
                         <div
                             key={index}
-                            className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-transparent hover:border-[rgb(254,94,21)] flex flex-col items-center text-center group"
+                            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-[rgb(254,94,21)] flex flex-col items-center text-center group"
                         >
                             <div className="p-4 bg-orange-50 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
                                 {benefit.icon}
@@ -99,7 +106,7 @@ export default function CareersPage() {
                             <h3 className="text-xl font-bold text-[#03245a] mb-3">
                                 {benefit.title}
                             </h3>
-                            <p className="text-slate-600">
+                            <p className="text-slate-600 leading-relaxed">
                                 {benefit.description}
                             </p>
                         </div>
@@ -108,24 +115,25 @@ export default function CareersPage() {
             </div>
 
             {/* Open Positions & CTA Section */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
                 <div className="bg-[#03245a] rounded-2xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
                     {/* Decorative background element */}
                     <div className="absolute top-0 left-0 w-full h-2 bg-[rgb(254,94,21)]"></div>
 
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#03245a] mb-6">
+                    {/* Changed text color to white so it's visible against the dark blue background */}
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">
                         Open Positions at Vaaman Engineers
                     </h2>
-                    <p className="text-lg text-white max-w-2xl mx-auto mb-5">
-                        Ready to make a significant impact in the industrial service sector? Vaaman Engineers is looking for motivated individuals to join our team. We are committed to equal opportunity and welcome candidates from diverse backgrounds. Please check our LinkedIn page or website for current openings and apply with your resume and a cover letter. We look forward to discovering how your skills and passions align with our mission.
+                    <p className="text-lg text-slate-300 max-w-3xl mx-auto mb-10 relative z-10 leading-relaxed">
+                        Ready to make a significant impact in the industrial service sector? Vaaman Engineers is looking for motivated individuals to join our team. We are committed to equal opportunity and welcome candidates from diverse backgrounds. Please check our LinkedIn page or website for current openings and apply with your resume and a cover letter.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-6 relative z-10">
                         <a
                             href="https://www.linkedin.com/company/vaaman-engineers"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-[#0A66C2] text-white font-semibold rounded hover:bg-[#004182] transition-colors duration-200"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-[#0A66C2] text-white font-bold rounded-lg hover:bg-[#004182] transition-colors duration-200 shadow-lg hover:shadow-xl"
                         >
                             <Linkedin size={20} />
                             Check LinkedIn
@@ -133,7 +141,7 @@ export default function CareersPage() {
 
                         <a
                             href="mailto:info@vaaman.com"
-                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 text-white bg-[rgb(254,94,21)] font-semibold transition-colors duration-200"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 text-white bg-[rgb(254,94,21)] font-bold rounded-lg hover:bg-[rgb(220,80,15)] transition-colors duration-200 shadow-lg hover:shadow-xl"
                         >
                             <Mail size={20} />
                             Email Your Resume

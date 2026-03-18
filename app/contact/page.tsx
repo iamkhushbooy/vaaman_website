@@ -124,7 +124,7 @@ export default function Contact() {
 
                         <div className="w-full mb-16 overflow-hidden flex items-center justify-center">
                             <Image
-                                src="/contact/indiamap.png"
+                                src="/contact/m.png"
                                 alt="India Map"
                                 width={800}
                                 height={400}

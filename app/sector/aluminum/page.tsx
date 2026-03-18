@@ -18,7 +18,6 @@ export default function Aluminium() {
     "Cooling towers & Chillers",
     "Forced lubrication systems",
     "Compressors and piping",
-    "EOT Cranes",
     "Effluent Treatment Plant and Water Treatment Plant",
     "Scrubbers",
   ];
