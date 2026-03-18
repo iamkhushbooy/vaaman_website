@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { PRIMARY, DARK, testimonials } from '@/lib/data';
 
@@ -42,10 +43,20 @@ export function TestimonialsSection() {
 
                 <div className="relative">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md flex items-center justify-center transition-all duration-300"
-                        style={{ backgroundColor: DARK }}>
-                        <span className="text-white text-2xl font-bold" style={{ fontFamily: 'Rubik, sans-serif' }}>
-                            {testimonials[tSlide].org.charAt(0)}
-                        </span>
+                        style={{ backgroundColor: testimonials[tSlide].logo ? '#fff' : DARK }}>
+                        {testimonials[tSlide].logo ? (
+                            <Image
+                                src={testimonials[tSlide].logo}
+                                alt={testimonials[tSlide].org}
+                                width={96}
+                                height={96}
+                                className="object-contain p-2 w-full h-full"
+                            />
+                        ) : (
+                            <span className="text-white text-2xl font-bold" style={{ fontFamily: 'Rubik, sans-serif' }}>
+                                {testimonials[tSlide].org.charAt(0)}
+                            </span>
+                        )}
                     </div>
                     {/* Quote badge — rounded-full */}
                     <div

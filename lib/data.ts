@@ -83,21 +83,25 @@ export const testimonials = [
         text: 'Appreciation for the successful completion of the SRF Project. Your dedication contributes to our success.',
         name: 'Recognition',
         org: 'TATA Steel',
+        logo: '/images/clients/tatasteel.png.png',
     },
     {
         text: 'Vaaman Engineers (at BALCO) as winner of Chairman Award for the commitment exhibited in delivering superior business performance.',
         name: 'Chairman Award',
         org: 'Vedanta',
+        logo: '/images/clients/vedanta_new.png',
     },
     {
         text: 'Vaaman Engineers India Limited in recognition of their outstanding contribution for British Safety Council Sword of Honor Award to Zinc Smelter at Debari.',
         name: 'Sword of Honor Award',
         org: 'Vedanta',
+        logo: '/images/clients/vedanta_new.png',
     },
     {
         text: 'Vaaman Engineers recognized as one of the TOP 10 INDUSTRIAL OPERATIONS & MAINTENANCE SERVICE PROVIDERS 2021.',
         name: 'Top 10 Award',
         org: 'Industry Outlook',
+        logo: '/images/clients/industryoutlook.jpeg',
     },
 ];
 
