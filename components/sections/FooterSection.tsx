@@ -17,7 +17,7 @@ export function FooterSection() {
                         </div>
                         <div className="flex gap-3 items-center">
                             <Phone size={16} className="flex-shrink-0" style={{ color: PRIMARY }} />
-                            <span>+91 99280 36938</span>
+                            <span>+91 22 28925400</span>
                         </div>
                         <div className="flex gap-3 items-center">
                             <Mail size={16} className="flex-shrink-0" style={{ color: PRIMARY }} />
