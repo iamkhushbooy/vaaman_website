@@ -133,7 +133,7 @@ export default function About() {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Email us</p>
-                    <p className="font-bold text-[#002147]">info@vaaman.com</p>
+                    <p className="font-bold text-[#002147]">enquiry@vaaman.in</p>
                   </div>
                 </div>
 
@@ -143,7 +143,7 @@ export default function About() {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Call us</p>
-                    <p className="font-bold text-[#002147]">+91 9928036938</p>
+                    <p className="font-bold text-[#002147]">+91 22 28925400</p>
                   </div>
                 </div>
               </div>
