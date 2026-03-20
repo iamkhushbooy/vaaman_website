@@ -67,10 +67,9 @@ export default function Contact() {
                                     <Phone size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Phone Number</h3>
-                                <p className="text-gray-600 mb-2">+91 9928036938</p>
                                 <p className="text-gray-600 mb-6">+91 22 28925400</p>
                                 <Link
-                                    href="tel:+919928036938"
+                                    href="tel:+91 22 28925400"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Call Now <span>→</span>
@@ -82,10 +81,10 @@ export default function Contact() {
                                     <Mail size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Email Address</h3>
-                                <p className="text-gray-600 mb-2">info@vaaman.com</p>
-                                <p className="text-gray-600 mb-6">sales@vaaman.com</p>
+                                <p className="text-gray-600 mb-2">mailto:enquiry@vaaman.in</p>
+                                <p className="text-gray-600 mb-6">mailto:business.development@vaaman.in</p>
                                 <Link
-                                    href="mailto:info@vaaman.com"
+                                    href="mailto:enquiry@vaaman.in"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Email Now <span>→</span>
