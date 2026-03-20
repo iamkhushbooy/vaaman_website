@@ -151,7 +151,7 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-blue-900">Call Us</h4>
-                                            <p className="text-gray-600">+91 9928036938</p>
+                                            <p className="text-gray-600">+91 22 28925400</p>
                                         </div>
                                     </div>
 
@@ -161,7 +161,7 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-blue-900">Mail Us</h4>
-                                            <p className="text-gray-600">info@vaaman.com</p>
+                                            <p className="text-gray-600">enquiry@vaaman.in</p>
                                         </div>
                                     </div>
                                 </div>
