@@ -60,13 +60,13 @@ export function AboutSection() {
                             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: PRIMARY }}>
                                 <Mail size={16} />
                             </div>
-                            <span className="text-sm text-gray-600">info@vaamanengineers.com</span>
+                            <span className="text-sm text-gray-600">enquiry@vaaman.in</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: PRIMARY }}>
                                 <Phone size={16} />
                             </div>
-                            <span className="text-sm text-gray-600">+91 99280 36938</span>
+                            <span className="text-sm text-gray-600">+91 22 28925400</span>
                         </div>
                     </div>
                 </div>
