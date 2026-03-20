@@ -56,11 +56,11 @@ export function FooterSection() {
                     <div className="space-y-3 text-sm text-white/60">
                         <div>
                             <p>Monday – Friday</p>
-                            <p className="font-semibold text-white">09:00 am – 06:00 pm</p>
+                            <p className="font-semibold text-white">10:00 am – 06:00 pm</p>
                         </div>
                         <div>
                             <p>Saturday</p>
-                            <p className="font-semibold text-white">09:00 am – 02:00 pm</p>
+                            <p className="font-semibold text-white">10:00 am – 05:00 pm</p>
                         </div>
                         <div>
                             <p>Sunday</p>
