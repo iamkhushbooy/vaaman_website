@@ -22,11 +22,11 @@ export function Footer() {
                             </div>
                             <div className="flex gap-3">
                                 <Phone size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-300">+91 9928036938</span>
+                                <span className="text-gray-300">+91 22 28925400</span>
                             </div>
                             <div className="flex gap-3">
                                 <Mail size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-300">info@vaaman.com</span>
+                                <span className="text-gray-300">enquiry@vaaman.in</span>
                             </div>
                         </div>
                         <div className="flex gap-3 mt-6">
