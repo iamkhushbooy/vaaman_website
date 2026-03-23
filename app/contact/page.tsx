@@ -23,7 +23,13 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        const targetEmail = 'enquiry@vaaman.in';
+        const emailBody = `Name: ${formData.name}
+,Email: ${formData.email}
+Message: ${formData.message}`;
+        const encodedSubject = encodeURIComponent(formData.subject || 'Website Inquiry');
+        const encodedBody = encodeURIComponent(emailBody);
+        window.location.href = `mailto:${targetEmail}?subject=${encodedSubject}&body=${encodedBody}`;
         setSubmitted(true);
         setTimeout(() => {
             setSubmitted(false);

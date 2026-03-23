@@ -5,16 +5,27 @@ import { useState } from 'react';
 import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
+type DropdownItem = {
+    label: string;
+    href: string;
+};
+
+type NavItem = {
+    label: string;
+    href?: string;
+    dropdown?: DropdownItem[];
+};
+
 export function Header() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null); 
     const pathname = usePathname();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    // Unified navigation structure with Sector as a main menu item
-    const navItems = [
+    const navItems: NavItem[] = [
         { label: 'Home', href: '/' },
         { label: 'About Us', href: '/about' },
         {
@@ -55,8 +66,7 @@ export function Header() {
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2 text-sm">
                         <Phone size={16} className="text-[rgb(254,94,21)]" />
-                        <span>Call Us: +91 22 28925400</span>
-                         
+                        <span>Call Us: +91 9928036938</span>
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
@@ -93,32 +103,43 @@ export function Header() {
                             </div>
                         </Link>
 
-                        {/* Desktop Navigation */}
+                        {/* Desktop & Tablet Navigation */}
                         <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
                             {navItems.map((item) => {
-                                // Render Top-Level Dropdown
+                                // Dropdown Menu Logic
                                 if (item.dropdown) {
                                     const isDropdownActive = item.dropdown.some(link => pathname === link.href);
                                     return (
-                                        <div key={item.label} className="relative group h-full flex items-center">
-                                            <button className={`flex items-center gap-1 transition font-medium py-8 ${isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                                }`}>
+                                        <div 
+                                            key={item.label} 
+                                            className="relative h-full flex items-center"
+                                            onMouseEnter={() => setActiveDropdown(item.label)}
+                                            onMouseLeave={() => setActiveDropdown(null)}
+                                        >
+                                            <button 
+                                                onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
+                                                className={`flex items-center gap-1 transition font-medium py-8 ${
+                                                    isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
+                                                }`}
+                                            >
                                                 {item.label} <ChevronDown size={18} />
                                             </button>
 
-                                            {/* Removed fixed inline style. Added w-max to adapt to text length, and min-w-[200px] so smaller menus don't look too thin */}
-                                            <div className="absolute top-full left-0 mt-0 bg-slate-50 border border-gray-200 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-max min-w-[200px]">
+                                            <div className={`absolute top-full left-0 mt-0 bg-slate-50 border border-gray-200 rounded-sm shadow-lg transition-all duration-200 z-50 w-max min-w-[200px] ${
+                                                activeDropdown === item.label ? 'opacity-100 visible' : 'opacity-0 invisible'
+                                            }`}>
                                                 {item.dropdown.map((link) => {
                                                     const isActive = pathname === link.href;
                                                     return (
                                                         <Link
                                                             key={link.href}
                                                             href={link.href}
-                                                            // Kept text-base and text-center for a professional look, plus added slightly more horizontal padding (px-6)
-                                                            className={`block px-6 py-3 transition-colors duration-150 text-base text-center whitespace-nowrap ${isActive
+                                                            onClick={() => setActiveDropdown(null)} 
+                                                            className={`block px-6 py-3 transition-colors duration-150 text-base text-center whitespace-nowrap ${
+                                                                isActive
                                                                     ? 'text-[rgb(254,94,21)] font-bold bg-slate-100'
                                                                     : 'text-slate-700 hover:text-white hover:bg-[#ff3000]'
-                                                                }`}
+                                                            }`}
                                                         >
                                                             {link.label}
                                                         </Link>
@@ -129,9 +150,9 @@ export function Header() {
                                     );
                                 }
 
-                                // Render Standard Link
-                                const isActive = pathname === item.href;
-                                return (
+                                // Standard Link Logic (item.href zaroor hona chahiye yahan)
+                                const isActive = item.href ? pathname === item.href : false;
+                                return item.href ? (
                                     <Link
                                         key={item.href}
                                         href={item.href}
@@ -140,7 +161,7 @@ export function Header() {
                                     >
                                         {item.label}
                                     </Link>
-                                );
+                                ) : null;
                             })}
                         </div>
 
@@ -154,7 +175,7 @@ export function Header() {
                             </Link>
                         </div>
 
-                        {/* Mobile Menu Button */}
+                        {/* Mobile Menu Toggle Button */}
                         <button
                             onClick={toggleMenu}
                             className="md:hidden p-2 hover:bg-gray-100 rounded transition text-[#03245a]"
@@ -168,7 +189,6 @@ export function Header() {
                     {isOpen && (
                         <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4 max-h-[70vh] overflow-y-auto">
                             {navItems.map((item) => {
-                                // Render Mobile Dropdown Section
                                 if (item.dropdown) {
                                     const isDropdownActive = item.dropdown.some(link => pathname === link.href);
                                     return (
@@ -195,9 +215,8 @@ export function Header() {
                                     );
                                 }
 
-                                // Render Standard Mobile Link
-                                const isActive = pathname === item.href;
-                                return (
+                                const isActive = item.href ? pathname === item.href : false;
+                                return item.href ? (
                                     <Link
                                         key={item.href}
                                         href={item.href}
@@ -207,7 +226,7 @@ export function Header() {
                                     >
                                         {item.label}
                                     </Link>
-                                );
+                                ) : null;
                             })}
 
                             <div className="pt-4 border-t border-gray-200">
