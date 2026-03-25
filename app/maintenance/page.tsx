@@ -21,8 +21,8 @@ export default function MaintenancePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 md:mb-4 tracking-tight"
-            style={{ fontFamily: 'Rubik, sans-serif' }}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 md:mb-4 tracking-tight text-white"
+            style={{ fontFamily: 'Rubik, sans-serif', color: '#ffffff' }}
           >
             Under maintenance
           </h1>

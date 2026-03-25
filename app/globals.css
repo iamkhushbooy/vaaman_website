@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
-@import "tailwindcss";
+/* Project root = parent of app/ so components/, app/, etc. are always scanned for class names */
+@import "tailwindcss" source("..");
 
 :root {
   --background: #ffffff;
@@ -52,5 +53,33 @@
 
   .animate-fade-in {
     animation: fade-in 0.5s ease-in forwards; 
+  }
+}
+
+/* Fallbacks when utilities from shared components are missing from a build (readability) */
+@layer components {
+  [data-vaaman-header] {
+    background-color: #ffffff;
+  }
+  [data-vaaman-header] > div:first-child {
+    background-color: rgb(3, 36, 90);
+    color: #ffffff;
+  }
+  [data-vaaman-header] a {
+    text-decoration: none;
+  }
+
+  [data-vaaman-footer] {
+    color: rgb(209, 213, 219);
+  }
+  [data-vaaman-footer] h4 {
+    color: #ffffff;
+  }
+  [data-vaaman-footer] a {
+    color: rgb(209, 213, 219);
+    text-decoration: none;
+  }
+  [data-vaaman-footer] a:hover {
+    color: rgb(225, 84, 18);
   }
 }

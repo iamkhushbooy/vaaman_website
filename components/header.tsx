@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const [logoFailed, setLogoFailed] = useState(false);
     const pathname = usePathname();
 
     const toggleMenu = () => {
@@ -49,7 +50,7 @@ export function Header() {
     ];
 
     return (
-        <header className="bg-white sticky top-0 z-50">
+        <header data-vaaman-header className="bg-white sticky top-0 z-50">
             {/* Top Bar */}
             <div className="bg-[rgb(3,36,90)] text-white py-3 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -83,13 +84,23 @@ export function Header() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
-                        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-                            <div className="w-30 h-30 flex items-center justify-center overflow-hidden">
-                                <img
-                                    src="/vaamanLogo.jpeg"
-                                    alt="Company Logo"
-                                    className="w-full h-full object-contain"
-                                />
+                        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900 min-h-12">
+                            <div className="h-12 w-[min(180px,55vw)] flex items-center justify-start overflow-hidden shrink-0">
+                                {!logoFailed ? (
+                                    <img
+                                        src="/vaamanLogo.jpeg"
+                                        alt="Vaaman Engineers"
+                                        className="max-h-12 w-full object-contain object-left"
+                                        onError={() => setLogoFailed(true)}
+                                    />
+                                ) : (
+                                    <span
+                                        className="text-lg sm:text-xl font-bold text-[#03245a] leading-tight text-left"
+                                        style={{ fontFamily: 'Rubik, sans-serif' }}
+                                    >
+                                        Vaaman Engineers
+                                    </span>
+                                )}
                             </div>
                         </Link>
 
