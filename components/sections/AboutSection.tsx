@@ -29,7 +29,7 @@ export function AboutSection() {
                             bottom: '80px',
                         }}
                     >
-                        <span className="text-4xl font-bold" style={{ fontFamily: 'Rubik, sans-serif' }}>35</span>
+                        <span className="text-4xl font-bold" style={{ fontFamily: 'Rubik, sans-serif' }}>30+</span>
                         <span className="text-xs uppercase tracking-wide mt-1 leading-tight">Years of<br />Experience</span>
                     </div>
                 </div>

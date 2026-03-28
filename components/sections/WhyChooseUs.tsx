@@ -34,7 +34,7 @@ export function WhyChooseUs() {
                         Few Reasons Why People<br />Choosing Us!
                     </h2>
                     <p className="text-gray-600 leading-relaxed mb-8">
-                        With 35+ years of operational expertise, Vaaman Engineers delivers measurable value through a
+                        With 30+ years of operational expertise, Vaaman Engineers delivers measurable value through a
                         motivated workforce, cutting-edge technology, and an unwavering commitment to safety and quality.
                     </p>
                     <div className="space-y-6">

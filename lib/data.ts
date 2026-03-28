@@ -1,10 +1,10 @@
-import { Calendar, Users, TrendingUp, Layers } from 'lucide-react';
+import { Calendar, Users, Wrench, Layers } from 'lucide-react';
 
 export const PRIMARY = '#FF5E14';
 export const DARK = '#02245B';
 
 export const heroSlides = [
-    { src: '/images/hero/hero-1.jpeg', alt: 'Angul Plant', sub: '35 Years of Industrial Excellence', title: 'Your Industrial\nService Partner' },
+    { src: '/images/hero/hero-1.jpeg', alt: 'Angul Plant', sub: '30 Years of Industrial Excellence', title: 'Your Industrial\nService Partner' },
     { src: '/images/hero/hero-2.jpg',  alt: 'Industrial Operations', sub: 'Operations & Maintenance Experts', title: 'Excellence in\nHeavy Industry' },
     { src: '/images/hero/hero-3.jpg',  alt: 'Plant Maintenance', sub: 'Trusted by India\'s Largest Plants', title: 'Reliable Industrial\nSolutions' },
     { src: '/images/hero/hero-4.jpeg', alt: 'Material Handling', sub: 'End-to-End Material Handling', title: 'Moving Industry\nForward' },
@@ -16,9 +16,9 @@ export const heroSlides = [
 ];
 
 export const stats = [
-    { icon: Calendar, value: 35, prefix: '', suffix: '+', label: 'Years Experience' },
+    { icon: Calendar, value: 30, prefix: '', suffix: '+', label: 'Years Experience' },
     { icon: Users, value: 12038, prefix: '', suffix: '+', label: 'Workforce' },
-    { icon: TrendingUp, value: 883, prefix: '₹', suffix: ' Cr+', label: 'Revenue' },
+    { icon: Wrench, value: 500, prefix: '', suffix: '+', label: 'Equipments' },
     { icon: Layers, value: 6, prefix: '', suffix: '', label: 'Sectors Served' },
 ];
 
@@ -32,12 +32,16 @@ export const aboutSectors = [
 
 export const features = [
     {
-        title: 'ISO 9001:2015 Certified',
-        desc: 'Internationally certified quality management systems ensuring consistent service excellence across all sites.',
-    },
-    {
         title: 'Zero Harm Safety Culture',
         desc: 'Robust HSE framework with zero-harm commitment and OHSAS 18001:2007 certification.',
+    },
+    {
+        title: 'work Culture',
+        desc: 'Destails about team',
+    },
+    {
+        title: 'ISO 9001:2015 Certified',
+        desc: 'Internationally certified quality management systems ensuring consistent service excellence across all sites.',
     },
     {
         title: 'Pan-India Presence',
