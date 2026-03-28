@@ -216,7 +216,7 @@ export default function SteelPage() {
                 </div>
             </section>
                         {/* Client Partnerships */}
-            <section className="py-12 md:py-16 px-4 md:px-8 bg-[rgb(3,36,90)]">
+            {/* <section className="py-12 md:py-16 px-4 md:px-8 bg-[rgb(3,36,90)]">
                 <div className="max-w-6xl mx-auto">
                     <motion.h2
                         initial={{ opacity: 0 }}
@@ -250,7 +250,7 @@ export default function SteelPage() {
                         ))}
                     </motion.div>
                 </div>
-            </section>
+            </section> */}
 
 
             {/* Equipment & Activities */}

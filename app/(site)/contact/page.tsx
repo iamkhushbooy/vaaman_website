@@ -80,7 +80,7 @@ export default function Contact() {
                                 <div className="w-20 h-20 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Mail size={40} className="text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-blue-900 mb-4">Email Address</h3>
+                                <h3 className="text-2xl font-bold text-blue-900 mb-4">Mail Us</h3>
                                 <p className="text-gray-600 mb-2">enquiry@vaaman.in</p>
                                 <p className="text-gray-600 mb-6">business.development@vaaman.in</p>
                                 <Link
@@ -95,7 +95,7 @@ export default function Contact() {
                                 <div className="w-20 h-20 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <MapPin size={40} className="text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-blue-900 mb-4">Office Address</h3>
+                                <h3 className="text-2xl font-bold text-blue-900 mb-4">Corporate Address</h3>
                                 <p className="text-gray-600 mb-2">510, Sai Leela Commercial Complex, S.V.Road, Borivali (West), Mumbai-400092, India</p>
                                 {/* <p className="text-gray-600 mb-6">+91 9928036938</p> */}
                                 <Link

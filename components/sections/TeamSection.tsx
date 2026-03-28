@@ -11,7 +11,7 @@ export function TeamSection() {
                         Our Team
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold" style={{ color: DARK, fontFamily: 'Rubik, sans-serif' }}>
-                        Dedicated Team Members
+                        Our Management
                     </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

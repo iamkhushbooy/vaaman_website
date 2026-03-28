@@ -323,11 +323,11 @@ export default function OperationAndMaintenance() {
               </p>
               <ul className="space-y-4">
                 {[
-                  "Tata Steel — Jamshedpur & Kalinganagar (750+ manpower)",
-                  "Hindustan Zinc Limited — Multiple mine sites",
-                  "NALCO — Lanjigarh operations",
-                  "JSW Steel — Dolvi plant operations",
-                  "Vedanta Ltd — Sesa Iron Ore, Goa",
+                  "Tata Steel ",
+                  "Hindustan Zinc Limited",
+                  "Balco",
+                  "JSW Steel",
+                  "Vedanta Ltd",
                 ].map((client, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <Check className="text-[rgb(254,94,21)] w-5 h-5 flex-shrink-0 mt-1 stroke-[3px]" />
