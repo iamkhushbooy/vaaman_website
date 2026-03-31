@@ -4,7 +4,7 @@ import SafetySection from '@/components/SafetySection';
 export default function InitiativesPage() {
     return (
         <>
-            <AboutHero title="Initiatives" />
+            {/* <AboutHero title="Initiatives" /> */}
             <SafetySection />
         </>
     );

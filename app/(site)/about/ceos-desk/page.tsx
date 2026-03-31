@@ -13,8 +13,7 @@ export default function CeosDeskPage() {
                 reverse
                 backgroundClassName="bg-white"
                 description={[
-                    'Our focus is clear: deliver measurable operating performance, strengthen plant reliability, and build client confidence through consistent execution on the ground.',
-                    'As Vaaman grows, we remain committed to quality systems, skilled teams, and a safety-first culture that supports sustainable industrial progress.',
+                    "Rajesh Kundu, CEO, Graduate engineer with PGDBM having 32+ years of rich industry experience in the field of operation, maintenance & projects in Dunlop, Usha Martin & Hindustan Zinc. His prime focus is on Safety, productivity, technology & Asset Optimisation to take the company to next phase of growth. The company started its EPC/Project vertical under his guidance. The company has started to build it core technical competency as Centre of Excellence. "
                 ]}
             />
         </>

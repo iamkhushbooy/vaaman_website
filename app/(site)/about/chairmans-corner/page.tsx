@@ -12,8 +12,7 @@ export default function ChairmansCornerPage() {
                 imageAlt="Chairman&apos;s Corner"
                 backgroundClassName="bg-[#f8f9fa]"
                 description={[
-                    'Vaaman Engineers was founded with a clear, long-term industrial vision: to build dependable operations, uphold safety without compromise, and create heavy-duty capabilities that scale alongside the nation’s core sectors. From our early days, we recognized the critical importance of robust infrastructure, particularly in demanding fields like bulk material handling and metal production, which serve as the backbone of industrial growth.',
-                    'That founding philosophy continues to guide every site, every team, and every client partnership we take on today. By integrating rigorous discipline with innovative engineering solutions, we ensure that our operations not only meet the high-capacity demands of the present but are fully equipped to drive the industrial advancements of tomorrow. Our commitment to excellence remains unwavering, empowering our partners to achieve new heights in productivity, efficiency, and operational safety.',
+                   "Surendra Pratap Singh, MD, qualification, experience, is a visionary leader. The company was founded by him in 1992. It started with a small venture at conductor plant in Sterlite & his vision & passion for serving his customers seamlessly has been a key factor behind the exponential growth of the company. Under his efficient drive the company has spread its arms in zinc, aluminium, steel, coal handling, port operations under big brands like Vedanta, Tata Steel & JSW."
                 ]}
             />
         </>

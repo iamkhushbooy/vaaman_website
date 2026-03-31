@@ -20,7 +20,7 @@ const teamMembers = [
     name: "Mr. Rajesh Kundu", 
     role: "Chief Executive Officer", 
     delay: 0.3, 
-    img: "/award/CEO'S Corner.jpeg", 
+    img: "/award/rajesh.jpeg", 
     linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
   },
   { 

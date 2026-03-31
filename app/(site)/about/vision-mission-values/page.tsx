@@ -37,33 +37,6 @@ export default function VisionMissionValuesPage() {
     return (
         <>
             <AboutHero title="Vision, Mission Values" />
-
-            {/* Banner Section */}
-            {/* <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/sefty_images/sefty10.jpg"
-            alt="About banner"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">About Us</h1>
-          <p className="text-lg text-gray-200">
-            <Link href="/" className="hover:text-white transition">Home</Link>
-            {' / '}
-            <Link href="/about" className="hover:text-white transition">Pages</Link>
-            {' / '}
-            <span>About Us</span>
-          </p>
-        </div>
-      </section> */}
-
-            {/* Main Content Section */}
-            <AboutSection />
             {/* --- VISION, MISSION, VALUES SECTION --- */}
             <section id="vision-mission-values" className="py-24 bg-[#fcfcfc] overflow-hidden scroll-mt-32">
                 <div className="max-w-7xl mx-auto px-6">
