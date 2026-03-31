@@ -1,11 +1,9 @@
 
-
 'use client';
-
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCertificate, faUsersCog, faUsers, faCheckDouble } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 // Counter Function Component
 const Counter = ({ value }: { value: number }) => {
@@ -21,7 +19,7 @@ const Counter = ({ value }: { value: number }) => {
 };
 
 const stats = [
-  { id: 1, icon: faCertificate, number: 30, label: "Years Experience" }, 
+  { id: 1, icon: faCertificate, number: 35, label: "Years Experience" }, 
   { id: 2, icon: faUsersCog, number: 11000, label: "Workforce" },
   { id: 3, icon: faUsers, number: 15, label: "Industry Partners" },
   { id: 4, icon: faCheckDouble, number: 50, label: "Major Projects" },
@@ -57,7 +55,7 @@ export default function AboutFacts() {
             {stats.map((stat) => (
               <motion.div
                 key={stat.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
@@ -67,7 +65,7 @@ export default function AboutFacts() {
                   <FontAwesomeIcon icon={stat.icon} className="fa-3x text-white" />
                 </div>
                 <h2 className="text-6xl font-extrabold text-orange-500 mb-2">
-                  <Counter value={stat.number} />+
+                  <Counter value={stat.number} />
                 </h2>
                 <span className="text-white text-xl font-semibold">
                   {stat.label}
@@ -78,7 +76,7 @@ export default function AboutFacts() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden border-t border-gray-100">
+      <section id="milestones" className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden border-t border-gray-100 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

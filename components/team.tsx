@@ -1,16 +1,15 @@
 
 'use client';
-
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply, faGlobe, faBullseye, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
+import { faReply} from '@fortawesome/free-solid-svg-icons';
 
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 const teamMembers = [
   { 
     id: 1, 
-    name: "S.P. Singh", 
+    name: "Mr. SP Singh", 
     role: "Managing Director", 
     delay: 0.1, 
     img: "/award/S P Singh.JPG", 
@@ -18,7 +17,7 @@ const teamMembers = [
   },
   { 
     id: 2, 
-    name: "Rajesh Kundu", 
+    name: "Mr. Rajesh Kundu", 
     role: "Chief Executive Officer", 
     delay: 0.3, 
     img: "/award/CEO'S Corner.jpeg", 
@@ -26,45 +25,44 @@ const teamMembers = [
   },
   { 
     id: 3, 
-    name: "Barun Kumar", 
+    name: "Mr. BK Chakraborty", 
     role: "Executive Director", 
     delay: 0.5, 
     img: "/award/BARUN CHAKRABORTY.JPG", 
     linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
   },
-];
-
-const foundationData = [
-  { 
-    title: "Our Vision", 
-    text: "To become India’s leading service provider with Zero Harm.", 
-    icon: faGlobe, 
-    color: "text-orange-500",
-    bgColor: "bg-orange-50"
+    { 
+    id: 4, 
+    name: "Mr. Saurabh Singh", 
+    role: "Director", 
+    delay: 0.1, 
+    img: "/award/saurabh.jpeg", 
+    linkedin: "https://www.linkedin.com/in/surendra-singh-3a775bb2/" 
   },
   { 
-    title: "Our Mission", 
-    text: "To focus on productivity, technology and automation with full motivated work force for delivering key results", 
-    icon: faBullseye, 
-    color: "text-[#002147]",
-    bgColor: "bg-blue-50"
+    id: 5, 
+    name: "Mr. Kaushik Veeraraghavan", 
+    role: "Sector Head - (Aluminium & Zinc)", 
+    delay: 0.3, 
+    img: "/award/kaushik.jpeg", 
+    linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
   },
   { 
-    title: "Our Values", 
-    text: "Integrity, Safety First, Excellence, and Client Satisfaction are our core pillars.", 
-    icon: faShieldHalved, 
-    color: "text-orange-500",
-    bgColor: "bg-orange-50"
-  }
+    id: 6, 
+    name: "Ms. Vineeta Joshi", 
+    role: "Corporate HR Head", 
+    delay: 0.5, 
+    img: "/award/vineeta.jpeg", 
+    linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
+  },
 ];
-
 export default function Team() {
   return (
     <>
       {/* --- TEAM SECTION --- */}
-      <section className="py-24 bg-white">
+      <section id="our-people" className="py-24 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mx-auto mb-16 max-w-[600px]">
+          <div id="core-management-team" className="text-center mx-auto mb-16 max-w-[600px] scroll-mt-32">
             <p className="font-bold uppercase text-orange-500 mb-2 tracking-[0.2em] text-sm">Our Team</p>
             <h1 className="text-5xl font-extrabold text-[#002147] mb-5 leading-tight">
               Core Management Team
@@ -113,33 +111,6 @@ export default function Team() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- VISION, MISSION, VALUES SECTION --- */}
-      <section className="py-24 bg-[#fcfcfc] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {foundationData.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -12 }}
-                className="bg-white p-12 rounded-[2.5rem] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 border border-gray-100 border-b-8 border-b-orange-500 group"
-              >
-                <div className={`mb-8 w-24 h-24 mx-auto rounded-full ${item.bgColor} flex items-center justify-center ${item.color} group-hover:scale-110 group-hover:rotate-[360deg] transition-all duration-700 shadow-inner`}>
-                  <FontAwesomeIcon icon={item.icon} className="text-4xl" />
-                </div>
-                <h3 className="text-2xl font-black text-[#002147] mb-5 text-center tracking-tight">{item.title}</h3>
-                <p className="text-gray-500 text-center leading-relaxed font-medium">
-                  {item.text}
-                </p>
               </motion.div>
             ))}
           </div>

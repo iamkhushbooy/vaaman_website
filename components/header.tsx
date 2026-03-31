@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { DesktopNavItem, MobileNavItem, NavItem } from '@/components/nav-menu-item';
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,9 +15,42 @@ export function Header() {
     };
 
     // Unified navigation structure with Sector as a main menu item
-    const navItems = [
+    const isActivePath = (href: string) => {
+        const [pathOnly] = href.split('#');
+        return pathname === pathOnly;
+    };
+
+    const navItems: NavItem[] = [
         { label: 'Home', href: '/' },
-        { label: 'About Us', href: '/about' },
+        {
+            label: 'About Us',
+            groupedDropdown: [
+                {
+                    label: 'Company Profile',
+                    href: '/about/company-profile',
+                    links: [
+                        { label: 'Vision, Mission Values', href: '/about/vision-mission-values' },
+                        { label: 'Milestone', href: '/about/milestone' },
+                        { label: "Chairman's Corner", href: '/about/chairmans-corner' },
+                        { label: "CEO's Desk", href: '/about/ceos-desk' },
+                    ]
+                },
+                {
+                    label: 'Our People',
+                    href: '/about/core-management-team',
+                    links: [
+                        { label: 'Core Management Team', href: '/about/core-management-team' },
+                    ]
+                },
+                {
+                    label: 'Safety',
+                    href: '/about/initiatives',
+                    links: [
+                        { label: 'Initiatives', href: '/about/initiatives' },
+                    ]
+                }
+            ]
+        },
         {
             label: 'Services',
             dropdown: [
@@ -95,53 +129,9 @@ export function Header() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
-                            {navItems.map((item) => {
-                                // Render Top-Level Dropdown
-                                if (item.dropdown) {
-                                    const isDropdownActive = item.dropdown.some(link => pathname === link.href);
-                                    return (
-                                        <div key={item.label} className="relative group h-full flex items-center">
-                                            <button className={`flex items-center gap-1 transition font-medium py-8 ${isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                                }`}>
-                                                {item.label} <ChevronDown size={18} />
-                                            </button>
-
-                                            {/* Removed fixed inline style. Added w-max to adapt to text length, and min-w-[200px] so smaller menus don't look too thin */}
-                                            <div className="absolute top-full left-0 mt-0 bg-slate-50 border border-gray-200 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-max min-w-[200px]">
-                                                {item.dropdown.map((link) => {
-                                                    const isActive = pathname === link.href;
-                                                    return (
-                                                        <Link
-                                                            key={link.href}
-                                                            href={link.href}
-                                                            // Kept text-base and text-center for a professional look, plus added slightly more horizontal padding (px-6)
-                                                            className={`block px-6 py-3 transition-colors duration-150 text-base text-center whitespace-nowrap ${isActive
-                                                                    ? 'text-[rgb(254,94,21)] font-bold bg-slate-100'
-                                                                    : 'text-slate-700 hover:text-white hover:bg-[#ff3000]'
-                                                                }`}
-                                                        >
-                                                            {link.label}
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    );
-                                }
-
-                                // Render Standard Link
-                                const isActive = pathname === item.href;
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                            }`}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
+                            {navItems.map((item) => (
+                                <DesktopNavItem key={item.label} item={item} isActivePath={isActivePath} />
+                            ))}
                         </div>
 
                         {/* CTA Button - Desktop */}
@@ -167,48 +157,14 @@ export function Header() {
                     {/* Mobile Navigation */}
                     {isOpen && (
                         <div className="md:hidden pb-6 space-y-4 border-t border-gray-200 pt-4 max-h-[70vh] overflow-y-auto">
-                            {navItems.map((item) => {
-                                // Render Mobile Dropdown Section
-                                if (item.dropdown) {
-                                    const isDropdownActive = item.dropdown.some(link => pathname === link.href);
-                                    return (
-                                        <div key={item.label} className="pl-4 space-y-3 border-l-2 border-orange-100 ml-2 py-2">
-                                            <span className={`text-sm font-bold uppercase tracking-wider ${isDropdownActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a]'
-                                                }`}>
-                                                {item.label}
-                                            </span>
-                                            {item.dropdown.map((link) => {
-                                                const isActive = pathname === link.href;
-                                                return (
-                                                    <Link
-                                                        key={link.href}
-                                                        href={link.href}
-                                                        className={`block transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-slate-600 hover:text-[rgb(254,94,21)]'
-                                                            }`}
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        {link.label}
-                                                    </Link>
-                                                );
-                                            })}
-                                        </div>
-                                    );
-                                }
-
-                                // Render Standard Mobile Link
-                                const isActive = pathname === item.href;
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`block transition font-medium ${isActive ? 'text-[rgb(254,94,21)]' : 'text-[#03245a] hover:text-[rgb(254,94,21)]'
-                                            }`}
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
+                            {navItems.map((item) => (
+                                <MobileNavItem
+                                    key={item.label}
+                                    item={item}
+                                    isActivePath={isActivePath}
+                                    onNavigate={() => setIsOpen(false)}
+                                />
+                            ))}
 
                             <div className="pt-4 border-t border-gray-200">
                                 <Link

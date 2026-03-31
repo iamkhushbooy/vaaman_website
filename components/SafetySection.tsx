@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHardHat, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const sliderImages = [
   "/sefty_images/safty1.jpg", 
@@ -23,13 +23,6 @@ const sliderImages = [
 export default function SafetyModule() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentIndex]);
-
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
   };
@@ -38,12 +31,19 @@ export default function SafetyModule() {
     setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
   };
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section id="safety" className="py-24 bg-white overflow-hidden scroll-mt-32">
       {/* 1. PROFESSIONAL HEADER - INCREASED WIDTH */}
       {/* 1. NEW REDESIGNED PROFESSIONAL HEADER - CENTERED & CLEAN */}
      {/* 1. NEW REDESIGNED PROFESSIONAL HEADER - SINGLE BLOCK LOOK */}
-      <div className="max-w-[1800px] mx-auto px-6 mb-24 text-center flex flex-col items-center">
+      <div id="initiatives" className="max-w-[1800px] mx-auto px-6 mb-24 text-center flex flex-col items-center scroll-mt-32">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export default function SafetyModule() {
               
               <div className="space-y-6 max-w-4xl mx-auto">
                 <p className="text-gray-600 text-xl leading-relaxed">
-                  We believe that a safe workplace is the fundamental right of every worker. Our <span className="text-orange-600 font-bold">"Zero Harm"</span> policy ensures that everyone returns home safely, every single day. We uphold stringent site safety standards and provide advanced technical training to our team.
+                  We believe that a safe workplace is the fundamental right of every worker. Our <span className="text-orange-600 font-bold">&quot;Zero Harm&quot;</span> policy ensures that everyone returns home safely, every single day. We uphold stringent site safety standards and provide advanced technical training to our team.
                 </p>
                 
                 <p className="text-gray-500 text-lg leading-relaxed border-t border-gray-200 pt-6">
