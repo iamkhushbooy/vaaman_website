@@ -13,17 +13,16 @@ export function ClientsSection() {
                     </h2>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    {clients.map(({ name, logo, whiteLogo }) => (
+                    {clients.map(({logo, whiteLogo }) => (
                         <div
-                            key={name}
+                            key={logo}
                             className="flex flex-col items-center justify-center gap-3 bg-white py-8 px-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-lg cursor-default"
                             style={{ minHeight: '120px' }}
                         >
-                            {/* Fixed logo area — all logos same bounding box */}
                             <div className="flex items-center justify-center" style={{ height: '48px', width: '140px' }}>
                                 <img
                                     src={logo!}
-                                    alt={name}
+                                
                                     style={{
                                         maxHeight: '48px',
                                         maxWidth: '140px',
@@ -35,7 +34,7 @@ export function ClientsSection() {
                                     }}
                                 />
                             </div>
-                            <span className="text-xs font-semibold tracking-wide" style={{ color: DARK }}>{name}</span>
+                            <span className="text-xs font-semibold tracking-wide" style={{ color: DARK }}></span>
                         </div>
                     ))}
                 </div>
