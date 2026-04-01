@@ -2,6 +2,20 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Create a `.env.local` file from `.env.example` and add your Frappe credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+FRAPPE_API_BASE_URL=https://your-frappe-site.com
+FRAPPE_API_KEY=your_api_key
+FRAPPE_API_SECRET=your_api_secret
+```
+
+The careers page uses the internal route `GET /api/jobs`, which fetches the `Job Opening` doctype from Frappe using server-side credentials.
+
 First, run the development server:
 
 ```bash

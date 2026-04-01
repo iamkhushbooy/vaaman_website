@@ -67,7 +67,8 @@ export default function Contact() {
                                     <Phone size={40} className="text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Phone Number</h3>
-                                <p className="text-gray-600 mb-6">+91 22 28925400/1</p>
+                                <p className="text-gray-600 mb-2">+91 22 28925400</p>
+                                <p className="text-gray-600 mb-6">28625400/28615400/2862501</p>
                                 <Link
                                     href="tel:+91 22 28925400"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
@@ -152,6 +153,7 @@ export default function Contact() {
                                         <div>
                                             <h4 className="font-bold text-blue-900">Call Us</h4>
                                             <p className="text-gray-600">+91 22 28925400</p>
+                                            <p className="text-gray-600">28625400/28615400/2862501</p>
                                         </div>
                                     </div>
 
@@ -161,7 +163,8 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-blue-900">Mail Us</h4>
-                                            <p className="text-gray-600">enquiry@vaaman.in</p>
+                                            <p className="text-gray-600 mb-2">enquiry@vaaman.in</p>
+                                            <p className="text-gray-600 mb-6">business.development@vaaman.in</p>
                                         </div>
                                     </div>
                                 </div>

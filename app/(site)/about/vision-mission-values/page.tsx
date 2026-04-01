@@ -6,9 +6,6 @@ import { Check, Mail, Phone } from 'lucide-react';
 import AboutHero from '@/components/about/AboutHero';
 import { faGlobe, faBullseye, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import About from '../page';
-import { AboutSection } from '@/components/sections/AboutSection';
-// import TeamSection from '@/components/team'; // Uncomment if you plan to use it
 
 export default function VisionMissionValuesPage() {
     const foundationData = [

@@ -68,6 +68,7 @@ export function Header() {
                 { label: 'Cable & Conductor', href: '/sector/cable-conductor' },
                 { label: 'Port', href: '/sector/port' },
                 { label: 'Zinc', href: '/sector/zinc' },
+                { label: 'Manufacturing', href: '/sector/manufacturing' },
             ]
         },
         { label: 'Clients', href: '/clients' },
@@ -90,7 +91,7 @@ export function Header() {
                     <div className="flex items-center gap-2 text-sm">
                         <Phone size={16} className="text-[rgb(254,94,21)]" />
                         <span>Call Us: +91 22 28925400</span>
-                         
+
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
@@ -104,7 +105,12 @@ export function Header() {
                             <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
                                 <Instagram size={16} />
                             </Link>
-                            <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
+                            <Link
+                                href="https://www.linkedin.com/company/vaaman-engineers-india-limited/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-[rgb(254,94,21)] transition"
+                            >
                                 <Linkedin size={16} />
                             </Link>
                         </div>

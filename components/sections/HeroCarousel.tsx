@@ -8,8 +8,6 @@ import { PRIMARY, heroSlides } from '@/lib/data';
 
 export function HeroCarousel() {
     const [slide, setSlide] = useState(0);
-
-    // Hero auto-advance
     useEffect(() => {
         const t = setInterval(() => setSlide(s => (s + 1) % heroSlides.length), 5000);
         return () => clearInterval(t);
@@ -20,8 +18,6 @@ export function HeroCarousel() {
 
     return (
         <section className="relative w-full overflow-hidden" style={{ height: '100vh', minHeight: '600px' }}>
-
-            {/* Image strip — slides right-to-left */}
             <div
                 className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
                 style={{ width: `${heroSlides.length * 100}%`, transform: `translateX(-${slide * (100 / heroSlides.length)}%)` }}
@@ -32,14 +28,10 @@ export function HeroCarousel() {
                     </div>
                 ))}
             </div>
-
-            {/* Gradient overlay — fixed, sits above image strip */}
             <div
                 className="absolute inset-0 z-10"
                 style={{ background: `linear-gradient(to right, rgba(2,36,91,0.88) 0%, rgba(2,36,91,0.55) 45%, rgba(2,36,91,0.18) 100%)` }}
             />
-
-            {/* Text strip — slides in sync with images */}
             <div
                 className="absolute inset-0 flex transition-transform duration-700 ease-in-out z-20"
                 style={{ width: `${heroSlides.length * 100}%`, transform: `translateX(-${slide * (100 / heroSlides.length)}%)` }}
@@ -56,13 +48,13 @@ export function HeroCarousel() {
                             >
                                 {s.title}
                             </h1>
-                            <Link
+                            {/* <Link
                                 href="/contact"
                                 className="mt-8 inline-block px-8 py-4 text-white font-semibold transition hover:brightness-110"
                                 style={{ backgroundColor: PRIMARY, fontFamily: 'Rubik, sans-serif' }}
                             >
                                 Explore More
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 ))}
