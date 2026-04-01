@@ -20,7 +20,7 @@ const Counter = ({ value }: { value: number }) => {
 
 const stats = [
   { id: 1, icon: faCertificate, number: 35, label: "Years Experience" }, 
-  { id: 2, icon: faUsersCog, number: 11000, label: "Workforce" },
+  { id: 2, icon: faUsersCog, number: 12000, label: "Workforce" },
   { id: 3, icon: faUsers, number: 15, label: "Industry Partners" },
   { id: 4, icon: faCheckDouble, number: 50, label: "Major Projects" },
 ];
