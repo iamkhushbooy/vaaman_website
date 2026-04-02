@@ -1,6 +1,7 @@
+
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
     BriefcaseBusiness,
@@ -11,7 +12,6 @@ import {
     Lightbulb,
     Linkedin,
     Mail,
-    Phone,
     RefreshCcw,
     ShieldCheck,
     TrendingUp,
@@ -22,29 +22,11 @@ import {
 
 import type { JobOpening } from '@/lib/jobs';
 import { stripHtml } from '@/lib/jobs';
+import ApplyJobModal from '@/components/career/ApplyJobModal';
 
 type JobsApiResponse = {
     jobs: JobOpening[];
     error?: string;
-};
-
-type JobApplicationApiResponse = {
-    message?: string;
-    applicantId?: string | null;
-    error?: string;
-};
-
-type JobApplicationFormState = {
-    jobOpening: string;
-    applicantName: string;
-    emailAddress: string;
-    phoneNumber: string;
-    countryOfResidence: string;
-    coverLetter: string;
-    resumeLink: string;
-    currency: string;
-    lowerRange: string;
-    upperRange: string;
 };
 
 const JOBS_PER_BATCH = 20;
@@ -81,21 +63,6 @@ const benefits = [
         icon: <Users className="text-[rgb(254,94,21)]" size={32} />
     }
 ];
-
-function createInitialFormState(jobOpening = ''): JobApplicationFormState {
-    return {
-        jobOpening,
-        applicantName: '',
-        emailAddress: '',
-        phoneNumber: '',
-        countryOfResidence: '',
-        coverLetter: '',
-        resumeLink: '',
-        currency: 'INR',
-        lowerRange: '',
-        upperRange: ''
-    };
-}
 
 function formatPublishedOn(date: string | null) {
     if (!date) {
@@ -222,8 +189,8 @@ function JobRow({
 
                 <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
                     <button
-                        // type="button"
-                        // onClick={() => onApply(job)}
+                        type="button"
+                        onClick={() => onApply(job)}
                         className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgb(220,80,15)]"
                     >
                         Apply Now
@@ -252,10 +219,6 @@ export default function CareersPage() {
     const [selectedJob, setSelectedJob] = useState<JobOpening | null>(null);
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
     const [detailsJob, setDetailsJob] = useState<JobOpening | null>(null);
-    const [formState, setFormState] = useState<JobApplicationFormState>(createInitialFormState());
-    const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
-    const [applicationError, setApplicationError] = useState<string | null>(null);
-    const [applicationSuccess, setApplicationSuccess] = useState<string | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -316,18 +279,12 @@ export default function CareersPage() {
 
     function openApplyModal(job: JobOpening) {
         setSelectedJob(job);
-        setFormState(createInitialFormState(job.id));
-        setApplicationError(null);
-        setApplicationSuccess(null);
         setIsApplyModalOpen(true);
     }
 
     function closeApplyModal() {
         setIsApplyModalOpen(false);
-        setSelectedJob(null);
-        setFormState(createInitialFormState());
-        setApplicationError(null);
-        setApplicationSuccess(null);
+        setTimeout(() => setSelectedJob(null), 150);
     }
 
     function openDetailsModal(job: JobOpening) {
@@ -338,52 +295,6 @@ export default function CareersPage() {
     function closeDetailsModal() {
         setIsDetailsModalOpen(false);
         setDetailsJob(null);
-    }
-
-    function handleInputChange(field: keyof JobApplicationFormState, value: string) {
-        setFormState((currentState) => ({
-            ...currentState,
-            [field]: value
-        }));
-    }
-
-    async function handleApplicationSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-
-        try {
-            setIsSubmittingApplication(true);
-            setApplicationError(null);
-            setApplicationSuccess(null);
-
-            const response = await fetch('/api/job-applications', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formState)
-            });
-
-            const payload = (await response.json()) as JobApplicationApiResponse;
-
-            if (!response.ok) {
-                throw new Error(payload.error ?? 'Unable to submit job application.');
-            }
-
-            setApplicationSuccess(
-                payload.applicantId
-                    ? `Application submitted successfully. Applicant ID: ${payload.applicantId}`
-                    : payload.message ?? 'Application submitted successfully.'
-            );
-            setFormState(createInitialFormState(formState.jobOpening));
-        } catch (submissionError) {
-            setApplicationError(
-                submissionError instanceof Error
-                    ? submissionError.message
-                    : 'Unable to submit job application.'
-            );
-        } finally {
-            setIsSubmittingApplication(false);
-        }
     }
 
     return (
@@ -581,203 +492,11 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            {isApplyModalOpen && selectedJob && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">
-                    <div className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
-                        <button
-                            type="button"
-                            onClick={closeApplyModal}
-                            className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-800"
-                            aria-label="Close application form"
-                        >
-                            <X size={18} />
-                        </button>
-
-                        <div className="pr-12">
-                            <p className="text-sm font-semibold tracking-[0.18em] text-[rgb(254,94,21)] uppercase">
-                                Job Application
-                            </p>
-                            <h3 className="mt-2 text-3xl font-bold text-[#03245a]">
-                                Apply for {selectedJob.title}
-                            </h3>
-                            <p className="mt-3 text-sm leading-6 text-slate-600">
-                                Fill the form below. On submit, the website sends a POST request to the internal API route and that route creates a `Job Applicant` record in Frappe.
-                            </p>
-                        </div>
-
-                        <form className="mt-8 space-y-6" onSubmit={handleApplicationSubmit}>
-                            <div className="grid gap-5 md:grid-cols-2">
-                                <label className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Job Opening
-                                    </span>
-                                    <input
-                                        value={formState.jobOpening}
-                                        readOnly
-                                        className="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-700 outline-none"
-                                    />
-                                </label>
-
-                                <label className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Applicant Name *
-                                    </span>
-                                    <input
-                                        value={formState.applicantName}
-                                        onChange={(event) => handleInputChange('applicantName', event.target.value)}
-                                        required
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="Enter applicant name"
-                                    />
-                                </label>
-
-                                <label className="space-y-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Email Address *
-                                    </span>
-                                    <input
-                                        type="email"
-                                        value={formState.emailAddress}
-                                        onChange={(event) => handleInputChange('emailAddress', event.target.value)}
-                                        required
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="name@example.com"
-                                    />
-                                </label>
-
-                                <label className="space-y-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Phone Number
-                                    </span>
-                                    <div className="relative">
-                                        <Phone size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                                        <input
-                                            value={formState.phoneNumber}
-                                            onChange={(event) => handleInputChange('phoneNumber', event.target.value)}
-                                            className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                            placeholder="Enter phone number"
-                                        />
-                                    </div>
-                                </label>
-
-                                <label className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Country of Residence
-                                    </span>
-                                    <input
-                                        value={formState.countryOfResidence}
-                                        onChange={(event) => handleInputChange('countryOfResidence', event.target.value)}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="Enter country"
-                                    />
-                                </label>
-
-                                <label className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Cover Letter
-                                    </span>
-                                    <textarea
-                                        value={formState.coverLetter}
-                                        onChange={(event) => handleInputChange('coverLetter', event.target.value)}
-                                        rows={6}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="Write a short introduction"
-                                    />
-                                </label>
-
-                                <label className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Resume Link
-                                    </span>
-                                    <input
-                                        type="url"
-                                        value={formState.resumeLink}
-                                        onChange={(event) => handleInputChange('resumeLink', event.target.value)}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="https://example.com/resume.pdf"
-                                    />
-                                </label>
-
-                                <div className="space-y-2 md:col-span-2">
-                                    <span className="text-sm font-semibold text-slate-700">
-                                        Expected Salary Range per Month
-                                    </span>
-                                    <div className="grid gap-4 md:grid-cols-3">
-                                        <label className="space-y-2">
-                                            <span className="text-xs font-medium text-slate-500">
-                                                Currency
-                                            </span>
-                                            <input
-                                                value={formState.currency}
-                                                onChange={(event) => handleInputChange('currency', event.target.value)}
-                                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                                placeholder="INR"
-                                            />
-                                        </label>
-
-                                        <label className="space-y-2">
-                                            <span className="text-xs font-medium text-slate-500">
-                                                Lower Range
-                                            </span>
-                                            <input
-                                                type="number"
-                                                min="0"
-                                                value={formState.lowerRange}
-                                                onChange={(event) => handleInputChange('lowerRange', event.target.value)}
-                                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                                placeholder="25000"
-                                            />
-                                        </label>
-
-                                        <label className="space-y-2">
-                                            <span className="text-xs font-medium text-slate-500">
-                                                Upper Range
-                                            </span>
-                                            <input
-                                                type="number"
-                                                min="0"
-                                                value={formState.upperRange}
-                                                onChange={(event) => handleInputChange('upperRange', event.target.value)}
-                                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                                placeholder="45000"
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {applicationError && (
-                                <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                                    {applicationError}
-                                </div>
-                            )}
-
-                            {applicationSuccess && (
-                                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                                    {applicationSuccess}
-                                </div>
-                            )}
-
-                            <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
-                                <button
-                                    type="button"
-                                    onClick={closeApplyModal}
-                                    className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
-                                >
-                                    Discard
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={isSubmittingApplication}
-                                    className="inline-flex items-center justify-center rounded-xl bg-[#03245a] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#021a43] disabled:cursor-not-allowed disabled:opacity-70"
-                                >
-                                    {isSubmittingApplication ? 'Submitting...' : 'Submit'}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            <ApplyJobModal 
+                isOpen={isApplyModalOpen} 
+                job={selectedJob} 
+                onClose={closeApplyModal} 
+            />
 
             {isDetailsModalOpen && detailsJob && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">

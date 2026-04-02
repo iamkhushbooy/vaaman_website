@@ -36,6 +36,9 @@ export async function POST(request: Request) {
   const missingEnvVars = getMissingEnvVars();
 
   if (missingEnvVars.length > 0) {
+    console.error("[job-applications] Missing required env vars", {
+      missingEnvVars,
+    });
     return NextResponse.json(
       {
         error: `Missing env vars: ${missingEnvVars.join(", ")}`,
@@ -45,6 +48,7 @@ export async function POST(request: Request) {
   }
 
   const payload = (await request.json()) as JobApplicationRequest;
+  console.log("[job-applications] Raw request payload", payload);
 
   const applicantName = sanitizeValue(payload.applicantName);
   const emailAddress = sanitizeValue(payload.emailAddress);
@@ -57,7 +61,25 @@ export async function POST(request: Request) {
   const lowerRange = sanitizeValue(payload.lowerRange);
   const upperRange = sanitizeValue(payload.upperRange);
 
+  console.log("[job-applications] Sanitized incoming values", {
+    applicantName,
+    emailAddress,
+    jobOpening,
+    phoneNumber,
+    countryOfResidence,
+    coverLetter,
+    resumeLink,
+    currency,
+    lowerRange,
+    upperRange,
+  });
+
   if (!jobOpening || !applicantName || !emailAddress) {
+    console.error("[job-applications] Missing required fields after sanitization", {
+      applicantName,
+      emailAddress,
+      jobOpening,
+    });
     return NextResponse.json(
       {
         error: "Job opening, applicant name, and email address are required.",
@@ -67,6 +89,9 @@ export async function POST(request: Request) {
   }
 
   if (!isValidEmail(emailAddress)) {
+    console.error("[job-applications] Invalid email address", {
+      emailAddress,
+    });
     return NextResponse.json(
       {
         error: "Enter a valid email address.",
@@ -82,6 +107,12 @@ export async function POST(request: Request) {
     (lowerRange && Number.isNaN(lowerRangeNumber)) ||
     (upperRange && Number.isNaN(upperRangeNumber))
   ) {
+    console.error("[job-applications] Salary range contains non numeric values", {
+      lowerRange,
+      upperRange,
+      lowerRangeNumber,
+      upperRangeNumber,
+    });
     return NextResponse.json(
       {
         error: "Salary range values must be numeric.",
@@ -95,6 +126,10 @@ export async function POST(request: Request) {
     typeof upperRangeNumber === "number" &&
     lowerRangeNumber > upperRangeNumber
   ) {
+    console.error("[job-applications] Lower range is greater than upper range", {
+      lowerRangeNumber,
+      upperRangeNumber,
+    });
     return NextResponse.json(
       {
         error: "Lower salary range cannot be greater than upper salary range.",
@@ -112,6 +147,9 @@ export async function POST(request: Request) {
   try {
     url = new URL("api/resource/Job Applicant", getApiBaseUrl(baseUrl));
   } catch {
+    console.error("[job-applications] Invalid FRAPPE_API_BASE_URL", {
+      baseUrl,
+    });
     return NextResponse.json(
       {
         error:
@@ -123,7 +161,7 @@ export async function POST(request: Request) {
 
   const frappePayload = {
     doctype: "Job Applicant",
-    job_opening: jobOpening,
+    job_title: jobOpening,
     applicant_name: applicantName,
     email_id: emailAddress,
     phone_number: phoneNumber,
@@ -139,6 +177,9 @@ export async function POST(request: Request) {
     Object.entries(frappePayload).filter(([, value]) => value !== undefined),
   );
 
+  console.log("[job-applications] Outgoing Frappe payload", sanitizedPayload);
+  console.log("[job-applications] Posting to Frappe URL", url.toString());
+
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -149,6 +190,11 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       const errorText = await response.text();
+
+      console.error("[job-applications] Frappe rejected application", {
+        status: response.status,
+        errorText,
+      });
 
       return NextResponse.json(
         {
@@ -166,11 +212,19 @@ export async function POST(request: Request) {
       };
     };
 
+    console.log("[job-applications] Frappe application created successfully", {
+      applicantId: result.data?.name ?? null,
+      result,
+    });
+
     return NextResponse.json({
       message: "Application submitted successfully.",
       applicantId: result.data?.name ?? null,
     });
   } catch (error) {
+    console.error("[job-applications] Unexpected error while creating applicant", {
+      error,
+    });
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Unexpected error",
