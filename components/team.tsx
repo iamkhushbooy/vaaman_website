@@ -41,11 +41,19 @@ const teamMembers = [
   },
   { 
     id: 5, 
-    name: "Mr. Kaushik Veeraraghavan", 
-    role: "Sector Head - (Aluminium & Zinc)", 
+    name: "Mr. Kaushik", 
+    role: "Sector Head (Zinc, Copper, Cable & Conductor)", 
     delay: 0.3, 
     img: "/award/kaushik.jpeg", 
     linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
+  },
+    {
+    id: 7,
+    name: "Mr. Bharat Natesan",
+    role: "Sector Head (Aluminium)",
+    delay: 0.7,
+    img: "/award/bharat.jpeg",
+    linkedin: "#"
   },
   { 
     id: 6, 
@@ -56,6 +64,8 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
   },
 ];
+
+const teamRows = [teamMembers.slice(0, 3), teamMembers.slice(3)];
 export default function Team() {
   return (
     <>
@@ -69,49 +79,58 @@ export default function Team() {
             </h1>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {teamMembers.map((member) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: member.delay }}
-                viewport={{ once: true }}
-                className="group shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] rounded-[2rem] overflow-hidden bg-white border border-gray-100"
+          <div className="space-y-10">
+            {teamRows.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12"
               >
-                <div className="w-full aspect-[4/5] bg-gray-100 overflow-hidden relative">
-                   <img 
-                      src={member.img} 
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                   /> 
-                </div>
-
-                <div className="flex items-stretch h-[95px] relative overflow-hidden">
-                  <div className="flex-shrink-0 bg-orange-500 w-[90px] flex items-center justify-center z-30 group-hover:bg-[#002147] transition-colors duration-500">
-                    <FontAwesomeIcon icon={faReply} className="fa-2x text-white fa-flip-horizontal" />
-                  </div>
-                  <div className="relative flex-grow overflow-hidden bg-white">
-                    <div className="absolute inset-0 ps-7 flex flex-col justify-center z-10">
-                      <h5 className="text-xl font-black text-[#002147] tracking-tight">{member.name}</h5>
-                      <span className="text-orange-500 font-bold text-xs uppercase mt-1 tracking-widest">{member.role}</span>
+                {row.map((member) => (
+                  <motion.div
+                    key={member.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: member.delay }}
+                    viewport={{ once: true }}
+                    className={`group shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] rounded-[2rem] overflow-hidden bg-white border border-gray-100 md:col-span-1 ${
+                      row.length === 3 ? 'lg:col-span-4' : 'lg:col-span-3'
+                    }`}
+                  >
+                    <div className="w-full aspect-[4/5] bg-gray-100 overflow-hidden relative">
+                       <img 
+                          src={member.img} 
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                       /> 
                     </div>
 
-                    {/* LinkedIn Button Overlay */}
-                    <div className="absolute inset-0 bg-orange-500 ps-7 flex items-center transition-transform duration-500 -translate-x-full group-hover:translate-x-0 z-20">
-                      <a 
-                        href={member.linkedin} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 bg-[#002147] text-white px-6 py-2 rounded-full hover:bg-white hover:text-orange-500 transition-all shadow-lg font-bold"
-                      >
-                        <FontAwesomeIcon icon={faLinkedinIn} className="w-4 h-4" />
-                        <span>View LinkedIn</span>
-                      </a>
+                    <div className="flex items-stretch h-[95px] relative overflow-hidden">
+                      <div className="flex-shrink-0 bg-orange-500 w-[90px] flex items-center justify-center z-30 group-hover:bg-[#002147] transition-colors duration-500">
+                        <FontAwesomeIcon icon={faReply} className="fa-2x text-white fa-flip-horizontal" />
+                      </div>
+                      <div className="relative flex-grow overflow-hidden bg-white">
+                        <div className="absolute inset-0 ps-7 flex flex-col justify-center z-10">
+                          <h5 className="text-[16px] font-black text-[#002147] tracking-tight ">{member.name}</h5>
+                          <span className="text-[10px] font-bold uppercase mt-1 tracking-[0.18em] text-orange-500">{member.role}</span>
+                        </div>
+
+                        {/* LinkedIn Button Overlay */}
+                        <div className="absolute inset-0 bg-orange-500 ps-7 flex items-center transition-transform duration-500 -translate-x-full group-hover:translate-x-0 z-20">
+                          <a 
+                            href={member.linkedin} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 bg-[#002147] text-white px-6 py-2 rounded-full hover:bg-white hover:text-orange-500 transition-all shadow-lg font-bold"
+                          >
+                            <FontAwesomeIcon icon={faLinkedinIn} className="w-4 h-4" />
+                            <span>View LinkedIn</span>
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
+                  </motion.div>
+                ))}
+              </div>
             ))}
           </div>
         </div>
