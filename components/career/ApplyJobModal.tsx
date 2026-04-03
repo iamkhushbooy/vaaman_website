@@ -1,7 +1,7 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
-import { Phone, X } from 'lucide-react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { Phone, Upload, X } from 'lucide-react';
 import type { JobOpening } from '@/lib/jobs';
 
 type JobApplicationApiResponse = {
@@ -15,27 +15,72 @@ type JobApplicationFormState = {
     applicantName: string;
     emailAddress: string;
     phoneNumber: string;
-    countryOfResidence: string;
+    currentLocation: string;
+    currentJobTitle: string;
+    currentCompany: string;
+    totalYearsOfExperience: string;
+    relevantExperience: string;
+    positionAppliedFor: string;
+    sourceOfJobPosting: string;
+    noticePeriod: string;
+    currentSalary: string;
+    expectedSalary: string;
+    highestQualification: string;
     coverLetter: string;
-    resumeLink: string;
-    currency: string;
-    lowerRange: string;
-    upperRange: string;
+    signature: string;
+    applicationDate: string;
+    declarationAccepted: boolean;
 };
 
-function createInitialFormState(jobOpening = ''): JobApplicationFormState {
-    console.log('[createInitialFormState] Called with jobOpening:', jobOpening);
+const SOURCE_OF_JOB_POSTING_OPTIONS = [
+    'LinkedIn',
+    'Company Website',
+    'Referral',
+    'Job Portal',
+    'Other'
+] as const;
+
+const NOTICE_PERIOD_OPTIONS = [
+    'Immediate',
+    '15 Days',
+    '30 Days',
+    '60 Days',
+    '90 Days'
+] as const;
+
+const HIGHEST_QUALIFICATION_OPTIONS = [
+    { label: 'Diploma', value: 'Diploma' },
+    { label: "Bachelor's Degree", value: 'Bachelor’s Degree' },
+    { label: "Master's Degree", value: 'Master’s Degree' },
+    { label: 'PhD', value: 'PhD' },
+    { label: 'Other', value: 'Other' }
+] as const;
+
+function getTodayDate() {
+    return new Date().toISOString().split('T')[0] ?? '';
+}
+
+function createInitialFormState(job: JobOpening | null = null): JobApplicationFormState {
     return {
-        jobOpening,
+        jobOpening: job?.id ?? '',
         applicantName: '',
         emailAddress: '',
         phoneNumber: '',
-        countryOfResidence: '',
+        currentLocation: '',
+        currentJobTitle: '',
+        currentCompany: '',
+        totalYearsOfExperience: '',
+        relevantExperience: '',
+        positionAppliedFor: job?.title ?? '',
+        sourceOfJobPosting: '',
+        noticePeriod: '',
+        currentSalary: '',
+        expectedSalary: '',
+        highestQualification: '',
         coverLetter: '',
-        resumeLink: '',
-        currency: 'INR',
-        lowerRange: '',
-        upperRange: ''
+        signature: '',
+        applicationDate: getTodayDate(),
+        declarationAccepted: false
     };
 }
 
@@ -46,100 +91,92 @@ interface ApplyJobModalProps {
 }
 
 export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalProps) {
-    console.log('[ApplyJobModal Render] isOpen:', isOpen, '| job:', job);
-
     const [formState, setFormState] = useState<JobApplicationFormState>(createInitialFormState());
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
     const [applicationError, setApplicationError] = useState<string | null>(null);
     const [applicationSuccess, setApplicationSuccess] = useState<string | null>(null);
 
     useEffect(() => {
-        console.log('[useEffect] Triggered. Dependencies - isOpen:', isOpen, '| job:', job);
         if (isOpen && job) {
-            console.log('[useEffect] Setting initial state and resetting errors for job ID:', job.id);
-            setFormState(createInitialFormState(job.id));
+            setFormState(createInitialFormState(job));
+            setResumeFile(null);
             setApplicationError(null);
             setApplicationSuccess(null);
         }
     }, [isOpen, job]);
 
     if (!isOpen || !job) {
-        console.log('[ApplyJobModal Render] Returning null because isOpen is false or job is null.');
         return null;
     }
 
-    function handleInputChange(field: keyof JobApplicationFormState, value: string) {
-        console.log(`[handleInputChange] Field: "${field}" | New Value: "${value}"`);
-        setFormState((currentState) => {
-            const newState = {
-                ...currentState,
-                [field]: value
-            };
-            console.log('[handleInputChange] Updated formState:', newState);
-            return newState;
-        });
+    function handleInputChange(field: keyof JobApplicationFormState, value: string | boolean) {
+        setFormState((currentState) => ({
+            ...currentState,
+            [field]: value
+        }));
+    }
+
+    function handleResumeChange(event: ChangeEvent<HTMLInputElement>) {
+        setResumeFile(event.target.files?.[0] ?? null);
     }
 
     async function handleApplicationSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log('[handleApplicationSubmit] Form submission started!');
-        console.log('[handleApplicationSubmit] Current formState payload:', formState);
 
         try {
             setIsSubmittingApplication(true);
             setApplicationError(null);
             setApplicationSuccess(null);
 
-            console.log('[handleApplicationSubmit] Sending POST request to /api/job-applications...');
-            const response = await fetch('/api/job-applications', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formState)
+            const submissionData = new FormData();
+
+            Object.entries(formState).forEach(([key, value]) => {
+                submissionData.append(key, typeof value === 'boolean' ? String(value) : value);
             });
 
-            console.log('[handleApplicationSubmit] Received response. Status:', response.status);
+            if (resumeFile) {
+                submissionData.append('resume', resumeFile);
+            }
+
+            const response = await fetch('/api/job-applications', {
+                method: 'POST',
+                body: submissionData
+            });
 
             const payload = (await response.json()) as JobApplicationApiResponse;
-            console.log('[handleApplicationSubmit] Parsed response payload:', payload);
 
             if (!response.ok) {
-                console.error('[handleApplicationSubmit] API returned an error:', payload.error);
                 throw new Error(payload.error ?? 'Unable to submit job application.');
             }
 
             const successMessage = payload.applicantId
                 ? `Application submitted successfully. Applicant ID: ${payload.applicantId}`
                 : payload.message ?? 'Application submitted successfully.';
-            
-            console.log('[handleApplicationSubmit] Success message set:', successMessage);
-            
+
             setApplicationSuccess(successMessage);
-            console.log('[handleApplicationSubmit] Resetting form fields to initial state.');
-            setFormState(createInitialFormState(formState.jobOpening));
+            setFormState(createInitialFormState(job));
+            setResumeFile(null);
         } catch (submissionError) {
-            console.error('[handleApplicationSubmit] Caught an error during submission:', submissionError);
             setApplicationError(
                 submissionError instanceof Error
                     ? submissionError.message
                     : 'Unable to submit job application.'
             );
         } finally {
-            console.log('[handleApplicationSubmit] Finally block executing. Setting isSubmittingApplication to false.');
             setIsSubmittingApplication(false);
         }
     }
 
+    const inputClassName =
+        'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]';
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">
-            <div className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
                 <button
                     type="button"
-                    onClick={() => {
-                        console.log('[ApplyJobModal] Close icon clicked.');
-                        onClose();
-                    }}
+                    onClick={onClose}
                     className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-800"
                     aria-label="Close application form"
                 >
@@ -153,17 +190,12 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                     <h3 className="mt-2 text-3xl font-bold text-[#03245a]">
                         Apply for {job.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                        Fill the form below. On submit, the website sends a POST request to the internal API route and that route creates a `Job Applicant` record in Frappe.
-                    </p>
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleApplicationSubmit}>
                     <div className="grid gap-5 md:grid-cols-2">
                         <label className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Job Opening
-                            </span>
+                            <span className="text-sm font-semibold text-slate-700">Job Opening</span>
                             <input
                                 value={formState.jobOpening}
                                 readOnly
@@ -172,131 +204,247 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                         </label>
 
                         <label className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Applicant Name *
-                            </span>
+                            <span className="text-sm font-semibold text-slate-700">Applicant Name *</span>
                             <input
                                 value={formState.applicantName}
                                 onChange={(event) => handleInputChange('applicantName', event.target.value)}
                                 required
-                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
+                                className={inputClassName}
                                 placeholder="Enter applicant name"
                             />
                         </label>
 
                         <label className="space-y-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Email Address *
-                            </span>
+                            <span className="text-sm font-semibold text-slate-700">Email Address *</span>
                             <input
                                 type="email"
                                 value={formState.emailAddress}
                                 onChange={(event) => handleInputChange('emailAddress', event.target.value)}
                                 required
-                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
+                                className={inputClassName}
                                 placeholder="name@example.com"
                             />
                         </label>
 
                         <label className="space-y-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Phone Number
-                            </span>
+                            <span className="text-sm font-semibold text-slate-700">Phone Number *</span>
                             <div className="relative">
                                 <Phone size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                 <input
                                     value={formState.phoneNumber}
                                     onChange={(event) => handleInputChange('phoneNumber', event.target.value)}
+                                    required
                                     className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
                                     placeholder="Enter phone number"
                                 />
                             </div>
                         </label>
 
-                        <label className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Country of Residence
-                            </span>
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Current Location *</span>
                             <input
-                                value={formState.countryOfResidence}
-                                onChange={(event) => handleInputChange('countryOfResidence', event.target.value)}
-                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                placeholder="Enter country"
+                                value={formState.currentLocation}
+                                onChange={(event) => handleInputChange('currentLocation', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter current location"
                             />
                         </label>
 
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Current Job Title *</span>
+                            <input
+                                value={formState.currentJobTitle}
+                                onChange={(event) => handleInputChange('currentJobTitle', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter current job title"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Current Company *</span>
+                            <input
+                                value={formState.currentCompany}
+                                onChange={(event) => handleInputChange('currentCompany', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter current company"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Total Years of Experience *</span>
+                            <input
+                                type="number"
+                                min="0"
+                                step="0.1"
+                                value={formState.totalYearsOfExperience}
+                                onChange={(event) => handleInputChange('totalYearsOfExperience', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="e.g. 7"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Relevant Experience (in years) *</span>
+                            <input
+                                type="number"
+                                min="0"
+                                step="0.1"
+                                value={formState.relevantExperience}
+                                onChange={(event) => handleInputChange('relevantExperience', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="e.g. 4.5"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Position Applied For *</span>
+                            <input
+                                value={formState.positionAppliedFor}
+                                onChange={(event) => handleInputChange('positionAppliedFor', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter position applied for"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Source of Job Posting *</span>
+                            <select
+                                value={formState.sourceOfJobPosting}
+                                onChange={(event) => handleInputChange('sourceOfJobPosting', event.target.value)}
+                                required
+                                className={inputClassName}
+                            >
+                                <option value="">Select source</option>
+                                {SOURCE_OF_JOB_POSTING_OPTIONS.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Notice Period *</span>
+                            <select
+                                value={formState.noticePeriod}
+                                onChange={(event) => handleInputChange('noticePeriod', event.target.value)}
+                                required
+                                className={inputClassName}
+                            >
+                                <option value="">Select notice period</option>
+                                {NOTICE_PERIOD_OPTIONS.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Current Salary (CTC) *</span>
+                            <input
+                                value={formState.currentSalary}
+                                onChange={(event) => handleInputChange('currentSalary', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter current CTC"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Expected Salary *</span>
+                            <input
+                                value={formState.expectedSalary}
+                                onChange={(event) => handleInputChange('expectedSalary', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Enter expected salary"
+                            />
+                        </label>
+
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Highest Qualification *</span>
+                            <select
+                                value={formState.highestQualification}
+                                onChange={(event) => handleInputChange('highestQualification', event.target.value)}
+                                required
+                                className={inputClassName}
+                            >
+                                <option value="">Select qualification</option>
+                                {HIGHEST_QUALIFICATION_OPTIONS.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <div className="space-y-2 md:col-span-2">
+                            <span className="text-sm font-semibold text-slate-700">Upload Resume *</span>
+                            <label className="flex cursor-pointer items-center justify-center gap-3 rounded-xl border border-dashed border-slate-300 px-4 py-5 text-sm text-slate-600 transition-colors hover:border-[#03245a] hover:text-[#03245a]">
+                                <Upload size={18} />
+                                <span>{resumeFile?.name ?? 'Choose resume file'}</span>
+                                <input
+                                    type="file"
+                                    accept=".pdf,.doc,.docx"
+                                    required={!resumeFile}
+                                    onChange={handleResumeChange}
+                                    className="sr-only"
+                                />
+                            </label>
+                        </div>
+
                         <label className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Cover Letter
-                            </span>
+                            <span className="text-sm font-semibold text-slate-700">Cover Letter</span>
                             <textarea
                                 value={formState.coverLetter}
                                 onChange={(event) => handleInputChange('coverLetter', event.target.value)}
-                                rows={6}
+                                rows={5}
                                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition-colors focus:border-[#03245a]"
                                 placeholder="Write a short introduction"
                             />
                         </label>
 
-                        <label className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Resume Link
-                            </span>
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Signature (Type Full Name) *</span>
                             <input
-                                type="url"
-                                value={formState.resumeLink}
-                                onChange={(event) => handleInputChange('resumeLink', event.target.value)}
-                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                placeholder="https://example.com/resume.pdf"
+                                value={formState.signature}
+                                onChange={(event) => handleInputChange('signature', event.target.value)}
+                                required
+                                className={inputClassName}
+                                placeholder="Type full name"
                             />
                         </label>
 
-                        <div className="space-y-2 md:col-span-2">
-                            <span className="text-sm font-semibold text-slate-700">
-                                Expected Salary Range per Month
+                        <label className="space-y-2">
+                            <span className="text-sm font-semibold text-slate-700">Date *</span>
+                            <input
+                                type="date"
+                                value={formState.applicationDate}
+                                onChange={(event) => handleInputChange('applicationDate', event.target.value)}
+                                required
+                                className={inputClassName}
+                            />
+                        </label>
+
+                        <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 md:col-span-2">
+                            <input
+                                type="checkbox"
+                                checked={formState.declarationAccepted}
+                                onChange={(event) => handleInputChange('declarationAccepted', event.target.checked)}
+                                required
+                                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#03245a] focus:ring-[#03245a]"
+                            />
+                            <span className="text-sm leading-6 text-slate-700">
+                                I confirm that the information provided is accurate to the best of my knowledge.
                             </span>
-                            <div className="grid gap-4 md:grid-cols-3">
-                                <label className="space-y-2">
-                                    <span className="text-xs font-medium text-slate-500">
-                                        Currency
-                                    </span>
-                                    <input
-                                        value={formState.currency}
-                                        onChange={(event) => handleInputChange('currency', event.target.value)}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="INR"
-                                    />
-                                </label>
-
-                                <label className="space-y-2">
-                                    <span className="text-xs font-medium text-slate-500">
-                                        Lower Range
-                                    </span>
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        value={formState.lowerRange}
-                                        onChange={(event) => handleInputChange('lowerRange', event.target.value)}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="25000"
-                                    />
-                                </label>
-
-                                <label className="space-y-2">
-                                    <span className="text-xs font-medium text-slate-500">
-                                        Upper Range
-                                    </span>
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        value={formState.upperRange}
-                                        onChange={(event) => handleInputChange('upperRange', event.target.value)}
-                                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
-                                        placeholder="45000"
-                                    />
-                                </label>
-                            </div>
-                        </div>
+                        </label>
                     </div>
 
                     {applicationError && (
@@ -305,50 +453,20 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                         </div>
                     )}
 
-                    {/* {applicationSuccess && (
-                        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                            {applicationSuccess}
-                        </div>
-                    )}
-
-                    <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                console.log('[ApplyJobModal] Discard button clicked.');
-                                onClose();
-                            }}
-                            className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
-                        >
-                            Cancle
-                        </button>
-                        <button
-                            type="submit"
-                            disabled={isSubmittingApplication}
-                            className="inline-flex items-center justify-center rounded-xl bg-[#03245a] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#021a43] disabled:cursor-not-allowed disabled:opacity-70"
-                        >
-                            {isSubmittingApplication ? 'Submitting...' : 'Submit'}
-                        </button>
-                    </div> */}
-
                     {applicationSuccess && (
                         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
                             {applicationSuccess}
                         </div>
                     )}
 
-                    {/* conditionally render buttons based on success state */}
                     {!applicationSuccess ? (
                         <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
                             <button
                                 type="button"
-                                onClick={() => {
-                                    console.log('[ApplyJobModal] Discard button clicked.');
-                                    onClose();
-                                }}
+                                onClick={onClose}
                                 className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                             >
-                                Cancle
+                                Cancel
                             </button>
                             <button
                                 type="submit"
@@ -362,10 +480,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                         <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
                             <button
                                 type="button"
-                                onClick={() => {
-                                    console.log('[ApplyJobModal] Close button clicked after success.');
-                                    onClose();
-                                }}
+                                onClick={onClose}
                                 className="inline-flex items-center justify-center rounded-xl bg-[#03245a] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#021a43]"
                             >
                                 Close

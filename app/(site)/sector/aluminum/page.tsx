@@ -211,7 +211,7 @@ export default function Aluminium() {
               <h3 className="text-2xl font-bold mb-6">Why Choose Vaaman?</h3>
               <ul className="space-y-4">
                 {[
-                  "25+ years of industrial engineering experience",
+                  "35 years of industrial engineering experience",
                   "Specialized expertise in aluminium processing",
                   "Comprehensive equipment management capabilities",
                   "24/7 operational support and emergency response",

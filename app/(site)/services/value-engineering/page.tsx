@@ -118,12 +118,12 @@ export default function ValueEngineering() {
               className="relative"
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
-                <img src="/images/hero/hero-4.jpeg" alt="Value Engineering at work" className="w-full h-full object-cover" />
+                {/* <img src="/images/hero/hero-4.jpeg" alt="Value Engineering at work" className="w-full h-full object-cover" /> */}
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
-                <p className="text-2xl font-extrabold">30+ Years</p>
+              {/* <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
+                <p className="text-2xl font-extrabold">35 Years</p>
                 <p className="text-sm opacity-90">Industry Experience</p>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </div>
@@ -256,7 +256,7 @@ export default function ValueEngineering() {
                 <h3 className="text-xl font-bold mb-5">Why Choose Vaaman?</h3>
                 <ul className="space-y-4">
                   {[
-                    "30+ years of operational knowledge across industries",
+                    "35 years of operational knowledge across industries",
                     "In-house engineering expertise — not outsourced",
                     "Deep understanding of Aluminium, Steel & Zinc processes",
                     "Concept to execution ownership model",

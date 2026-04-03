@@ -3,28 +3,38 @@ import { NextResponse } from "next/server";
 import {
   getApiBaseUrl,
   getEnvValue,
-  getFrappeHeaders,
   getMissingEnvVars,
 } from "@/lib/frappe";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-type JobApplicationRequest = {
-  applicantName?: string;
-  emailAddress?: string;
-  phoneNumber?: string;
-  countryOfResidence?: string;
-  coverLetter?: string;
-  resumeLink?: string;
-  currency?: string;
-  lowerRange?: string;
-  upperRange?: string;
-  jobOpening?: string;
+type FrappeDocField = {
+  fieldname?: string;
+  fieldtype?: string;
+  label?: string;
 };
 
-function sanitizeValue(value?: string) {
-  const trimmed = value?.trim();
+type FrappeDocTypeResponse = {
+  data?: {
+    fields?: FrappeDocField[];
+  };
+};
+
+type FrappeUploadResponse = {
+  message?:
+    | string
+    | {
+        file_url?: string;
+      };
+};
+
+function sanitizeValue(value: FormDataEntryValue | null) {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
   return trimmed ? trimmed : undefined;
 }
 
@@ -32,13 +42,143 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function parseOptionalNumber(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  const parsedValue = Number(value);
+  return Number.isNaN(parsedValue) ? Number.NaN : parsedValue;
+}
+
+function normalizeHighestQualification(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  const normalizedValue = value.trim();
+
+  if (normalizedValue === "Bachelor's Degree") {
+    return "Bachelor’s Degree";
+  }
+
+  if (normalizedValue === "Master's Degree") {
+    return "Master’s Degree";
+  }
+
+  return normalizedValue;
+}
+
+function getAuthHeaders(apiKey: string, apiSecret: string) {
+  return {
+    Authorization: `token ${apiKey}:${apiSecret}`,
+    Accept: "application/json",
+  };
+}
+
+function normalizeLookupValue(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function resolveFieldName(
+  fields: FrappeDocField[],
+  candidates: string[],
+): string | undefined {
+  const normalizedCandidates = candidates.map(normalizeLookupValue);
+
+  for (const field of fields) {
+    const fieldLabel = field.label ? normalizeLookupValue(field.label) : "";
+    const fieldName = field.fieldname ? normalizeLookupValue(field.fieldname) : "";
+
+    if (
+      normalizedCandidates.includes(fieldLabel) ||
+      normalizedCandidates.includes(fieldName)
+    ) {
+      return field.fieldname;
+    }
+  }
+
+  return undefined;
+}
+
+function setMappedValue(
+  payload: Record<string, string | number>,
+  fields: FrappeDocField[],
+  candidates: string[],
+  value: string | number | undefined,
+) {
+  if (value === undefined) {
+    return;
+  }
+
+  const fieldName = resolveFieldName(fields, candidates);
+
+  if (fieldName) {
+    payload[fieldName] = value;
+  }
+}
+
+async function fetchJobApplicantFields(
+  baseUrl: URL,
+  apiKey: string,
+  apiSecret: string,
+) {
+  const metaUrl = new URL("api/resource/DocType/Job Applicant", baseUrl);
+
+  const response = await fetch(metaUrl, {
+    headers: getAuthHeaders(apiKey, apiSecret),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Unable to load Job Applicant metadata. Backend returned ${response.status}.`,
+    );
+  }
+
+  const payload = (await response.json()) as FrappeDocTypeResponse;
+  return payload.data?.fields ?? [];
+}
+
+async function updateApplicantRecord(
+  baseUrl: URL,
+  applicantId: string,
+  updates: Record<string, string | number>,
+  apiKey: string,
+  apiSecret: string,
+) {
+  if (Object.keys(updates).length === 0) {
+    return;
+  }
+
+  const applicantRecordUrl = new URL(
+    `api/resource/Job Applicant/${encodeURIComponent(applicantId)}`,
+    baseUrl,
+  );
+
+  const response = await fetch(applicantRecordUrl, {
+    method: "PUT",
+    headers: {
+      ...getAuthHeaders(apiKey, apiSecret),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updates),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(
+      errorText ||
+        `Failed to update job applicant. Backend returned ${response.status}.`,
+    );
+  }
+}
+
 export async function POST(request: Request) {
   const missingEnvVars = getMissingEnvVars();
 
   if (missingEnvVars.length > 0) {
-    console.error("[job-applications] Missing required env vars", {
-      missingEnvVars,
-    });
     return NextResponse.json(
       {
         error: `Missing env vars: ${missingEnvVars.join(", ")}`,
@@ -47,51 +187,83 @@ export async function POST(request: Request) {
     );
   }
 
-  const payload = (await request.json()) as JobApplicationRequest;
-  console.log("[job-applications] Raw request payload", payload);
+  const formData = await request.formData();
 
-  const applicantName = sanitizeValue(payload.applicantName);
-  const emailAddress = sanitizeValue(payload.emailAddress);
-  const jobOpening = sanitizeValue(payload.jobOpening);
-  const phoneNumber = sanitizeValue(payload.phoneNumber);
-  const countryOfResidence = sanitizeValue(payload.countryOfResidence);
-  const coverLetter = sanitizeValue(payload.coverLetter);
-  const resumeLink = sanitizeValue(payload.resumeLink);
-  const currency = sanitizeValue(payload.currency);
-  const lowerRange = sanitizeValue(payload.lowerRange);
-  const upperRange = sanitizeValue(payload.upperRange);
+  const applicantName = sanitizeValue(formData.get("applicantName"));
+  const emailAddress = sanitizeValue(formData.get("emailAddress"));
+  const phoneNumber = sanitizeValue(formData.get("phoneNumber"));
+  const currentLocation = sanitizeValue(formData.get("currentLocation"));
+  const currentJobTitle = sanitizeValue(formData.get("currentJobTitle"));
+  const currentCompany = sanitizeValue(formData.get("currentCompany"));
+  const totalYearsOfExperience = sanitizeValue(
+    formData.get("totalYearsOfExperience"),
+  );
+  const relevantExperience = sanitizeValue(formData.get("relevantExperience"));
+  const jobOpening = sanitizeValue(formData.get("jobOpening"));
+  const positionAppliedFor = sanitizeValue(formData.get("positionAppliedFor"));
+  const sourceOfJobPosting = sanitizeValue(formData.get("sourceOfJobPosting"));
+  const noticePeriod = sanitizeValue(formData.get("noticePeriod"));
+  const currentSalary = sanitizeValue(formData.get("currentSalary"));
+  const expectedSalary = sanitizeValue(formData.get("expectedSalary"));
+  const highestQualification = normalizeHighestQualification(
+    sanitizeValue(formData.get("highestQualification")),
+  );
+  const coverLetter = sanitizeValue(formData.get("coverLetter"));
+  const signature = sanitizeValue(formData.get("signature"));
+  const applicationDate = sanitizeValue(formData.get("applicationDate"));
+  const declarationAccepted = sanitizeValue(
+    formData.get("declarationAccepted"),
+  );
+  const resumeFile = formData.get("resume");
+  const hasResumeFile =
+    resumeFile instanceof File && resumeFile.size > 0 && resumeFile.name.trim();
 
-  console.log("[job-applications] Sanitized incoming values", {
-    applicantName,
-    emailAddress,
-    jobOpening,
-    phoneNumber,
-    countryOfResidence,
-    coverLetter,
-    resumeLink,
-    currency,
-    lowerRange,
-    upperRange,
-  });
-
-  if (!jobOpening || !applicantName || !emailAddress) {
-    console.error("[job-applications] Missing required fields after sanitization", {
-      applicantName,
-      emailAddress,
-      jobOpening,
-    });
+  if (
+    !jobOpening ||
+    !applicantName ||
+    !emailAddress ||
+    !phoneNumber ||
+    !currentLocation ||
+    !currentJobTitle ||
+    !currentCompany ||
+    !totalYearsOfExperience ||
+    !relevantExperience ||
+    !positionAppliedFor ||
+    !sourceOfJobPosting ||
+    !noticePeriod ||
+    !currentSalary ||
+    !expectedSalary ||
+    !highestQualification ||
+    !signature ||
+    !applicationDate
+  ) {
     return NextResponse.json(
       {
-        error: "Job opening, applicant name, and email address are required.",
+        error: "All required application fields must be filled.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (!hasResumeFile) {
+    return NextResponse.json(
+      {
+        error: "Resume upload is required.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (declarationAccepted !== "true") {
+    return NextResponse.json(
+      {
+        error: "You must accept the declaration before submitting.",
       },
       { status: 400 },
     );
   }
 
   if (!isValidEmail(emailAddress)) {
-    console.error("[job-applications] Invalid email address", {
-      emailAddress,
-    });
     return NextResponse.json(
       {
         error: "Enter a valid email address.",
@@ -100,56 +272,49 @@ export async function POST(request: Request) {
     );
   }
 
-  const lowerRangeNumber = lowerRange ? Number(lowerRange) : undefined;
-  const upperRangeNumber = upperRange ? Number(upperRange) : undefined;
+  const totalYearsOfExperienceNumber = parseOptionalNumber(
+    totalYearsOfExperience,
+  );
+  const relevantExperienceNumber = parseOptionalNumber(relevantExperience);
 
   if (
-    (lowerRange && Number.isNaN(lowerRangeNumber)) ||
-    (upperRange && Number.isNaN(upperRangeNumber))
+    Number.isNaN(totalYearsOfExperienceNumber) ||
+    Number.isNaN(relevantExperienceNumber)
   ) {
-    console.error("[job-applications] Salary range contains non numeric values", {
-      lowerRange,
-      upperRange,
-      lowerRangeNumber,
-      upperRangeNumber,
-    });
     return NextResponse.json(
       {
-        error: "Salary range values must be numeric.",
+        error: "Experience fields must be numeric.",
       },
       { status: 400 },
     );
   }
 
   if (
-    typeof lowerRangeNumber === "number" &&
-    typeof upperRangeNumber === "number" &&
-    lowerRangeNumber > upperRangeNumber
+    typeof totalYearsOfExperienceNumber === "number" &&
+    typeof relevantExperienceNumber === "number" &&
+    relevantExperienceNumber > totalYearsOfExperienceNumber
   ) {
-    console.error("[job-applications] Lower range is greater than upper range", {
-      lowerRangeNumber,
-      upperRangeNumber,
-    });
     return NextResponse.json(
       {
-        error: "Lower salary range cannot be greater than upper salary range.",
+        error: "Relevant experience cannot be greater than total experience.",
       },
       { status: 400 },
     );
   }
 
-  const baseUrl = getEnvValue("FRAPPE_API_BASE_URL")!;
+  const rawBaseUrl = getEnvValue("FRAPPE_API_BASE_URL")!;
   const apiKey = getEnvValue("FRAPPE_API_KEY")!;
   const apiSecret = getEnvValue("FRAPPE_API_SECRET")!;
 
-  let url: URL;
+  let baseUrl: URL;
+  let applicantUrl: URL;
+  let uploadUrl: URL;
 
   try {
-    url = new URL("api/resource/Job Applicant", getApiBaseUrl(baseUrl));
+    baseUrl = getApiBaseUrl(rawBaseUrl);
+    applicantUrl = new URL("api/resource/Job Applicant", baseUrl);
+    uploadUrl = new URL("api/method/upload_file", baseUrl);
   } catch {
-    console.error("[job-applications] Invalid FRAPPE_API_BASE_URL", {
-      baseUrl,
-    });
     return NextResponse.json(
       {
         error:
@@ -159,72 +324,216 @@ export async function POST(request: Request) {
     );
   }
 
-  const frappePayload = {
-    doctype: "Job Applicant",
-    job_title: jobOpening,
-    applicant_name: applicantName,
-    email_id: emailAddress,
-    phone_number: phoneNumber,
-    country_of_residence: countryOfResidence,
-    cover_letter: coverLetter,
-    resume_link: resumeLink,
-    currency: currency,
-    lower_range: lowerRangeNumber,
-    upper_range: upperRangeNumber,
-  };
-
-  const sanitizedPayload = Object.fromEntries(
-    Object.entries(frappePayload).filter(([, value]) => value !== undefined),
-  );
-
-  console.log("[job-applications] Outgoing Frappe payload", sanitizedPayload);
-  console.log("[job-applications] Posting to Frappe URL", url.toString());
-
   try {
-    const response = await fetch(url, {
+    const jobApplicantFields = await fetchJobApplicantFields(
+      baseUrl,
+      apiKey,
+      apiSecret,
+    );
+
+    const frappePayload: Record<string, string | number> = {
+      doctype: "Job Applicant",
+      job_title: jobOpening,
+      applicant_name: applicantName,
+      email_id: emailAddress,
+      phone_number: phoneNumber,
+      cover_letter: coverLetter ?? "",
+    };
+
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Current Location", "current_location"],
+      currentLocation,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Current Job Title", "current_job_title"],
+      currentJobTitle,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Current Company", "current_company"],
+      currentCompany,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Total Years of Experience", "total_years_of_experience"],
+      totalYearsOfExperienceNumber,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      [
+        "Relevant Experience (in years)",
+        "relevant_experience_in_years",
+        "relevant_experience",
+      ],
+      relevantExperienceNumber,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Position Applied For", "position_applied_for"],
+      positionAppliedFor,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Source of Job Posting", "source_of_job_posting"],
+      sourceOfJobPosting,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Notice Period", "notice_period"],
+      noticePeriod,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Current Salary (CTC)", "current_salary_ctc", "current_salary"],
+      currentSalary,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Expected Salary", "expected_salary"],
+      expectedSalary,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Highest Qualification", "highest_qualification"],
+      highestQualification,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Signature (Type Full Name)", "Signature", "signature"],
+      signature,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Date", "application_date", "date"],
+      applicationDate,
+    );
+    setMappedValue(
+      frappePayload,
+      jobApplicantFields,
+      ["Declaration", "declaration", "declaration_confirmed"],
+      1,
+    );
+
+    const applicantResponse = await fetch(applicantUrl, {
       method: "POST",
-      headers: getFrappeHeaders(apiKey, apiSecret),
-      body: JSON.stringify(sanitizedPayload),
+      headers: {
+        ...getAuthHeaders(apiKey, apiSecret),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(frappePayload),
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-
-      console.error("[job-applications] Frappe rejected application", {
-        status: response.status,
-        errorText,
-      });
+    if (!applicantResponse.ok) {
+      const errorText = await applicantResponse.text();
 
       return NextResponse.json(
         {
           error:
             errorText ||
-            `Failed to create job applicant. Backend returned ${response.status}.`,
+            `Failed to create job applicant. Backend returned ${applicantResponse.status}.`,
         },
-        { status: response.status },
+        { status: applicantResponse.status },
       );
     }
 
-    const result = (await response.json()) as {
+    const applicantResult = (await applicantResponse.json()) as {
       data?: {
         name?: string;
       };
     };
 
-    console.log("[job-applications] Frappe application created successfully", {
-      applicantId: result.data?.name ?? null,
-      result,
+    const applicantId = applicantResult.data?.name ?? null;
+
+    if (!applicantId) {
+      return NextResponse.json(
+        {
+          error: "Applicant was created without a valid record ID.",
+        },
+        { status: 500 },
+      );
+    }
+
+    const resumeFieldName = resolveFieldName(jobApplicantFields, [
+      "Upload Resume",
+      "Resume Attachment",
+      "resume_attachment",
+      "upload_resume",
+    ]);
+
+    const uploadFormData = new FormData();
+    uploadFormData.append("file", resumeFile);
+    uploadFormData.append("is_private", "1");
+    uploadFormData.append("doctype", "Job Applicant");
+    uploadFormData.append("docname", applicantId);
+
+    if (resumeFieldName) {
+      uploadFormData.append("fieldname", resumeFieldName);
+    }
+
+    const uploadResponse = await fetch(uploadUrl, {
+      method: "POST",
+      headers: getAuthHeaders(apiKey, apiSecret),
+      body: uploadFormData,
+      cache: "no-store",
     });
+
+    if (!uploadResponse.ok) {
+      const errorText = await uploadResponse.text();
+
+      return NextResponse.json(
+        {
+          error:
+            errorText ||
+            `Applicant created, but resume upload failed with ${uploadResponse.status}.`,
+          applicantId,
+        },
+        { status: uploadResponse.status },
+      );
+    }
+
+    const uploadResult = (await uploadResponse.json()) as FrappeUploadResponse;
+    const fileUrl =
+      typeof uploadResult.message === "object"
+        ? uploadResult.message.file_url
+        : undefined;
+
+    const postCreateUpdates: Record<string, string | number> = {};
+    setMappedValue(
+      postCreateUpdates,
+      jobApplicantFields,
+      ["Resume Link", "resume_link"],
+      fileUrl,
+    );
+
+    await updateApplicantRecord(
+      baseUrl,
+      applicantId,
+      postCreateUpdates,
+      apiKey,
+      apiSecret,
+    );
 
     return NextResponse.json({
       message: "Application submitted successfully.",
-      applicantId: result.data?.name ?? null,
+      applicantId,
     });
   } catch (error) {
-    console.error("[job-applications] Unexpected error while creating applicant", {
-      error,
-    });
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Unexpected error",

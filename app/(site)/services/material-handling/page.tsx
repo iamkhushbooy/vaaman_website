@@ -94,7 +94,7 @@ export default function MaterialHandling() {
                 {[
                   { number: "134+", label: "Equipment Fleet" },
                   { number: "5", label: "Top Brands" },
-                  { number: "30+", label: "Years Experience" },
+                  { number: "35", label: "Years Experience" },
                 ].map((stat, i) => (
                   <div key={i} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                     <p className="text-3xl font-extrabold text-[rgb(254,94,21)]">{stat.number}</p>
@@ -111,12 +111,12 @@ export default function MaterialHandling() {
               className="relative"
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
-                <img src="/images/hero/hero-5.jpg" alt="Material Handling Operations" className="w-full h-full object-cover" />
+                {/* <img src="/images/hero/hero-5.jpg" alt="Material Handling Operations" className="w-full h-full object-cover" /> */}
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
+              {/* <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
                 <p className="text-2xl font-extrabold">ISO 9001:2015</p>
                 <p className="text-sm opacity-90">& ISO 45001 Certified</p>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </div>
@@ -239,7 +239,7 @@ export default function MaterialHandling() {
               viewport={{ once: true }}
               className="rounded-2xl overflow-hidden shadow-2xl h-[400px]"
             >
-              <img src="/images/hero/hero-9.jpeg" alt="Vaaman fleet at work" className="w-full h-full object-cover" />
+              {/* <img src="/images/hero/hero-9.jpeg" alt="Vaaman fleet at work" className="w-full h-full object-cover" /> */}
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 30 }}

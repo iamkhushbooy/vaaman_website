@@ -19,15 +19,12 @@ export function ServicesSection() {
                 {/* Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ paddingTop: '65px' }}>
                     {services.map(({ img, title, desc }) => (
-                        /* OUTER: positions floating image above + Read More below */
                         <div key={title} className="relative group" style={{ marginTop: '65px', marginBottom: '25px' }}>
-
-                            {/* Floating image — absolute to OUTER, above the inner card */}
                             <div
                                 className="absolute left-1/2 -translate-x-1/2 z-10 shadow-lg bg-white"
                                 style={{ top: '-65px', width: '130px', height: '130px' }}
                             >
-                                <Image src={img} alt={title} fill className="object-cover" sizes="130px" />
+                                {/* <Image src={img} alt={title} fill className="object-cover" sizes="130px" /> */}
                             </div>
 
                             {/* INNER card — overflow-hidden so dark overlay can slide in */}
@@ -48,17 +45,6 @@ export function ServicesSection() {
                                     <div className="w-8 h-0.5 mx-auto mb-4" style={{ backgroundColor: PRIMARY }} />
                                     <p className="text-white/75 text-sm text-center leading-relaxed">{desc}</p>
                                 </div>
-                            </div>
-
-                            {/* Read More button — outside overflow-hidden, at bottom edge */}
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20">
-                                <Link
-                                    href="/contact"
-                                    className="px-6 py-2 text-sm font-semibold bg-white border border-gray-200 shadow-sm group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500 transition-all block"
-                                    style={{ color: DARK, whiteSpace: 'nowrap' }}
-                                >
-                                    Read More
-                                </Link>
                             </div>
                         </div>
                     ))}

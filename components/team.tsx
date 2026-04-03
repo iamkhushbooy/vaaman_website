@@ -37,15 +37,15 @@ const teamMembers = [
     role: "Director", 
     delay: 0.1, 
     img: "/award/saurabh.jpeg", 
-    linkedin: "https://www.linkedin.com/in/surendra-singh-3a775bb2/" 
+    linkedin: "https://www.linkedin.com/in/saurabh-singh-18220b89/" 
   },
   { 
     id: 5, 
-    name: "Mr. Kaushik", 
+    name: "Mr. V. Kaushik", 
     role: "Sector Head (Zinc, Copper, Cable & Conductor)", 
     delay: 0.3, 
     img: "/award/kaushik.jpeg", 
-    linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
+    linkedin: "https://www.linkedin.com/in/v-kaushik-9b54b111b/" 
   },
     {
     id: 7,

@@ -375,14 +375,14 @@ export default function CareersPage() {
                             </h2>
                         </div>
 
-                        <button
+                        {/* <button
                             type="button"
                             onClick={() => setReloadKey((currentKey) => currentKey + 1)}
                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:border-[#03245a] hover:bg-white"
                         >
                             <RefreshCcw size={16} />
                             Refresh Jobs
-                        </button>
+                        </button> */}
                     </div>
 
                     {isLoading && (

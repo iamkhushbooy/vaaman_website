@@ -31,7 +31,7 @@ export function Header() {
                     links: [
                         { label: 'Vision, Mission Values', href: '/about/vision-mission-values' },
                         { label: 'Milestone', href: '/about/milestone' },
-                        { label: "Chairman's Corner", href: '/about/chairmans-corner' },
+                        { label: "MD's Corner", href: '/about/md-corner' },
                         { label: "CEO's Desk", href: '/about/ceos-desk' },
                     ]
                 },
