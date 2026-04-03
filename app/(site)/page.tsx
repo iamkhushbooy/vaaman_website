@@ -19,7 +19,7 @@ export default function HomePage() {
             <AboutFacts/>
             <WhyChooseUs />
             <ServicesSection />
-            <ProjectsSection />
+            {/* <ProjectsSection /> */}
            <TeamSection/>
             <TestimonialsSection />
             <ClientsSection />
