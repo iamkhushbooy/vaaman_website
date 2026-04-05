@@ -262,17 +262,22 @@ export default function CareersPage() {
     }, [reloadKey]);
 
     useEffect(() => {
-        if (!isApplyModalOpen && !isDetailsModalOpen) {
+        if (!isDetailsModalOpen) {
             return undefined;
         }
 
-        const previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
+        function handleEscape(event: KeyboardEvent) {
+            if (event.key === 'Escape') {
+                closeDetailsModal();
+            }
+        }
+
+        window.addEventListener('keydown', handleEscape);
 
         return () => {
-            document.body.style.overflow = previousOverflow;
+            window.removeEventListener('keydown', handleEscape);
         };
-    }, [isApplyModalOpen, isDetailsModalOpen]);
+    }, [isDetailsModalOpen]);
 
     const visibleJobs = jobs.slice(0, visibleCount);
     const hasMoreJobs = jobs.length > visibleCount;
@@ -499,22 +504,32 @@ export default function CareersPage() {
             />
 
             {isDetailsModalOpen && detailsJob && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">
-                    <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+                <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 px-4 py-6 backdrop-blur-sm sm:py-10">
+                    <div
+                        className="fixed inset-0"
+                        onClick={closeDetailsModal}
+                        aria-hidden="true"
+                    />
+
+                    <div className="relative mx-auto w-full max-w-5xl">
+                        <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl">
+                            <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#03245a_0%,rgb(254,94,21)_55%,#03245a_100%)]" />
+
+                            <div className="relative p-6 sm:p-8">
                         <button
                             type="button"
                             onClick={closeDetailsModal}
-                            className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-800"
+                            className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-800 hover:shadow-md"
                             aria-label="Close job details"
                         >
                             <X size={18} />
                         </button>
 
                         <div className="pr-12">
-                            <p className="text-sm font-semibold tracking-[0.18em] text-[rgb(254,94,21)] uppercase">
+                            <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.16em] text-[rgb(254,94,21)] uppercase">
                                 Job Details
-                            </p>
-                            <h3 className="mt-2 text-3xl font-bold text-[#03245a]">
+                            </span>
+                            <h3 className="mt-4 text-3xl font-bold text-[#03245a]">
                                 {detailsJob.title}
                             </h3>
                             <p className="mt-2 text-sm font-medium text-[rgb(254,94,21)]">
@@ -583,10 +598,12 @@ export default function CareersPage() {
                                     closeDetailsModal();
                                     openApplyModal(detailsJob);
                                 }}
-                                className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgb(220,80,15)]"
+                                className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[rgb(220,80,15)] hover:shadow-lg"
                             >
                                 Apply Now
                             </button>
+                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

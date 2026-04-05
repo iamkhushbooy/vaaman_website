@@ -106,6 +106,24 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
         }
     }, [isOpen, job]);
 
+    useEffect(() => {
+        if (!isOpen) {
+            return undefined;
+        }
+
+        function handleEscape(event: KeyboardEvent) {
+            if (event.key === 'Escape') {
+                onClose();
+            }
+        }
+
+        window.addEventListener('keydown', handleEscape);
+
+        return () => {
+            window.removeEventListener('keydown', handleEscape);
+        };
+    }, [isOpen, onClose]);
+
     if (!isOpen || !job) {
         return null;
     }
@@ -169,37 +187,57 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
     }
 
     const inputClassName =
-        'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]';
+        'w-full rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-700 outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-white focus:ring-[#03245a]/25';
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">
-            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 px-4 py-6 backdrop-blur-sm sm:py-10">
+            <div
+                className="fixed inset-0"
+                onClick={onClose}
+                aria-hidden="true"
+            />
+
+            <div className="relative mx-auto w-full max-w-5xl">
+                <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)] shadow-2xl">
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#03245a_0%,rgb(254,94,21)_55%,#03245a_100%)]" />
+
+                    <div className="relative p-6 sm:p-8">
                 <button
                     type="button"
                     onClick={onClose}
-                    className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-800"
+                    className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-800 hover:shadow-md"
                     aria-label="Close application form"
                 >
                     <X size={18} />
                 </button>
 
                 <div className="pr-12">
-                    <p className="text-sm font-semibold tracking-[0.18em] text-[rgb(254,94,21)] uppercase">
+                    <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.16em] text-[rgb(254,94,21)] uppercase">
                         Job Application
-                    </p>
-                    <h3 className="mt-2 text-3xl font-bold text-[#03245a]">
+                    </span>
+                    <h3 className="mt-4 text-3xl font-bold text-[#03245a]">
                         Apply for {job.title}
                     </h3>
+                    {/* <div className="mt-4 grid gap-3 rounded-[1.5rem] bg-white/80 p-4 text-sm text-slate-600 shadow-sm ring-1 ring-slate-200/70 sm:grid-cols-2">
+                        <div>
+                            <p className="text-xs font-semibold tracking-[0.14em] text-slate-400 uppercase">Opening ID</p>
+                            <p className="mt-1 font-semibold text-[#03245a]">{job.id}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs font-semibold tracking-[0.14em] text-slate-400 uppercase">Status</p>
+                            <p className="mt-1 font-semibold text-[#03245a]">{job.status ?? 'Open'}</p>
+                        </div>
+                    </div> */}
                 </div>
 
-                <form className="mt-8 space-y-6" onSubmit={handleApplicationSubmit}>
+                <form className="mt-8 space-y-6 rounded-[1.75rem] bg-white/70 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] ring-1 ring-slate-200/70 sm:p-6" onSubmit={handleApplicationSubmit}>
                     <div className="grid gap-5 md:grid-cols-2">
                         <label className="space-y-2 md:col-span-2">
                             <span className="text-sm font-semibold text-slate-700">Job Opening</span>
                             <input
                                 value={formState.jobOpening}
                                 readOnly
-                                className="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-700 outline-none"
+                                className="w-full rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-700 outline-none"
                             />
                         </label>
 
@@ -234,7 +272,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                                     value={formState.phoneNumber}
                                     onChange={(event) => handleInputChange('phoneNumber', event.target.value)}
                                     required
-                                    className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 text-sm text-slate-700 outline-none transition-colors focus:border-[#03245a]"
+                                    className="w-full rounded-xl bg-slate-100 py-3 pl-11 pr-4 text-sm text-slate-700 outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-white focus:ring-[#03245a]/25"
                                     placeholder="Enter phone number"
                                 />
                             </div>
@@ -387,7 +425,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
 
                         <div className="space-y-2 md:col-span-2">
                             <span className="text-sm font-semibold text-slate-700">Upload Resume *</span>
-                            <label className="flex cursor-pointer items-center justify-center gap-3 rounded-xl border border-dashed border-slate-300 px-4 py-5 text-sm text-slate-600 transition-colors hover:border-[#03245a] hover:text-[#03245a]">
+                            <label className="flex cursor-pointer items-center justify-center gap-3 rounded-xl bg-slate-100 px-4 py-5 text-sm text-slate-600 ring-1 ring-transparent transition-all duration-200 hover:bg-slate-200/70 hover:text-[#03245a]">
                                 <Upload size={18} />
                                 <span>{resumeFile?.name ?? 'Choose resume file'}</span>
                                 <input
@@ -406,7 +444,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                                 value={formState.coverLetter}
                                 onChange={(event) => handleInputChange('coverLetter', event.target.value)}
                                 rows={5}
-                                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition-colors focus:border-[#03245a]"
+                                className="w-full rounded-xl bg-slate-100 px-4 py-3 text-sm leading-6 text-slate-700 outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-white focus:ring-[#03245a]/25"
                                 placeholder="Write a short introduction"
                             />
                         </label>
@@ -433,7 +471,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                             />
                         </label>
 
-                        <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 md:col-span-2">
+                        <label className="flex items-start gap-3 rounded-xl bg-slate-100 px-4 py-4 md:col-span-2">
                             <input
                                 type="checkbox"
                                 checked={formState.declarationAccepted}
@@ -488,6 +526,8 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                         </div>
                     )}
                 </form>
+                    </div>
+                </div>
             </div>
         </div>
     );
