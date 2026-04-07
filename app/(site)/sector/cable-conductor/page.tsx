@@ -188,13 +188,6 @@ export default function CableConductorPage() {
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/20 to-transparent" />
-                            <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-300">
-                                    Primary Visual
-                                </p>
-                                <h3 className="mt-2 text-2xl font-bold">{showcaseImages[0].title}</h3>
-                            </div>
                         </div>
 
                         <div className="grid gap-6">
@@ -209,10 +202,6 @@ export default function CableConductorPage() {
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/20 to-transparent" />
-                                    <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                                        <h3 className="text-lg font-bold">{image.title}</h3>
-                                    </div>
                                 </div>
                             ))}
                         </div>
