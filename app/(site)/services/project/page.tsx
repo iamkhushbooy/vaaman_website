@@ -575,7 +575,6 @@ import { Footer } from '@/components/footer';
 export default function ClientsPage() {
     return (
         <div className="w-full overflow-hidden">
-            <Header />
             <div className="w-full min-h-[90vh] py-20 flex items-center justify-center bg-slate-50 px-4 sm:px-6 lg:px-8">
             <div className="max-w-max mx-auto text-center sm:text-left">
                 <main className="sm:flex justify-center items-center gap-12">
@@ -616,7 +615,6 @@ export default function ClientsPage() {
                 </main>
             </div>
             </div>
-            <Footer />
         </div>
     );
 }
