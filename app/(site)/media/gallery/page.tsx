@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faExpandAlt, faImages, faHardHat, faTools, 
-  faBuilding, faAward, faUsers, faShieldAlt 
+  faBuilding, faAward, faShieldAlt 
 } from '@fortawesome/free-solid-svg-icons';
 
 // --- DATA ARRANGED FOR PROFESSIONAL LOOK ---
@@ -144,19 +144,9 @@ export default function CompleteGalleryPage() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 />
                 
-                {/* Modern Industrial Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#002147]/90 via-[#002147]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="bg-orange-500 text-white px-3 py-1 rounded-md text-[9px] font-black uppercase tracking-tighter">
-                        {item.category}
-                    </span>
-                    <h3 className="text-white text-xl font-bold mt-3 leading-tight tracking-tight">{item.title}</h3>
-                    <div className="flex items-center justify-between mt-5">
-                       <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md text-white transition-all flex items-center justify-center group-hover:bg-orange-500">
-                        <FontAwesomeIcon icon={faExpandAlt} className="text-sm" />
-                      </div>
-                      <span className="text-white/30 text-[10px] font-mono tracking-widest">VN_{item.id}</span>
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#002147]/70 via-[#002147]/15 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-start p-8">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md text-white transition-all duration-300 flex items-center justify-center group-hover:bg-orange-500">
+                    <FontAwesomeIcon icon={faExpandAlt} className="text-sm" />
                   </div>
                 </div>
               </motion.div>
