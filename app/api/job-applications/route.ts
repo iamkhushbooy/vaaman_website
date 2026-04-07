@@ -178,14 +178,14 @@ async function updateApplicantRecord(
 export async function POST(request: Request) {
   const missingEnvVars = getMissingEnvVars();
 
-  if (missingEnvVars.length > 0) {
-    return NextResponse.json(
-      {
-        error: `Missing env vars: ${missingEnvVars.join(", ")}`,
-      },
-      { status: 500 },
-    );
-  }
+  // if (missingEnvVars.length > 0) {
+  //   return NextResponse.json(
+  //     {
+  //       error: `Missing env vars: ${missingEnvVars.join(", ")}`,
+  //     },
+  //     { status: 500 },
+  //   );
+  // }
 
   const formData = await request.formData();
 

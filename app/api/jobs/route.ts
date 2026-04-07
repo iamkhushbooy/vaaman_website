@@ -14,15 +14,15 @@ export const revalidate = 0;
 export async function GET() {
   const missingEnvVars = getMissingEnvVars();
 
-  if (missingEnvVars.length > 0) {
-    return NextResponse.json(
-      {
-        jobs: [],
-        error: `Missing env vars: ${missingEnvVars.join(", ")}`,
-      },
-      { status: 500 },
-    );
-  }
+  // if (missingEnvVars.length > 0) {
+  //   return NextResponse.json(
+  //     {
+  //       jobs: [],
+  //       error: `Missing env vars: ${missingEnvVars.join(", ")}`,
+  //     },
+  //     { status: 500 },
+  //   );
+  // }
 
   const baseUrl = getEnvValue("FRAPPE_API_BASE_URL")!;
   const apiKey = getEnvValue("FRAPPE_API_KEY")!;
