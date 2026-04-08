@@ -14,7 +14,7 @@ export default function HomePage() {
             <HeroCarousel />
              <CompanyProfileSection />
             <AboutFacts/>
-            <WhyChooseUs />
+            {/* <WhyChooseUs /> */}
             <ServicesSection />
             {/* <ProjectsSection /> */}
            <TeamSection/>

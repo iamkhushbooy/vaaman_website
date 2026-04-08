@@ -7,12 +7,12 @@ export const heroSlides = [
     { src: '/images/hero/hero-1.jpeg', alt: 'Angul Plant', sub: '35 Years of Industrial Excellence', title: 'Your Industrial\nService Partner' },
     { src: '/images/hero/hero-2.jpg', alt: 'Industrial Operations', sub: 'Operations & Maintenance Experts', title: 'Excellence in\nHeavy Industry' },
     { src: '/images/hero/hero-3.jpg', alt: 'Plant Maintenance', sub: 'Trusted by India\'s Largest Plants', title: 'Reliable Industrial\nSolutions' },
-    { src: '/images/hero/hero-4.jpeg', alt: 'Material Handling', sub: 'End-to-End Material Handling', title: 'Moving Industry\nForward' },
-    { src: '/images/hero/hero-5.jpg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Seamless Port\nOperations' },
-    { src: '/images/hero/hero-6.jpeg', alt: 'Project Site', sub: 'EPC & Project Services', title: 'Engineering\nExcellence' },
-    { src: '/images/hero/hero-7.jpeg', alt: 'Sinter Plant', sub: '12,000 Skilled Workforce', title: 'Powered by\nOur People' },
-    { src: '/images/hero/hero-8.jpeg', alt: 'Aerial View', sub: 'Pan-India Presence', title: 'Nationwide\nIndustrial Services' },
-    { src: '/images/hero/hero-9.jpeg', alt: 'Industrial Facility', sub: 'ISO 9001:2015 Certified', title: 'Quality at\nEvery Step' },
+    { src: '/sector/manufacturing/manufacturing-shed.jpeg', alt: 'Manufacturing Shed', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions'},
+    { src: '/sector/port1.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Seamless Port\nOperations' },
+    { src: '/project/amns/image1.png', alt: 'Project Site', sub: 'EPC & Project Services', title: 'Engineering\nExcellence' },
+    { src: '/sector/manufacturing/shed-building.jpeg', alt: 'shed-building', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions'},
+    { src: '/sector/port2.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Seamless Port\nOperations' },
+    { src: '/project/amns/image2.png', alt: 'Project Site', sub: 'EPC & Project Services', title: 'Engineering\nExcellence' },
 ];
 
 export const stats = [
@@ -51,17 +51,17 @@ export const features = [
 
 export const services = [
     {
-        img: '/images/hero/hero-7.jpeg',
+        img: '/images/hero/',
         title: 'Operations & Maintenance',
         desc: 'Comprehensive O&M services for steel, aluminium, zinc, and port plants across India.',
     },
     {
-        img: '/images/hero/hero-4.jpeg',
+        img: '/images/hero/',
         title: 'Material Handling',
         desc: 'End-to-end raw material handling solutions including HEMM operations and logistics.',
     },
     {
-        img: '/images/hero/hero-5.jpg',
+        img: '/project/amns/image1.png',
         title: 'EPC & Project Services',
         desc: 'Turnkey engineering, procurement, and construction for heavy industrial infrastructure.',
     },

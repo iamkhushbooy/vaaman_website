@@ -2,7 +2,15 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Check, Clock, Shield, Settings, Wrench, Activity } from 'lucide-react';
+import { 
+  Check, 
+  Clock, 
+  Shield, 
+  Settings, 
+  Wrench, 
+  Activity, 
+  ShieldCheck 
+} from 'lucide-react';
 
 export default function OperationAndMaintenance() {
   const salientFeatures = [
@@ -30,6 +38,11 @@ export default function OperationAndMaintenance() {
       icon: Shield,
       title: "Repairs & Refurbishment",
       description: "Minor modifications, repairs, and refurbishment of equipment and components to extend asset life.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Equipment Health Monitoring",
+      description: "Rigorous technical audits and structural health checks to identify potential failures before they occur, ensuring maximum safety.",
     },
   ];
 
@@ -93,26 +106,30 @@ export default function OperationAndMaintenance() {
   ];
 
   return (
-    <>
+    <div className="bg-white">
       {/* Hero Banner */}
       <section className="relative h-[500px] bg-blue-950 text-white flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/hero/hero-1.jpeg" alt="Operations and Maintenance" className="w-full h-full object-cover" />
+          <img 
+            src="/images/hero/hero-1.jpeg" 
+            alt="Operations and Maintenance" 
+            className="w-full h-full object-cover" 
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/70 to-transparent"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <p className="text-[rgb(254,94,21)] font-bold uppercase tracking-widest text-sm mb-3">Our Services</p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 max-w-xl leading-tight">Operations & Maintenance</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 max-w-xl leading-tight text-white">Operations & Maintenance</h1>
           <p className="text-gray-300 text-lg max-w-lg mb-6">
             Seamless, safe and economical plant operations — 24/7.
           </p>
-          <p className="text-sm text-gray-400 font-medium">
+          <nav className="text-sm text-gray-400 font-medium">
             <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
             {' / '}
             <span>Services</span>
             {' / '}
             <span className="text-[rgb(254,94,21)]">Operations & Maintenance</span>
-          </p>
+          </nav>
         </div>
       </section>
 
@@ -153,19 +170,15 @@ export default function OperationAndMaintenance() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
+              <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px] bg-white">
                 {/* <img src="/images/hero/hero-4.jpeg" alt="O&M Operations" className="w-full h-full object-cover" /> */}
               </div>
-              {/* <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
-                <p className="text-2xl font-extrabold">ISO 9001:2015</p>
-                <p className="text-sm opacity-90">& ISO 45001 Certified</p>
-              </div> */}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Feature Cards */}
+      {/* Feature Cards (6 Boxes) */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -194,7 +207,7 @@ export default function OperationAndMaintenance() {
                     <Icon size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-[#03245a] mb-3">{feature.title}</h3>
-                  <p className="text-gray-500 leading-relaxed">{feature.description}</p>
+                  <p className="text-gray-500 leading-relaxed text-sm md:text-base">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -202,10 +215,10 @@ export default function OperationAndMaintenance() {
         </div>
       </section>
 
-      {/* Maintenance Types — full-width bg image section */}
+      {/* Maintenance Types Banner */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/hero/hero-6.jpeg" alt="Maintenance background" className="w-full h-full object-cover" />
+          <img src="/images/hero/hero-6.jpeg" alt="Maintenance" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#03245a]/88"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -216,7 +229,7 @@ export default function OperationAndMaintenance() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <p className="text-[rgb(254,94,21)] font-bold text-sm mb-3 uppercase tracking-widest">Coverage</p>
+            <p className="text-[rgb(254,94,21)] font-bold text-sm mb-3 uppercase tracking-widest text-white/80">Coverage</p>
             <h2 className="text-4xl font-extrabold text-white">Types of Maintenance Services</h2>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -261,7 +274,7 @@ export default function OperationAndMaintenance() {
                 className="rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition"
               >
                 <div className="h-44 overflow-hidden relative">
-                  <img src={sector.image} alt={sector.sector} className="w-full h-full object-cover" />
+                  {/* <img src={sector.image} alt={sector.sector} className="w-full h-full object-cover" /> */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#03245a]/80 to-transparent flex items-end p-4">
                     <h3 className="text-white text-xl font-bold">{sector.sector}</h3>
                   </div>
@@ -282,7 +295,7 @@ export default function OperationAndMaintenance() {
         </div>
       </section>
 
-      {/* Why Vaaman — split with dark card */}
+      {/* Why Choose Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -293,7 +306,7 @@ export default function OperationAndMaintenance() {
               viewport={{ once: true }}
               className="bg-gradient-to-br from-[#03245a] to-[#03245a]/90 text-white p-10 rounded-2xl shadow-xl"
             >
-              <h3 className="text-2xl font-bold mb-8">Why Choose Vaaman?</h3>
+              <h3 className="text-2xl font-bold mb-8 text-white">Why Choose Vaaman?</h3>
               <ul className="space-y-5">
                 {[
                   "Largest O&M contractor across Aluminium, Steel & Zinc sectors",
@@ -323,7 +336,7 @@ export default function OperationAndMaintenance() {
               </p>
               <ul className="space-y-4">
                 {[
-                  "Tata Steel ",
+                  "Tata Steel",
                   "Hindustan Zinc Limited",
                   "Balco",
                   "JSW Steel",
@@ -339,6 +352,6 @@ export default function OperationAndMaintenance() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -24,7 +24,7 @@ export function ServicesSection() {
                                 className="absolute left-1/2 -translate-x-1/2 z-10 shadow-lg bg-white"
                                 style={{ top: '-65px', width: '130px', height: '130px' }}
                             >
-                                {/* <Image src={img} alt={title} fill className="object-cover" sizes="130px" /> */}
+                                <Image src={img} alt={title} fill className="object-cover" sizes="130px" />
                             </div>
 
                             {/* INNER card — overflow-hidden so dark overlay can slide in */}
