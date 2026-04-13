@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { BriefcaseBusiness, Factory, HardHat, ShieldCheck, ChevronRight } from 'lucide-react';
+import { SectorHero } from '@/components/sector/SectorHero';
 
 const expertiseAreas = [
   'Iron Making: Blast Furnace (BF), RMHS, Stock House, Cast House',
@@ -40,20 +40,26 @@ const reasonsToChoose = [
 
 const heroImages = [
   {
-    src: '/sector/b.jpeg',
+    src: '/sector/port/b.jpeg',
     alt: 'Port-side bulk handling equipment and vessel',
     className: 'md:col-span-2 md:row-span-2',
   },
   {
-    src: '/sector/b2.jpeg',
+    src: '/sector/port/b2.jpeg',
     alt: 'Bulk storage facility under dramatic sky',
     className: '',
   },
   {
-    src: '/sector/port-steel-hero-3.png',
-    alt: 'Vaaman team members at the port facility',
+    src: '/sector/port/b3.jpeg',
+    alt: 'Bulk storage facility under dramatic sky',
     className: '',
   },
+];
+
+const heroMetrics = [
+  { value: '5', label: 'Core service lines' },
+  { value: 'Steel', label: 'Sector-focused execution' },
+  { value: 'O&M', label: 'Safety-led support model' },
 ];
 
 export default function PortPage() {
@@ -79,31 +85,25 @@ export default function PortPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="relative h-[30rem] md:h-[38rem] overflow-hidden bg-blue-950 text-white flex items-center">
-        <div className="absolute inset-0">
-          <Image
-            src="/sector/port-steel-hero-3.png"
-            alt="Vaaman team at port site"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/70 via-blue-900/40 to-transparent" />
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Port</h1>
-          <p className="text-base md:text-lg text-gray-200 font-medium">
-            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">
-              Home
-            </Link>
-            {' / '}
-            <span className="text-gray-300">Sector</span>
-            {' / '}
-            <span className="text-[rgb(254,94,21)]">Port</span>
-          </p>
-          </div>
-        </div>
-      </section>
+      <SectorHero
+        badge="Port Engineering"
+        title="Port-Side Engineering Support Backed by Steel Sector O&M Experience"
+        description="Vaaman Engineers delivers operation and maintenance support, manpower deployment, shutdown assistance, and project execution for port-linked industrial operations with a strong steel-sector foundation."
+        currentLabel="Port"
+        backgroundImage={{
+          src: '/sector/port/port-steel-hero-3.png',
+          alt: 'Vaaman team at port site',
+        }}
+        collageTopImage={{
+          src: '/sector/port/b.jpeg',
+          alt: 'Port-side unloading equipment',
+        }}
+        collageBottomImage={{
+          src: '/sector/port/b3.jpeg',
+          alt: 'Bulk vessel loading and berth-side equipment',
+        }}
+        metrics={heroMetrics}
+      />
 
       <motion.section
         variants={containerVariants}
@@ -275,7 +275,7 @@ export default function PortPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
               <Image
-                src="/sector/b3.jpeg"
+                src="/sector/port/b3.jpeg"
                 alt="Port-side bulk handling equipment and vessel"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"

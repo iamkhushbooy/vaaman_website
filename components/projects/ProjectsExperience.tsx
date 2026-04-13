@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -21,14 +21,34 @@ const projectDetails: Record<string, string> = {
   mettube: "Tailored engineering and installation projects for Mettube, delivering advanced infrastructure support for precision copper tube manufacturing facilities.",
 };
 
+const epcHighlights = [
+  {
+    value: 'FY 2025',
+    label: 'New EPC vertical started',
+  },
+  {
+    value: '70 Cr',
+    label: 'Turnover in FY 25',
+  },
+  {
+    value: '90 Cr',
+    label: 'Turnover in FY 26',
+  },
+  {
+    value: '125 Cr',
+    label: 'Target for FY 27',
+  },
+];
+
+const epcStrengthPoints = [
+  'Concept to commissioning execution with detailed engineering, procurement, erection, commissioning, and performance guarantee.',
+  'Dedicated engineering team focused on completing EPC projects with execution discipline and timeline control.',
+  'A single-umbrella model where Vaaman delivers project execution, commissioning, and O&M for the same plant.',
+];
+
 export function ProjectsExperience() {
   const [heroIndex, setHeroIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<GalleryState>(initialGalleryState);
-
-  const totalImages = useMemo(
-    () => projectGallery.reduce((count, project) => count + project.gallery.length, 0),
-    []
-  );
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -79,19 +99,22 @@ export function ProjectsExperience() {
               Project Services/EPC
             </h1>
             <p className="mt-6 max-w-2xl border-l-4 border-[#ff5e14] pl-5 text-base leading-8 text-slate-200 md:text-lg">
-              AMNS, Chanderiya and Mettube project.
+              We have started a new EPC Projects vertical since FY 2025, delivering concept to
+              commissioning solutions with complete engineering, procurement, erection,
+              commissioning, and performance guarantee.
             </p>
-            <div className="mt-10">
-              <Link
-                href="#project-showcase"
-                className="rounded-full bg-[#ff5e14] px-7 py-3 text-sm font-bold text-white transition hover:bg-orange-600"
-              >
-                View Project Gallery
-              </Link>
-            </div>
           </div>
 
-          <div className="mt-14 grid max-w-4xl gap-4 md:grid-cols-3">
+          <div className="mt-14 grid max-w-5xl gap-4 md:grid-cols-4">
+            {epcHighlights.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-[1.4rem] border border-white/10 bg-white/8 p-4 text-left backdrop-blur-sm"
+              >
+                <p className="text-2xl font-bold text-[#ffb38e]">{item.value}</p>
+                <p className="mt-2 text-sm text-slate-200">{item.label}</p>
+              </div>
+            ))}
             {projectHeroSlides.map((slide, index) => (
               <button
                 key={slide.id}
@@ -106,6 +129,45 @@ export function ProjectsExperience() {
                 <p className="mt-3 text-lg font-semibold text-white">{slide.title}</p>
               </button>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[90rem] px-6 py-24 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_20px_70px_-35px_rgba(15,23,42,0.35)] md:p-10">
+            <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#ff5e14]">EPC Overview</p>
+            <h2 className="mt-3 text-3xl font-bold text-[#02245B] md:text-4xl">
+              Single-umbrella delivery from project to O&amp;M
+            </h2>
+            <div className="mt-6 space-y-5 text-base leading-8 text-slate-600 md:text-lg">
+              <p>
+                We have started a new vertical of EPC Projects since FY 2025. We undertake
+                concept to commissioning type projects with complete detail engineering,
+                procurement, erection, commissioning, and performance guarantee.
+              </p>
+              <p>
+                In FY 25, we achieved a turnover of 70 Cr, followed by 90 Cr in FY 26. The
+                target for FY 27 is 125 Cr.
+              </p>
+              <p>
+                Vaaman is uniquely positioned to offer project execution, commissioning, and
+                O&amp;M of the same plant under a single umbrella.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] bg-[#02245B] p-8 text-white shadow-[0_20px_70px_-35px_rgba(15,23,42,0.55)] md:p-10">
+            <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#ffb38e]">Execution Model</p>
+            <h3 className="mt-3 text-3xl font-bold">Dedicated engineering capability</h3>
+            <div className="mt-8 space-y-5">
+              {epcStrengthPoints.map((item) => (
+                <div key={item} className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                  <div className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#ff5e14]" />
+                  <p className="text-sm leading-7 text-slate-200 md:text-base">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

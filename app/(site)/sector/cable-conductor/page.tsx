@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { Cable, Users, Shield, Target, ChevronRight } from 'lucide-react';
+import { SectorHero } from '@/components/sector/SectorHero';
 
 const journeyPoints = [
   'Our journey began with Sterlite Electric Ltd, Silvassa in 2002.',
@@ -38,6 +38,12 @@ const operatingHighlights = [
   'World-class O&M services with strong focus on safety, efficiency, and sustainability',
 ];
 
+const heroMetrics = [
+  { value: '70 KT', label: 'Wire rod per month' },
+  { value: '25 KT', label: 'OFC per month' },
+  { value: '2002', label: 'Sterlite journey start' },
+];
+
 export default function CableConductorPage() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -61,33 +67,25 @@ export default function CableConductorPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="relative h-[30rem] md:h-[38rem] bg-blue-950 text-white flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/sector/cable-conductor/cable-2.jpeg"
-            alt="Cable and conductor manufacturing facility"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">Cable &amp; Conductor</h1>
-            <p className="text-base md:text-lg text-gray-200 font-medium">
-              <Link href="/" className="hover:text-[rgb(254,94,21)] transition">
-                Home
-              </Link>
-              {' / '}
-              <span className="text-gray-300">Sector</span>
-              {' / '}
-              <span className="text-[rgb(254,94,21)]">Cable &amp; Conductor</span>
-            </p>
-          </div>
-        </div>
-      </section>
+      <SectorHero
+        badge="Aluminium Cable Manufacturing"
+        title="Trusted O&M Partner for Wire Rod, Conductor and Cable Plants"
+        description="Vaaman Engineers has grown into one of India’s reputed O&M contractors for aluminium wire rod mills, overhead conductor, and cable manufacturing industries with long-running execution across major industrial hubs."
+        currentLabel="Cable & Conductor"
+        backgroundImage={{
+          src: '/sector/cable-conductor/cable-2.jpeg',
+          alt: 'Cable and conductor manufacturing facility',
+        }}
+        collageTopImage={{
+          src: '/sector/cable-conductor/cable-1.jpeg',
+          alt: 'Cable manufacturing setup',
+        }}
+        collageBottomImage={{
+          src: '/sector/cable-conductor/cable-3.jpeg',
+          alt: 'Conductor and cable line support',
+        }}
+        metrics={heroMetrics}
+      />
 
       <motion.section
         variants={containerVariants}

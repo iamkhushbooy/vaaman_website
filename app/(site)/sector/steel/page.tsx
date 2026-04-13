@@ -1,11 +1,17 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Zap, Wrench, Users, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Zap, Wrench, CheckCircle2 } from 'lucide-react';
+import { SectorHero } from '@/components/sector/SectorHero';
 
 export default function SteelPage() {
+    const heroMetrics = [
+        { value: '119', label: 'DE systems maintained' },
+        { value: '24x7', label: 'Operational support model' },
+        { value: '3', label: 'Major client clusters' },
+    ];
+
     const mainServices = [
         {
             title: 'DE System Maintenance',
@@ -50,35 +56,6 @@ export default function SteelPage() {
         // },
     ];
 
-    const clients = [
-        {
-            name: 'TATA Steel - Jamshedpur',
-            details: '750+ manpower | 110 engineers deployed',
-            specialization: 'Complete DE systems, preventive & breakdown maintenance'
-        },
-        {
-            name: 'TATA Steel - Kalinganagar',
-            details: '750+ manpower | 110 engineers deployed',
-            specialization: 'Integrated maintenance across all plant areas'
-        },
-        {
-            name: 'Vedanta Ltd - Sesa Iron Ore (Goa)',
-            details: 'Specialized operations team',
-            specialization: 'Vibration feeders, coke conveyors, material loading'
-        },
-    ];
-
-    const capabilities = [
-        'DE System Operation & Maintenance with emission compliance',
-        'Preventive, Breakdown & Shutdown Maintenance Programs',
-        '24/7 Operational Support with skilled workforce',
-        'Complete Conveyor Belt System Management',
-        'Piping, Ducting & Structural Fabrication',
-        'Heat Exchanger Cleaning & Reinstallation',
-        'Pump, Valve & Motor Maintenance Excellence',
-        'Total Plant Area Coverage & Coordination'
-    ];
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -101,31 +78,25 @@ export default function SteelPage() {
 
     return (
         <main className="bg-white">
-            <section className="relative h-[30rem] md:h-[38rem] bg-blue-950 text-white flex items-center overflow-hidden">
-                <div className="absolute inset-0">
-                    <img
-                        src="/sector/hero.jpeg"
-                        alt="Steel manufacturing facility"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Gradient to ensure text readability on the left while showing the image on the right */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
-
-                <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <h1 className="text-5xl md:text-6xl font-bold mb-4">Steel</h1>
-                        <p className="text-base md:text-lg text-gray-200 font-medium">
-                            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
-                            {' / '}
-                            <span className="text-gray-300">Services</span>
-                            {' / '}
-                            <span className="text-[rgb(254,94,21)]">Steel</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <SectorHero
+                badge="Steel Operations"
+                title="Maintenance & Operations Excellence for Integrated Steel Plants"
+                description="Vaaman Engineers delivers maintenance and operational solutions that improve reliability, productivity, and plant performance across critical steel manufacturing systems."
+                currentLabel="Steel"
+                backgroundImage={{
+                    src: '/project/amns/image1.png',
+                    alt: 'Steel plant construction and industrial setup',
+                }}
+                collageTopImage={{
+                    src: '/project/amns/image2.jpg',
+                    alt: 'Industrial steel structure and erection work',
+                }}
+                collageBottomImage={{
+                    src: '/gallery/gallery_machine.jpg',
+                    alt: 'Industrial equipment operating inside a plant',
+                }}
+                metrics={heroMetrics}
+            />
 
             {/* Introduction */}
             <section className="py-16 md:py-24 bg-white overflow-hidden">

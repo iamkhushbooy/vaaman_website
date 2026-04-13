@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { ChevronRight, Zap, Droplets, Settings, Flame } from 'lucide-react';
+import { SectorHero } from '@/components/sector/SectorHero';
 
 export default function ZincPage() {
     // 1. Framer Motion Variants with TypeScript 'Variants' type
@@ -67,34 +68,33 @@ export default function ZincPage() {
         'HT & LT panels maintenance',
     ];
 
+    const heroMetrics = [
+        { value: '6+', label: 'Operational locations' },
+        { value: 'HZL', label: 'Key strategic client' },
+        { value: '24x7', label: 'Plant support readiness' },
+    ];
+
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="relative h-[30rem] md:h-[38rem] bg-blue-950 text-white flex items-center overflow-hidden">
-                <div className="absolute inset-0">
-                    <Image
-                        src="/sector/zinc.jpeg"
-                        alt="Zinc processing facility"
-                        fill
-                        className="object-cover"
-                    />
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
-
-                <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <h1 className="text-5xl md:text-6xl font-bold mb-4">Zinc</h1>
-                        <p className="text-base md:text-lg text-gray-200 font-medium">
-                            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
-                            {' / '}
-                            <span className="text-gray-300">Services</span>
-                            {' / '}
-                            <span className="text-[rgb(254,94,21)]">Zinc</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <SectorHero
+                badge="Zinc Operations"
+                title="Reliable O&M Support Across Mining, Smelting and Casting"
+                description="Vaaman Engineers supports zinc operations from mine-linked activities to smelting and casting, helping clients improve output quality, process discipline, and plant uptime."
+                currentLabel="Zinc"
+                backgroundImage={{
+                    src: '/sector/zinc/zinc.jpeg',
+                    alt: 'Zinc processing facility',
+                }}
+                collageTopImage={{
+                    src: '/sector/zinc/zinc2.jpg',
+                    alt: 'Zinc processing operations',
+                }}
+                collageBottomImage={{
+                    src: '/sector/zinc/zinc3.jpg',
+                    alt: 'Zinc plant infrastructure and process support',
+                }}
+                metrics={heroMetrics}
+            />
 
             {/* Introduction Section with Image 1 */}
             <motion.section
@@ -117,7 +117,7 @@ export default function ZincPage() {
 
                     <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
                         <Image
-                            src="/sector/zinc2.jpg"
+                            src="/sector/zinc/zinc2.jpg"
                             alt="Zinc Processing Operations"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
@@ -296,7 +296,7 @@ export default function ZincPage() {
                 <div className="grid md:grid-cols-2 gap-12 mb-12 items-center">
                     <motion.div variants={itemVariants} className="relative h-72 md:h-full min-h-[350px] w-full rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
                         <Image
-                            src="/sector/zinc3.jpg"
+                            src="/sector/zinc/zinc3.jpg"
                             alt="Zinc Mining and Maintenance"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
@@ -324,27 +324,6 @@ export default function ZincPage() {
                         ))}
                     </motion.div>
                 </div>
-
-                {/* Commitment Card */}
-                <motion.div
-                    variants={itemVariants}
-                    className="bg-gradient-to-br from-blue-900 to-[rgb(254,94,21)] text-white p-8 md:p-12 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-8"
-                >
-                    <div className="max-w-3xl">
-                        <h4 className="text-2xl font-bold mb-4">Our Commitment</h4>
-                        <p className="text-gray-100 text-lg leading-relaxed">
-                            Vaaman Engineers is committed to enhancing your zinc production yield and purity through efficient operations, reliable maintenance, and continuous performance optimization across all your facilities.
-                        </p>
-                    </div>
-                    <div className="flex-shrink-0 w-full md:w-auto">
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center justify-center rounded-md px-8 py-4 font-bold bg-white text-[rgb(254,94,21)] hover:bg-gray-100 transition-colors w-full shadow-md"
-                        >
-                            Discuss Zinc Solutions
-                        </Link>
-                    </div>
-                </motion.div>
             </motion.section>
         </div>
     );

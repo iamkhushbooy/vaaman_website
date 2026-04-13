@@ -1,10 +1,16 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Check, Zap, Droplet, Wind } from 'lucide-react';
+import { SectorHero } from '@/components/sector/SectorHero';
 
 export default function Aluminium() {
+  const heroMetrics = [
+    { value: '24x7', label: 'Operational support' },
+    { value: '14+', label: 'Critical equipment systems' },
+    { value: 'O&M', label: 'End-to-end execution' },
+  ];
+
   const equipmentList = [
     "Oil fired / Electrically heated furnaces",
     "Preheated launders",
@@ -42,29 +48,25 @@ export default function Aluminium() {
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/aluminium-banner.jpg"
-            alt="Aluminium production facility"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Aluminium Services</h1>
-          <p className="text-lg text-gray-200 font-medium">
-            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
-            {' / '}
-            <span className="text-gray-300">Services</span>
-            {' / '}
-            <span className="text-[rgb(254,94,21)]">Aluminium</span>
-          </p>
-        </div>
-      </section>
+      <SectorHero
+        badge="Aluminium Operations"
+        title="Specialized O&M Services for Aluminium Production and Processing"
+        description="Vaaman Engineers supports aluminium plants with reliable operation and maintenance services across casting, rolling, utilities, and critical production systems."
+        currentLabel="Aluminium"
+        backgroundImage={{
+          src: '/gallery/gallery_machine.jpg',
+          alt: 'Industrial robotic equipment in an aluminium production setup',
+        }}
+        collageTopImage={{
+          src: '/project/amns/image2.jpg',
+          alt: 'Industrial steel structure and plant support work',
+        }}
+        collageBottomImage={{
+          src: '/project/amns/image1.png',
+          alt: 'Heavy industrial lifting and erection activity',
+        }}
+        metrics={heroMetrics}
+      />
 
       {/* Introduction Section */}
       <section className="py-20 bg-white">
