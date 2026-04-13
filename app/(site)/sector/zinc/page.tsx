@@ -70,7 +70,7 @@ export default function ZincPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
+            <section className="relative h-[30rem] md:h-[38rem] bg-blue-950 text-white flex items-center overflow-hidden">
                 <div className="absolute inset-0">
                     <Image
                         src="/sector/zinc.jpeg"
@@ -82,15 +82,17 @@ export default function ZincPage() {
 
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4">Zinc</h1>
-                    <p className="text-lg text-gray-200 font-medium">
-                        <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
-                        {' / '}
-                        <span className="text-gray-300">Services</span>
-                        {' / '}
-                        <span className="text-[rgb(254,94,21)]">Zinc</span>
-                    </p>
+                <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl">
+                        <h1 className="text-5xl md:text-6xl font-bold mb-4">Zinc</h1>
+                        <p className="text-base md:text-lg text-gray-200 font-medium">
+                            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
+                            {' / '}
+                            <span className="text-gray-300">Services</span>
+                            {' / '}
+                            <span className="text-[rgb(254,94,21)]">Zinc</span>
+                        </p>
+                    </div>
                 </div>
             </section>
 
@@ -106,7 +108,7 @@ export default function ZincPage() {
                     <motion.div variants={itemVariants}>
                         <h2 className="text-3xl font-bold mb-6 text-gray-900">Delivering Excellence in Zinc</h2>
                         <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                            In the Zinc industry, Vaaman Engineers' services are synonymous with quality and reliability. From mining to processing, our solutions enhance the yield and purity of zinc production, making us a trusted partner in the sector.
+                            In the Zinc industry, Vaaman Engineers&apos; services are synonymous with quality and reliability. From mining to processing, our solutions enhance the yield and purity of zinc production, making us a trusted partner in the sector.
                         </p>
                         <p className="text-base text-gray-600 leading-relaxed">
                             We are one of the largest service providers at Hindustan Zinc Limited (HZL) with our presence across mining operations, smelting facilities, and casting plants. The key to our success has been delivering committed performance over many years.

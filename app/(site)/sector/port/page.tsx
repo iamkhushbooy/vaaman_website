@@ -40,12 +40,12 @@ const reasonsToChoose = [
 
 const heroImages = [
   {
-    src: '/sector/port-steel-hero-2.png',
+    src: '/sector/b.jpeg',
     alt: 'Port-side bulk handling equipment and vessel',
     className: 'md:col-span-2 md:row-span-2',
   },
   {
-    src: '/sector/port-steel-gallery-1.png',
+    src: '/sector/b2.jpeg',
     alt: 'Bulk storage facility under dramatic sky',
     className: '',
   },
@@ -89,10 +89,10 @@ export default function PortPage() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/70 via-blue-900/40 to-transparent" />
-        <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl lg:max-w-2xl lg:-ml-8 xl:-ml-12">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Port</h1>
-          <p className="text-lg text-gray-200 font-medium">
+          <p className="text-base md:text-lg text-gray-200 font-medium">
             <Link href="/" className="hover:text-[rgb(254,94,21)] transition">
               Home
             </Link>
@@ -260,13 +260,6 @@ export default function PortPage() {
                 </div>
               ))}
             </div>
-
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center justify-center rounded-md bg-[rgb(3,36,90)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(254,94,21)]"
-            >
-              Connect With Vaaman
-            </Link>
           </motion.div>
         </div>
       </motion.section>
@@ -282,7 +275,7 @@ export default function PortPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
               <Image
-                src="/sector/port-steel-gallery-1.png"
+                src="/sector/b3.jpeg"
                 alt="Port-side bulk handling equipment and vessel"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"

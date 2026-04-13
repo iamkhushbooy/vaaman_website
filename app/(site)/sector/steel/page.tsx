@@ -101,7 +101,7 @@ export default function SteelPage() {
 
     return (
         <main className="bg-white">
-            <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
+            <section className="relative h-[30rem] md:h-[38rem] bg-blue-950 text-white flex items-center overflow-hidden">
                 <div className="absolute inset-0">
                     <img
                         src="/sector/hero.jpeg"
@@ -113,15 +113,17 @@ export default function SteelPage() {
                 {/* Gradient to ensure text readability on the left while showing the image on the right */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4">Steel</h1>
-                    <p className="text-lg text-gray-200 font-medium">
-                        <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
-                        {' / '}
-                        <span className="text-gray-300">Services</span>
-                        {' / '}
-                        <span className="text-[rgb(254,94,21)]">Steel</span>
-                    </p>
+                <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl">
+                        <h1 className="text-5xl md:text-6xl font-bold mb-4">Steel</h1>
+                        <p className="text-base md:text-lg text-gray-200 font-medium">
+                            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
+                            {' / '}
+                            <span className="text-gray-300">Services</span>
+                            {' / '}
+                            <span className="text-[rgb(254,94,21)]">Steel</span>
+                        </p>
+                    </div>
                 </div>
             </section>
 
