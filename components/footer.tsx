@@ -1,139 +1,138 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ArrowUp, ChevronRight } from 'lucide-react';
+
+const quickLinks = [
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+  { href: '/clients', label: 'Our Clients' },
+  { href: '/careers', label: 'Careers' },
+];
+
+const phoneNumbers = [
+  '+91 22 28925400',
+  '28625400/28615400/2862501',
+];
+
+const emailAddresses = [
+  'enquiry@vaaman.in',
+  'business.development@vaaman.in',
+];
 
 export function Footer() {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-    return (
-        <footer style={{ backgroundColor: 'rgb(3, 36, 90)' }} className="text-gray-300 relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                    {/* Our Office */}
-                    <div>
-                        <h4 className="text-lg font-bold text-white mb-6">Our Office</h4>
-                        <div className="space-y-4">
-                            <div className="flex gap-3">
-                                <MapPin size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <p className="text-gray-300">510, Sai Leela Commercial Complex, S.V.Road, Borivali (West), Mumbai-400092, India</p>
-                            </div>
-                            <div className="flex gap-3">
-                                <Phone size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-300">+91 22 28925400</span>
-                            </div>
-                            <div className="flex gap-3">
-                                <Mail size={20} className="text-[rgb(225,84,18)] flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-300">enquiry@vaaman.in</span>
-                            </div>
-                        </div>
-                        <div className="flex gap-3 mt-6">
-                            <a href="#" className="w-10 h-10 bg-[rgb(225,84,18)] rounded-full flex items-center justify-center text-white hover:bg-amber-700 transition">
-                                <Twitter size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 bg-[rgb(225,84,18)] rounded-full flex items-center justify-center text-white hover:bg-amber-700 transition">
-                                <Facebook size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 bg-[rgb(225,84,18)] rounded-full flex items-center justify-center text-white hover:bg-amber-700 transition">
-                                <Linkedin size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 bg-[rgb(225,84,18)] rounded-full flex items-center justify-center text-white hover:bg-amber-700 transition">
-                                <Instagram size={18} />
-                            </a>
-                        </div>
-                    </div>
+  return (
+    <footer style={{ backgroundColor: 'rgb(3, 36, 90)' }} className="relative text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
+          <div>
+            <h4 className="mb-6 text-lg font-bold text-white">Our Office</h4>
+            <div className="space-y-5 text-sm leading-6">
+              <div className="flex gap-3">
+                <MapPin size={18} className="mt-1 shrink-0 text-[rgb(225,84,18)]" />
+                <p>
+                  510, Sai Leela Commercial Complex, S.V. Road,
+                  <br />
+                  Borivali (West), Mumbai-400092, India
+                </p>
+              </div>
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="text-lg font-bold text-white mb-6">Quick Links</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <Link href="/about" className="text-gray-300 hover:text-[rgb(225,84,18)] transition flex items-center gap-2">
-                                    <span className="text-[rgb(225,84,18)]">›</span> About Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="text-gray-300 hover:text-[rgb(225,84,18)] transition flex items-center gap-2">
-                                    <span className="text-[rgb(225,84,18)]">›</span> Contact Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/services" className="text-gray-300 hover:text-[rgb(225,84,18)] transition flex items-center gap-2">
-                                    <span className="text-[rgb(225,84,18)]">›</span> Our Services
-                                </Link>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-300 hover:text-[rgb(225,84,18)] transition flex items-center gap-2">
-                                    <span className="text-[rgb(225,84,18)]">›</span> Terms & Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-300 hover:text-[rgb(225,84,18)] transition flex items-center gap-2">
-                                    <span className="text-[rgb(225,84,18)]">›</span> Support
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Business Hours */}
-                    <div>
-                        <h4 className="text-lg font-bold text-white mb-6">Business Hours</h4>
-                        <div className="space-y-4">
-                            <div>
-                                <p className="text-white font-semibold">Monday - Friday</p>
-                                <p className="text-gray-400">10:00 am - 06:00 pm</p>
-                            </div>
-                            <div>
-                                <p className="text-white font-semibold">Saturday</p>
-                                <p className="text-gray-400">10:00 am - 5:00 pm</p>
-                            </div>
-                            <div>
-                                <p className="text-white font-semibold">Sunday</p>
-                                <p className="text-gray-400">Closed</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Newsletter */}
-                    <div>
-                        <h4 className="text-lg font-bold text-white mb-6">Newsletter</h4>
-                            <p className="text-gray-300 mb-4">
-                                Stay updated with the latest industry insights, project milestones, and company news from Vaaman.
-                            </p>
-                        <form className="flex">
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                className="flex-1 px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:border-white transition"
-                            />
-                            <button
-                                type="submit"
-                                className="px-6 py-3 bg-[rgb(225,84,18)] text-white font-bold hover:bg-amber-600 transition"
-                            >
-                                SignUp
-                            </button>
-                        </form>
-                    </div>
+              <div className="flex gap-3">
+                <Phone size={18} className="mt-1 shrink-0 text-[rgb(225,84,18)]" />
+                <div className="space-y-1 leading-6">
+                  <p className="text-sm text-gray-300">Call us</p>
+                  <p
+                    className="text-sm text-gray-300"
+                  >
+                    {phoneNumbers[0]}
+                  </p>
+                  <p className="text-sm text-gray-300">{phoneNumbers[1]}</p>
                 </div>
+              </div>
 
-                {/* Bottom */}
-                <div className="border-t border-[rgb(5,47,116)] pt-8 text-center">
-                    <p className="text-gray-400 text-sm">
-                        Copyright © <span className="text-[rgb(225,84,18)] font-semibold">Vaaman Engineers</span>, All Right Reserved. <br />
-                    </p>
+              <div className="flex gap-3">
+                <Mail size={18} className="mt-1 shrink-0 text-[rgb(225,84,18)]" />
+                <div className="space-y-1 break-all">
+                  {emailAddresses.map((email) => (
+                    <a key={email} href={`mailto:${email}`} className="block transition hover:text-white">
+                      {email}
+                    </a>
+                  ))}
                 </div>
+              </div>
             </div>
+          </div>
 
-            {/* Scroll to top button */}
-            <button
-                onClick={scrollToTop}
-                className="fixed bottom-8 right-8 w-12 h-12 bg-[rgb(225,84,18)] text-white rounded-full flex items-center justify-center hover:bg-amber-600 transition shadow-lg z-40"
-                aria-label="Scroll to top"
-            >
-                <ArrowUp size={20} />
-            </button>
-        </footer>
-    );
+          <div>
+            <h4 className="mb-6 text-lg font-bold text-white">Quick Links</h4>
+            <ul className="space-y-3 text-sm">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="flex items-center gap-2 transition hover:text-[rgb(225,84,18)]">
+                    <ChevronRight size={16} className="text-[rgb(225,84,18)]" />
+                    <span>{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-6 text-lg font-bold text-white">Business Hours</h4>
+            <div className="space-y-4 text-sm">
+              <div>
+                <p className="font-semibold text-white">Monday - Friday</p>
+                <p className="text-gray-400">10:00 am - 06:00 pm</p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Saturday</p>
+                <p className="text-gray-400">10:00 am - 05:00 pm</p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Sunday</p>
+                <p className="text-gray-400">Closed</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mb-6 text-lg font-bold text-white">Newsletter</h4>
+            <p className="mb-4 text-sm leading-6 text-gray-300">
+              Stay updated with the latest industry insights, project milestones, and company news from Vaaman.
+            </p>
+            <div className="mt-6 flex gap-3">
+              {[Twitter, Facebook, Linkedin, Instagram].map((Icon, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgb(225,84,18)] text-white transition hover:bg-amber-700"
+                  aria-label="Social media link"
+                >
+                  <Icon size={18} />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-[rgb(5,47,116)] pt-8 text-center">
+          <p className="text-sm text-gray-400">
+            Copyright © <span className="font-semibold text-[rgb(225,84,18)]">Vaaman Engineers</span>, All Right Reserved.
+          </p>
+        </div>
+      </div>
+
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[rgb(225,84,18)] text-white shadow-lg transition hover:bg-amber-600"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={20} />
+      </button>
+    </footer>
+  );
 }

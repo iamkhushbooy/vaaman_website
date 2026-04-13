@@ -3,7 +3,58 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
-import { ChevronRight, Ship, Loader, BarChart3, FileText } from 'lucide-react';
+import { BriefcaseBusiness, Factory, HardHat, ShieldCheck, ChevronRight } from 'lucide-react';
+
+const expertiseAreas = [
+  'Iron Making: Blast Furnace (BF), RMHS, Stock House, Cast House',
+  'Steel Making: SMS, Continuous Casting Machine (CCM)',
+  'Rolling Mills: WRM, BRM operations & maintenance',
+  'Utilities & Auxiliary Plants: WWTP, compressed air, support systems',
+  'Power Plant (Mechanical): Maintenance & operation support',
+  'Port Material Handling: Ship loading, unloading systems, and conveyor-side support',
+];
+
+const services = [
+  'Operation & Maintenance (O&M)',
+  'Skilled Manpower Deployment',
+  'Shutdown & Breakdown Maintenance',
+  'Industrial Housekeeping & Material Handling',
+  'Project & Commissioning Support',
+];
+
+const strengths = [
+  'Expertise in high-temperature & continuous process plants',
+  'Strong safety culture and compliance',
+  'KPI-driven performance and cost optimization',
+  'Proven capability in plant stabilization & shutdowns',
+  'Flexible and scalable workforce solutions',
+];
+
+const reasonsToChoose = [
+  'Experienced & trained workforce',
+  'Strong presence in steel operations',
+  'Reliable execution & timely delivery',
+  'Focus on safety, quality & productivity',
+  'Long-term partnership approach',
+];
+
+const heroImages = [
+  {
+    src: '/sector/port-steel-hero-2.png',
+    alt: 'Port-side bulk handling equipment and vessel',
+    className: 'md:col-span-2 md:row-span-2',
+  },
+  {
+    src: '/sector/port-steel-gallery-1.png',
+    alt: 'Bulk storage facility under dramatic sky',
+    className: '',
+  },
+  {
+    src: '/sector/port-steel-hero-3.png',
+    alt: 'Vaaman team members at the port facility',
+    className: '',
+  },
+];
 
 export default function PortPage() {
   const containerVariants: Variants = {
@@ -11,334 +62,246 @@ export default function PortPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.14,
+        delayChildren: 0.18,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 22 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: { duration: 0.7, ease: 'easeOut' },
     },
   };
 
-  const cargoReceiptActivities = [
-    'Placement and coordination of Rakes at Track-Hopper including deployment of points men',
-    'Coordination with PPT, ECO Railways staff, and BOT operators for timely rake placement/release',
-    'Guidance to Loco Pilots and track clearance management',
-    'Removal of cargo contaminants (Stones, Boulders, Metal Scraps)',
-    'Ensuring contaminant-free cargo conveyance to hopper and belt',
-    'Cargo size management - breaking larger pieces for hopper compatibility'
-  ];
-
-  const stockyardActivities = [
-    'Stack and Reclaim operations from any part of Stockyard',
-    'Deployment of equipment (Pay-loaders, Excavators) for non-reachable areas',
-    'Day-to-day Stackyard planning based on customer requirements',
-    'Plot Management - adjusting and optimizing cargo piles',
-    'Accumulation management post vessel loading',
-    'Optimal utilization of designated plot storage capacity'
-  ];
-
-  const vesselOperationActivities = [
-    'Liaison with Vessel Master & Crew for Stowage Plan',
-    'Loading Sequence and Trimming requirements coordination',
-    'IMSBC (Intermediate Survey) compliance for cargo handling',
-    'Distribution and Trimming per Vessel Master satisfaction',
-    'Preparation of vessel-related documents (SOF)',
-    'Daily reports and manpower/equipment working reports'
-  ];
-
   return (
     <div className="min-h-screen bg-white">
-<section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
-    <div className="absolute inset-0">
-        {/* Make sure to update the src path to your actual port image */}
-        <img
-            src="/sector/port.jpeg" 
-            alt="Port operations and cargo facility"
-            className="w-full h-full object-cover"
-        />
-    </div>
-
-    {/* Gradient to ensure text readability on the left while showing the image on the right */}
-    <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/80 to-transparent"></div>
-
-    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">Port Operations</h1>
-        <p className="text-lg text-gray-200 font-medium">
-            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">Home</Link>
+      <section className="relative h-[30rem] md:h-[38rem] overflow-hidden bg-blue-950 text-white flex items-center">
+        <div className="absolute inset-0">
+          <Image
+            src="/sector/port-steel-hero-3.png"
+            alt="Vaaman team at port site"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/70 via-blue-900/40 to-transparent" />
+        <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl lg:max-w-2xl lg:-ml-8 xl:-ml-12">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">Port</h1>
+          <p className="text-lg text-gray-200 font-medium">
+            <Link href="/" className="hover:text-[rgb(254,94,21)] transition">
+              Home
+            </Link>
             {' / '}
-            <span className="text-gray-300">Services</span>
+            <span className="text-gray-300">Sector</span>
             {' / '}
-            <span className="text-[rgb(254,94,21)]">Port Operations</span>
-        </p>
-    </div>
-</section>
-
-      {/* Introduction Section with IMAGE 1 */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="py-10 md:py-18 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-      >
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={itemVariants}>
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Maritime Excellence</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              At the crossroads of trade and transport, Vaaman Engineers play a pivotal role in the Port sector. Our expertise ensures smooth operations, optimizing cargo handling, and facilitating seamless maritime trade.
-            </p>
-            <p className="text-base text-gray-600 leading-relaxed">
-              With comprehensive knowledge of port operations, we manage complex logistics involving multiple stakeholders including railway operators, shipping agents, cargo surveyors, and port authorities to ensure timely and efficient cargo movement.
-            </p>
-          </motion.div>
-
-          {/* IMAGE PLACEHOLDER 1 */}
-          <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
-            <Image
-              src="/sector/port1.jpeg" 
-              alt="Port Logistics & Cargo Handling"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </motion.div>
+            <span className="text-[rgb(254,94,21)]">Port</span>
+          </p>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Three Main Service Areas */}
       <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="py-10 md:py-18 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+        className="mx-auto max-w-7xl px-4 py-16 md:py-24 sm:px-6 lg:px-8"
       >
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold mb-12 text-gray-900"
-        >
-          Core Service Areas
-        </motion.h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Cargo Receipts */}
+        <div className="grid gap-12 lg:grid-cols-2 items-center">
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg border border-blue-200 shadow-sm"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-[rgb(254,94,21)] rounded-lg flex items-center justify-center">
-                <Loader size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Cargo Receipts by Rake/Rail</h3>
-            </div>
-            <p className="text-gray-700 mb-4 text-sm">
-              Complete management of railway rake operations from placement to release with contamination control.
+            <h2 className="text-3xl md:text-4xl font-bold text-[rgb(3,36,90)] leading-tight">
+              Steel Sector O&amp;M Support With
+              <br />
+              <span className="text-[rgb(254,94,21)]">Proven Port-Side Execution</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-gray-700">
+              Vaaman Engineers (I) Ltd. is a trusted engineering services company delivering
+              Operation &amp; Maintenance, manpower deployment, and project support across core
+              industrial sectors. With strong expertise in the steel industry, we enable clients
+              to achieve higher productivity, reliability, and cost efficiency.
             </p>
-            <div className="space-y-2">
-              {cargoReceiptActivities.slice(0, 3).map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2">
-                  <span className="text-[rgb(254,94,21)] mt-1">✓</span>
-                  <span className="text-sm text-gray-700">{item}</span>
-                </div>
-              ))}
-              <p className="text-xs text-gray-600 font-semibold pt-2">+ {cargoReceiptActivities.length - 3} more activities</p>
-            </div>
-          </motion.div>
-
-          {/* Stock Yard Operations */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-lg border border-orange-200 shadow-sm"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-[rgb(254,94,21)] rounded-lg flex items-center justify-center">
-                <BarChart3 size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Stock Yard Operations</h3>
-            </div>
-            <p className="text-gray-700 mb-4 text-sm">
-              Strategic stacking, reclamation, and space optimization for efficient cargo management.
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
+              This page now presents your updated site visuals and content in the same color
+              treatment used across the other sector pages.
             </p>
-            <div className="space-y-2">
-              {stockyardActivities.slice(0, 3).map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2">
-                  <span className="text-[rgb(254,94,21)] mt-1">✓</span>
-                  <span className="text-sm text-gray-700">{item}</span>
-                </div>
-              ))}
-              <p className="text-xs text-gray-600 font-semibold pt-2">+ {stockyardActivities.length - 3} more activities</p>
-            </div>
           </motion.div>
 
-          {/* Vessel Operations */}
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg border border-blue-200 shadow-sm"
+            className="grid auto-rows-[180px] gap-4 md:grid-cols-2"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-[rgb(254,94,21)] rounded-lg flex items-center justify-center">
-                <Ship size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Vessel Operations</h3>
-            </div>
-            <p className="text-gray-700 mb-4 text-sm">
-              Complete vessel loading management with international compliance and documentation.
-            </p>
-            <div className="space-y-2">
-              {vesselOperationActivities.slice(0, 3).map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2">
-                  <span className="text-[rgb(254,94,21)] mt-1">✓</span>
-                  <span className="text-sm text-gray-700">{item}</span>
-                </div>
-              ))}
-              <p className="text-xs text-gray-600 font-semibold pt-2">+ {vesselOperationActivities.length - 3} more activities</p>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Detailed Service Activities */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="py-10 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-      >
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold mb-12 text-gray-900"
-        >
-          Complete Service Activities
-        </motion.h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Cargo Receipts Detail */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Loader size={24} className="text-[rgb(254,94,21)]" />
-              Cargo Receipts by Rake/Rail
-            </h3>
-            <div className="space-y-3">
-              {cargoReceiptActivities.map((item, idx) => (
-                <div key={idx} className="flex gap-3 text-sm">
-                  <span className="text-[rgb(254,94,21)] font-bold flex-shrink-0">•</span>
-                  <p className="text-gray-700">{item}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Stock Yard Detail */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <BarChart3 size={24} className="text-[rgb(254,94,21)]" />
-              Stock Yard Operations
-            </h3>
-            <div className="space-y-3">
-              {stockyardActivities.map((item, idx) => (
-                <div key={idx} className="flex gap-3 text-sm">
-                  <span className="text-[rgb(254,94,21)] font-bold flex-shrink-0">•</span>
-                  <p className="text-gray-700">{item}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Vessel Operations Detail */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Ship size={24} className="text-[rgb(254,94,21)]" />
-              Vessel Operations
-            </h3>
-            <div className="space-y-3">
-              {vesselOperationActivities.map((item, idx) => (
-                <div key={idx} className="flex gap-3 text-sm">
-                  <span className="text-[rgb(254,94,21)] font-bold flex-shrink-0">•</span>
-                  <p className="text-gray-700">{item}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Key Capabilities with IMAGE 2 */}
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="py-16 md:py-18 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-      >
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold mb-12 text-gray-900"
-        >
-          Why Choose Vaaman for Port Operations?
-        </motion.h2>
-
-        <div className="grid md:grid-cols-2 gap-12 mb-12 items-center">
-          {/* IMAGE PLACEHOLDER 2 */}
-          <motion.div variants={itemVariants} className="relative h-72 md:h-full min-h-[350px] w-full rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
-            <Image
-              src="/sector/port2.jpeg" 
-              alt="Port Logistics & Coordination"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </motion.div>
-
-          {/* List of features */}
-          <motion.div
-            variants={itemVariants}
-            className="space-y-4 order-1 md:order-2"
-          >
-            {[
-              'Multi-stakeholder coordination expertise (Railways, Shippers, Surveyors)',
-              'IMSBC and international maritime compliance',
-              'Advanced cargo handling and space optimization',
-              'Real-time documentation and reporting systems',
-              'Equipment deployment and management',
-              'Contamination control and quality assurance'
-            ].map((item, idx) => (
-              <div key={idx} className="flex gap-4">
-                <div className="w-8 h-8 bg-[rgb(254,94,21)] rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
-                  <ChevronRight size={16} className="text-white" />
-                </div>
-                <p className="text-gray-700 font-medium">{item}</p>
+            {heroImages.map((image) => (
+              <div
+                key={image.src}
+                className={`relative overflow-hidden rounded-xl shadow-xl ${image.className}`}
+              >
+                <Image src={image.src} alt={image.alt} fill className="object-cover hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 border-4 border-white/10 rounded-xl pointer-events-none" />
               </div>
             ))}
           </motion.div>
         </div>
+      </motion.section>
 
-        {/* Commitment / Expertise Card (Full Width Below Grid) */}
-        <motion.div
-          variants={itemVariants}
-          className="bg-gradient-to-br from-blue-900 to-[rgb(254,94,21)] text-white p-8 md:p-12 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          <div className="max-w-3xl">
-            <h4 className="text-2xl font-bold mb-4">Our Expertise</h4>
-            <p className="text-gray-100 text-lg leading-relaxed">
-              Vaaman Engineers brings years of experience in port logistics, equipped with technical knowledge and organizational capability to manage complex cargo operations while maintaining compliance with international maritime standards and regulatory requirements.
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="bg-gray-50"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-16 md:py-20 sm:px-6 lg:px-8">
+          <motion.div variants={itemVariants}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[rgb(3,36,90)]">Our Expertise in Steel Sector</h2>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-gray-700">
+              We operate across the complete Iron Making and Steel Making value chain.
             </p>
+          </motion.div>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {expertiseAreas.map((item) => (
+              <motion.div
+                key={item}
+                variants={itemVariants}
+                className="bg-white border-l-4 border-[rgb(254,94,21)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              >
+                <div className="flex gap-3">
+                  <ChevronRight className="mt-0.5 shrink-0 text-[rgb(254,94,21)]" size={18} />
+                  <p className="text-base font-medium leading-7 text-gray-700">{item}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <div className="flex-shrink-0 w-full md:w-auto">
-            <Link 
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-md px-8 py-4 font-bold bg-white text-[rgb(254,94,21)] hover:bg-gray-100 transition-colors w-full shadow-md"
-            >
-              Discuss Port Solutions
-            </Link>
-          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mx-auto max-w-7xl px-4 py-16 md:py-20 sm:px-6 lg:px-8"
+      >
+        <motion.div variants={itemVariants}>
+          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(3,36,90)]">Our Services</h2>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-gray-700">
+            We deliver field-ready support tailored for continuous industrial operations,
+            shutdown windows, and commissioning phases.
+          </p>
         </motion.div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          {services.map((service, index) => {
+            const icons = [BriefcaseBusiness, HardHat, ShieldCheck, Factory, ChevronRight];
+            const Icon = icons[index];
+
+            return (
+              <motion.div
+                key={service}
+                variants={itemVariants}
+                className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[rgb(254,94,21)] text-white">
+                  <Icon size={22} />
+                </div>
+                <p className="mt-5 text-lg font-semibold leading-7 text-[rgb(3,36,90)]">{service}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mx-auto max-w-7xl px-4 py-16 md:py-20 sm:px-6 lg:px-8"
+      >
+        <div className="grid gap-8 lg:grid-cols-2">
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg border border-blue-200"
+          >
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-[rgb(254,94,21)] text-white">
+              <ShieldCheck size={24} />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">Our Strengths</h2>
+            <div className="mt-7 space-y-4">
+              {strengths.map((item) => (
+                <div key={item} className="flex gap-4">
+                  <span className="mt-1 text-lg text-[rgb(254,94,21)]">✓</span>
+                  <p className="text-sm font-medium leading-6 text-gray-700">{item}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-lg border border-orange-200"
+          >
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-[rgb(254,94,21)] text-white">
+              <Factory size={24} />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">Why Choose Us</h2>
+            <div className="mt-7 space-y-4">
+              {reasonsToChoose.map((item) => (
+                <div key={item} className="flex gap-4">
+                  <span className="mt-1 text-lg text-[rgb(254,94,21)]">✔</span>
+                  <p className="text-sm font-medium leading-6 text-gray-700">{item}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-md bg-[rgb(3,36,90)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(254,94,21)]"
+            >
+              Connect With Vaaman
+            </Link>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="bg-gray-50"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-16 md:py-20 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
+              <Image
+                src="/sector/port-steel-gallery-1.png"
+                alt="Port-side bulk handling equipment and vessel"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl md:text-4xl font-bold text-[rgb(3,36,90)]">Our Commitment</h2>
+              <p className="mt-6 text-lg leading-relaxed text-gray-700">
+                We are committed to delivering safe, efficient, and performance-driven solutions
+                that enhance plant reliability and support our clients&apos; growth.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-gray-600">
+                Port-integrated execution capability backed by trained teams, equipment familiarity,
+                and disciplined maintenance support.
+              </p>
+            </motion.div>
+          </div>
+        </div>
       </motion.section>
     </div>
   );
