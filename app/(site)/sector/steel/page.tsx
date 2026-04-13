@@ -78,7 +78,7 @@ export default function SteelPage() {
 
     return (
         <main className="bg-white">
-            <SectorHero
+            {/* <SectorHero
                 badge="Steel Operations"
                 title="Maintenance & Operations Excellence for Integrated Steel Plants"
                 description="Vaaman Engineers delivers maintenance and operational solutions that improve reliability, productivity, and plant performance across critical steel manufacturing systems."
@@ -96,7 +96,7 @@ export default function SteelPage() {
                     alt: 'Industrial equipment operating inside a plant',
                 }}
                 metrics={heroMetrics}
-            />
+            /> */}
 
             {/* Introduction */}
             <section className="py-16 md:py-24 bg-white overflow-hidden">

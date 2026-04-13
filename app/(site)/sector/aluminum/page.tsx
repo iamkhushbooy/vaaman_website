@@ -48,7 +48,7 @@ export default function Aluminium() {
 
   return (
     <>
-      <SectorHero
+      {/* <SectorHero
         badge="Aluminium Operations"
         title="Specialized O&M Services for Aluminium Production and Processing"
         description="Vaaman Engineers supports aluminium plants with reliable operation and maintenance services across casting, rolling, utilities, and critical production systems."
@@ -66,7 +66,7 @@ export default function Aluminium() {
           alt: 'Heavy industrial lifting and erection activity',
         }}
         metrics={heroMetrics}
-      />
+      /> */}
 
       {/* Introduction Section */}
       <section className="py-20 bg-white">

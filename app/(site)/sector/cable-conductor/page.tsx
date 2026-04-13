@@ -68,7 +68,7 @@ export default function CableConductorPage() {
   return (
     <div className="min-h-screen bg-white">
       <SectorHero
-        badge="Aluminium Cable Manufacturing"
+        badge="Cable And Conductor"
         title="Trusted O&M Partner for Wire Rod, Conductor and Cable Plants"
         description="Vaaman Engineers has grown into one of India’s reputed O&M contractors for aluminium wire rod mills, overhead conductor, and cable manufacturing industries with long-running execution across major industrial hubs."
         currentLabel="Cable & Conductor"
