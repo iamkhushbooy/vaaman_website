@@ -38,7 +38,7 @@ export default function LeadershipMessageSection({
                     <img
                         src={imageSrc}
                         alt={imageAlt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[750px] object-cover"
                     />
                 </div>
             </div>

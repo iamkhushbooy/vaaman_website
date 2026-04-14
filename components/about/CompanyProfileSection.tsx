@@ -17,44 +17,11 @@ export default function CompanyProfileSection() {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-                    {/* Left Images Section */}
-                    <div className="grid grid-cols-2 gap-5 h-full relative items-start">
-                        {/* FIRST IMAGE */}
-                        <motion.div
-                            initial={{ y: 100, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            viewport={{ once: true }}
-                            className="pt-0"
-                        >
-                            <img
-                                src="/about_img1.png"
-                                alt="about man"
-                                className="w-full object-cover rounded-md shadow-sm"
-                            />
-                        </motion.div>
-
-                        {/* SECOND IMAGE */}
-                        <motion.div
-                            initial={{ y: -100, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            viewport={{ once: true }}
-                            className="mt-[30%]"
-                        >
-                            <img
-                                src="/about_img2.png"
-                                alt="about woman"
-                                className="w-full object-cover rounded-md shadow-sm"
-                            />
-                        </motion.div>
-                    </div>
-
-                    {/* Right Text Section */}
+                    {/* LEFT SIDE: Text Section */}
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
                         viewport={{ once: true }}
                     >
                         <p className="text-orange-500 font-semibold uppercase mb-3 text-sm tracking-widest">
@@ -81,13 +48,7 @@ export default function CompanyProfileSection() {
                             </motion.div>
 
                             <div className="space-y-3 text-sm text-gray-600">
-                                {[
-                                    "Bulk Material Handling",
-                                    "Metal Production Services",
-                                    "Industrial Operations",
-                                    "Maintenance Solutions",
-                                    "ISO 9001:2015 Quality Standards"
-                                ].map((item, idx) => (
+                                {highlights.map((item, idx) => (
                                     <motion.p
                                         key={item}
                                         initial={{ x: 20, opacity: 0 }}
@@ -103,15 +64,14 @@ export default function CompanyProfileSection() {
                         </div>
 
                         {/* Contact Footer */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 pt-2 border-t border-gray-100 mt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pt-6 border-t border-gray-100 mt-6">
                             <div className="flex items-center gap-4">
                                 <div className="bg-orange-500 text-white p-3 rounded-full">
                                     <Mail className="w-4 h-4" />
                                 </div>
                                 <div>
                                     <p className="text-gray-500 text-sm">Email us</p>
-                                    <p className="font-bold text-[#002147]">enquiry@vaaman.in</p>
-                                    <p className="font-bold text-[#002147]">business.development@vaaman.in</p>
+                                    <p className="font-bold text-[#002147] text-sm break-all">enquiry@vaaman.in</p>
                                 </div>
                             </div>
 
@@ -121,13 +81,31 @@ export default function CompanyProfileSection() {
                                 </div>
                                 <div>
                                     <p className="text-gray-500 text-sm">Call us</p>
-                                    <p className="font-bold text-[#002147]">+91 22 28925400</p>
-                                    <p className="font-bold text-[#002147]">28625400/28615400/2862501</p>
+                                    <p className="font-bold text-[#002147] text-sm">+91 22 28925400</p>
                                 </div>
                             </div>
                         </div>
                     </motion.div>
 
+                    {/* RIGHT SIDE: Single Image Section */}
+                    {/* RIGHT SIDE: Single Image Section */}
+                    <motion.div
+                        initial={{ x: 100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="relative"
+                    >
+                        <img
+                            src="/about_img1.png"
+                            alt="Vaaman Engineers Industrial Service"
+                            // Fixed height added (h-[450px]) - change this value as needed
+                            className="w-full h-[780px] object-cover rounded-md shadow-lg"
+                        />
+
+                        {/* Decorative background box */}
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-orange-500/10 -z-10 rounded-md"></div>
+                    </motion.div>
                 </div>
             </div>
         </section>
