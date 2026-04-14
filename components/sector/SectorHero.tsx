@@ -23,7 +23,7 @@ type SectorHeroProps = {
   currentLabel: string;
   backgroundImage: HeroImage;
   collageTopImage: HeroImage;
-  collageBottomImage: HeroImage;
+  collageBottomImage?: HeroImage;
   metrics: HeroMetric[];
   collageTopClassName?: string;
   collageBottomClassName?: string;
@@ -105,28 +105,42 @@ export function SectorHero({
             transition={{ duration: 0.8, delay: 0.1 }}
             className="relative hidden min-h-[30rem] lg:block"
           >
-            <div className={`absolute right-0 top-0 w-[72%] overflow-hidden rounded-[1.7rem] border border-white/20 shadow-[0_30px_55px_rgba(2,6,23,0.35)] ${collageTopClassName ?? ''}`}>
-              <Image
-                src={collageTopImage.src}
-                alt={collageTopImage.alt}
-                width={720}
-                height={520}
-                className="h-full w-full object-cover"
-              />
-            </div>
+            {collageBottomImage ? (
+              <>
+                <div className={`absolute right-0 top-0 w-[72%] overflow-hidden rounded-[1.7rem] border border-white/20 shadow-[0_30px_55px_rgba(2,6,23,0.35)] ${collageTopClassName ?? ''}`}>
+                  <Image
+                    src={collageTopImage.src}
+                    alt={collageTopImage.alt}
+                    width={720}
+                    height={520}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
 
-            <div className={`absolute bottom-0 left-0 w-[58%] overflow-hidden rounded-[1.5rem] border border-white/20 shadow-[0_24px_44px_rgba(2,6,23,0.35)] ${collageBottomClassName ?? ''}`}>
-              <Image
-                src={collageBottomImage.src}
-                alt={collageBottomImage.alt}
-                width={620}
-                height={420}
-                className="h-full w-full object-cover"
-              />
-            </div>
+                <div className={`absolute bottom-0 left-0 w-[58%] overflow-hidden rounded-[1.5rem] border border-white/20 shadow-[0_24px_44px_rgba(2,6,23,0.35)] ${collageBottomClassName ?? ''}`}>
+                  <Image
+                    src={collageBottomImage.src}
+                    alt={collageBottomImage.alt}
+                    width={620}
+                    height={420}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </>
+            ) : (
+              <div className={`absolute inset-0 w-full overflow-hidden rounded-[1.7rem] border border-white/20 shadow-[0_30px_55px_rgba(2,6,23,0.35)] ${collageTopClassName ?? ''}`}>
+                <Image
+                  src={collageTopImage.src}
+                  alt={collageTopImage.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
+

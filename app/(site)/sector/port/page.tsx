@@ -71,16 +71,11 @@ export default function PortPage() {
           alt: 'Vaaman team at port site',
         }}
         collageTopImage={{
-          src: '/sector/port/b3.jpeg',
-          alt: 'Port logistics and coordination',
-        }}
-        collageBottomImage={{
-          src: '/sector/port/b.jpeg',
-          alt: 'Port logistics and cargo handling',
+          src: '/sector/port/porteam.png',
+          alt: 'Vaaman team at port site',
         }}
         metrics={heroMetrics}
-        collageTopClassName="top-8 right-4 w-[68%]"
-        collageBottomClassName="bottom-8 left-0 w-[52%]"
+        collageTopClassName="inset-0 w-full"
       />
 
       <motion.section
@@ -111,7 +106,7 @@ export default function PortPage() {
 
           <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/sector/port/b2.jpeg"
+              src="/sector/port/b3.jpeg"
               alt="Port Logistics & Cargo Handling"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

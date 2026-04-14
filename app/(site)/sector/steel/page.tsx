@@ -388,7 +388,7 @@ export default function SteelPage() {
                     </motion.div>
                 </div>
             </section>
-
+{/* 
             <section className="py-12 md:py-20 px-4 md:px-8 bg-[rgb(3,36,90)]">
                 <div className="max-w-4xl mx-auto">
                     <motion.h2
@@ -410,7 +410,7 @@ export default function SteelPage() {
                         We are committed to delivering safe, efficient, and performance-driven solutions that enhance plant reliability and support our clients&apos; growth.
                     </motion.p>
                 </div>
-            </section>
+            </section> */}
         </main>
     );
 }
