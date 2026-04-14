@@ -4,15 +4,14 @@ export const PRIMARY = '#FF5E14';
 export const DARK = '#02245B';
 
 export const heroSlides = [
-    { src: '/images/hero/hero-1.jpeg', alt: 'Angul Plant', sub: '35 Years of Industrial Excellence', title: 'Your Industrial\nService Partner' },
-    { src: '/images/hero/hero-2.jpg', alt: 'Industrial Operations', sub: 'Operations & Maintenance Experts', title: 'Excellence in\nHeavy Industry' },
-    { src: '/images/hero/hero-3.jpg', alt: 'Plant Maintenance', sub: 'Trusted by India\'s Largest Plants', title: 'Reliable Industrial\nSolutions' },
-    { src: '/sector/manufacturing/manufacturing-shed.jpeg', alt: 'Manufacturing Shed', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions'},
-    { src: '/sector/port1.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Seamless Port\nOperations' },
-    { src: '/project/amns/image1.png', alt: 'Project Site', sub: 'EPC & Project Services', title: 'Engineering\nExcellence' },
-    { src: '/sector/manufacturing/shed-building.jpeg', alt: 'shed-building', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions'},
-    { src: '/sector/port2.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Seamless Port\nOperations' },
-    { src: '/project/amns/image2.png', alt: 'Project Site', sub: 'EPC & Project Services', title: 'Engineering\nExcellence' },
+    { src: '/project/amns/image1.png', alt: 'Project Site', sub: 'Amns Projects', title: 'EPC & Project Services' },
+    { src: '/project/chanderiya/WhatsApp Image 2026-01-28 at 12.57.07.jpeg', alt: 'Project Site', sub: 'Chanderiya Projects', title: 'EPC & Project Services' },
+    { src: '/project/mettube/WhatsApp Image 2026-03-30 at 14.52.19.jpeg', alt: 'Project Site', sub: 'Mettube Projects', title: 'EPC & Project Services' },
+    { src: '/sector/port/b.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Port Operations & Material Handling \nExcellence' },
+    { src: '/sector/port/b3.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Port Operations & Material Handling \nExcellence' },
+    { src: '/sector/manufacturing/shed-building.jpeg', alt: 'shed-building', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions' },
+    { src: '/sector/manufacturing/manufacturing-shed.jpeg', alt: 'Manufacturing Shed', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions' },
+    { src: '/sector/cable-conductor/cable-2.jpeg', alt: 'Project Site', sub: 'Cable And Conductor', title: 'Trusted O&M Partner for Wire Rod, \nConductor and Cable Plants' },
 ];
 
 export const stats = [
