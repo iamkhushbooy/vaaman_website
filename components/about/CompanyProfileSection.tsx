@@ -71,7 +71,8 @@ export default function CompanyProfileSection() {
                                 </div>
                                 <div>
                                     <p className="text-gray-500 text-sm">Email us</p>
-                                    <p className="font-bold text-[#002147] text-sm break-all">enquiry@vaaman.in</p>
+                                    <p className="font-bold text-[#002147]">enquiry@vaaman.in</p>
+                                    <p className="font-bold text-[#002147]">business.development@vaaman.in</p>
                                 </div>
                             </div>
 
@@ -81,7 +82,8 @@ export default function CompanyProfileSection() {
                                 </div>
                                 <div>
                                     <p className="text-gray-500 text-sm">Call us</p>
-                                    <p className="font-bold text-[#002147] text-sm">+91 22 28925400</p>
+                                    <p className="font-bold text-[#002147]">+91 22 28925400</p>
+                                    <p className="font-bold text-[#002147]">28625400/28615400/2862501</p>
                                 </div>
                             </div>
                         </div>
@@ -111,3 +113,21 @@ export default function CompanyProfileSection() {
         </section>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
