@@ -82,15 +82,15 @@ export default function ZincPage() {
                 description="Vaaman Engineers supports zinc operations from mine-linked activities to smelting and casting, helping clients improve output quality, process discipline, and plant uptime."
                 currentLabel="Zinc"
                 backgroundImage={{
-                    src: '/sector/zinc/zinc.jpeg',
+                    src: '/images-optimized/sector/zinc/zinc.jpeg',
                     alt: 'Zinc processing facility',
                 }}
                 collageTopImage={{
-                    src: '/sector/zinc/zinc2.jpg',
+                    src: '/images-optimized/sector/zinc/zinc2.jpg',
                     alt: 'Zinc processing operations',
                 }}
                 collageBottomImage={{
-                    src: '/sector/zinc/zinc3.jpg',
+                    src: '/images-optimized/sector/zinc/zinc3.jpg',
                     alt: 'Zinc plant infrastructure and process support',
                 }}
                 metrics={heroMetrics}
@@ -117,7 +117,7 @@ export default function ZincPage() {
 
                     <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
                         <Image
-                            src="/sector/zinc/zinc2.jpg"
+                            src="/images-optimized/sector/zinc/zinc2.jpg"
                             alt="Zinc Processing Operations"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
@@ -296,7 +296,7 @@ export default function ZincPage() {
                 <div className="grid md:grid-cols-2 gap-12 mb-12 items-center">
                     <motion.div variants={itemVariants} className="relative h-72 md:h-full min-h-[350px] w-full rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
                         <Image
-                            src="/sector/zinc/zinc3.jpg"
+                            src="/images-optimized/sector/zinc/zinc3.jpg"
                             alt="Zinc Mining and Maintenance"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
