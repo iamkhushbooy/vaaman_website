@@ -30,12 +30,12 @@ export default function ZincPage() {
 
     // 2. Plant Locations (Exactly 6 items for 3 Left, 3 Right layout)
     const plantLocations = [
-        { name: 'Mines at Rampura Agucha', type: 'Mining Operations' },
-        { name: 'Zawar Group of Mines', type: 'Mining Operations' },
-        { name: 'Kayad, SK Mines, RD Mines', type: 'Mining Operations' },
-        { name: 'Debari Zinc Smelter', type: 'Smelting' },
-        { name: 'Zinc & Lead Casters at Pantnagar', type: 'Casting' },
-        { name: 'Silver Plant at Pantnagar', type: 'Refining' }
+        { name: 'Debari Zinc Smelter', type: 'O/M' },
+        { name: 'Pyro Smelter', type: 'O/M' },
+        { name: 'Zinc and Silver - Pantnagar', type: 'End to End O/M' },
+        { name: 'SK Mill', type: 'O/M' },
+        { name: 'Across HZL Rajesthan', type: 'Loading and unloading of Ore and Concentrate' },
+
     ];
 
     const outsourcedActivities = [
@@ -141,14 +141,14 @@ export default function ZincPage() {
                     >
                         Our Operational Presence
                     </motion.h2>
-                    
+
                     {/* md:grid-cols-2 with 6 items ensures 3 on the left and 3 on the right */}
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="flex flex-wrap justify-center gap-6">
                         {plantLocations.map((location, idx) => (
                             <motion.div
                                 key={idx}
                                 variants={itemVariants}
-                                className="bg-white border-l-4 border-[rgb(254,94,21)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                                className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(50%-1.5rem)] bg-white border-l-4 border-[rgb(254,94,21)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                             >
                                 <h3 className="text-lg font-bold text-gray-900 mb-2">
                                     {location.name}

@@ -102,7 +102,7 @@ export default function ManufacturingPage() {
       <section className="relative overflow-hidden bg-[#071a3a] text-white">
         <div className="absolute inset-0">
           <Image
-            src="/sector/manufacturing/manufacturing-shed.jpeg"
+            src="/images-optimized/sector/manufacturing/manufacturing-shed.jpeg"
             alt="Manufacturing shed for aluminium extrusion plant"
             fill
             priority
@@ -162,7 +162,7 @@ export default function ManufacturingPage() {
             >
               <div className="absolute right-0 top-0 w-[72%] overflow-hidden rounded-[1.7rem] border border-white/20 shadow-[0_30px_55px_rgba(2,6,23,0.35)]">
                 <Image
-                  src="/sector/manufacturing/shed-building.jpeg"
+                  src="/images-optimized/sector/manufacturing/shed-building.jpeg"
                   alt="Shed building aerial infrastructure"
                   width={720}
                   height={520}
@@ -171,7 +171,7 @@ export default function ManufacturingPage() {
               </div>
               <div className="absolute bottom-0 left-0 w-[58%] overflow-hidden rounded-[1.5rem] border border-white/20 shadow-[0_24px_44px_rgba(2,6,23,0.35)]">
                 <Image
-                  src="/sector/manufacturing/manufacturing-shed.jpeg"
+                  src="/images-optimized/sector/manufacturing/manufacturing-shed.jpeg"
                   alt="Manufacturing shed with structural setup"
                   width={620}
                   height={420}
@@ -322,7 +322,7 @@ export default function ManufacturingPage() {
 
               <div className="group relative min-h-[420px] md:min-h-[560px] lg:min-h-[690px] overflow-hidden rounded-[2rem] shadow-[0_34px_60px_rgba(15,23,42,0.24)] ring-1 ring-slate-200">
                 <Image
-                  src="/sector/manufacturing/manufacturing-shed.jpeg"
+                  src="/images-optimized/sector/manufacturing/manufacturing-shed.jpeg"
                   alt="Manufacturing shed exterior"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.06]"
@@ -337,7 +337,7 @@ export default function ManufacturingPage() {
               <div className="grid gap-7">
                 <div className="group relative min-h-[250px] md:min-h-[300px] lg:min-h-[332px] overflow-hidden rounded-[1.7rem] shadow-[0_24px_40px_rgba(15,23,42,0.2)] ring-1 ring-slate-200">
                   <Image
-                    src="/sector/manufacturing/shed-building.jpeg"
+                    src="/images-optimized/sector/manufacturing/shed-building.jpeg"
                     alt="Manufacturing building structure"
                     fill
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.06]"

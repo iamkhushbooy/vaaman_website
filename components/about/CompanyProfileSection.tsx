@@ -88,9 +88,6 @@ export default function CompanyProfileSection() {
                             </div>
                         </div>
                     </motion.div>
-
-                    {/* RIGHT SIDE: Single Image Section */}
-                    {/* RIGHT SIDE: Single Image Section */}
                     <motion.div
                         initial={{ x: 100, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}

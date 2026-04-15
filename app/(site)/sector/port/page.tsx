@@ -67,11 +67,11 @@ export default function PortPage() {
         description="At the crossroads of trade and transport, Vaaman Engineers ensures smooth port operations, optimized cargo handling, and seamless maritime trade through coordinated execution and logistics support."
         currentLabel="Port"
         backgroundImage={{
-          src: '/sector/port/port-steel-hero-3.png',
+          src: '/images-optimized/sector/port/port-steel-hero-3.png',
           alt: 'Vaaman team at port site',
         }}
         collageTopImage={{
-          src: '/sector/port/porteam.png',
+          src: '/images-optimized/sector/port/porteam.png',
           alt: 'Vaaman team at port site',
         }}
         metrics={heroMetrics}
@@ -106,7 +106,7 @@ export default function PortPage() {
 
           <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/sector/port/b3.jpeg"
+              src="/images-optimized/sector/port/b3.jpeg"
               alt="Port Logistics & Cargo Handling"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"
@@ -283,7 +283,7 @@ export default function PortPage() {
         <div className="grid md:grid-cols-2 gap-12 mb-12 items-center">
           <motion.div variants={itemVariants} className="relative h-72 md:h-full min-h-[350px] w-full rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
             <Image
-              src="/sector/port/b.jpeg"
+              src="/images-optimized/sector/port/b.jpeg"
               alt="Port Logistics & Coordination"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

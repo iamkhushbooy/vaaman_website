@@ -12,7 +12,7 @@ const teamMembers = [
     name: "Mr. SP Singh", 
     role: "Managing Director", 
     delay: 0.1, 
-    img: "/award/S P Singh.JPG", 
+    img: "/images-optimized/award/S P Singh.JPG", 
     linkedin: "https://www.linkedin.com/in/surendra-singh-3a775bb2/" 
   },
   { 
@@ -20,7 +20,7 @@ const teamMembers = [
     name: "Mr. Rajesh Kundu", 
     role: "Chief Executive Officer", 
     delay: 0.3, 
-    img: "/award/rajesh.jpeg", 
+    img: "/images-optimized/award/rajesh.jpeg", 
     linkedin: "https://www.linkedin.com/in/rajesh-kundu-67ab62141/" 
   },
   { 
@@ -28,7 +28,7 @@ const teamMembers = [
     name: "Mr. BK Chakraborty", 
     role: "Executive Director", 
     delay: 0.5, 
-    img: "/award/BARUN CHAKRABORTY.JPG", 
+    img: "/images-optimized/award/BARUN CHAKRABORTY.JPG", 
     linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
   },
     { 
@@ -36,7 +36,7 @@ const teamMembers = [
     name: "Mr. Saurabh Singh", 
     role: "Director", 
     delay: 0.1, 
-    img: "/award/saurabh.jpeg", 
+    img: "/images-optimized/award/saurabh.jpeg", 
     linkedin: "https://www.linkedin.com/in/saurabh-singh-18220b89/" 
   },
   { 
@@ -44,7 +44,7 @@ const teamMembers = [
     name: "Mr. V. Kaushik", 
     role: "Sector Head (Zinc, Copper, Cable & Conductor)", 
     delay: 0.3, 
-    img: "/award/kaushik.jpeg", 
+    img: "/images-optimized/award/kaushik.jpeg", 
     linkedin: "https://www.linkedin.com/in/v-kaushik-9b54b111b/" 
   },
     {
@@ -52,7 +52,7 @@ const teamMembers = [
     name: "Mr. Bharat Natesan",
     role: "Sector Head (Aluminium)",
     delay: 0.7,
-    img: "/award/bharat.jpeg",
+    img: "/images-optimized/award/bharat.jpeg",
     linkedin: "#"
   },
   { 
@@ -60,7 +60,7 @@ const teamMembers = [
     name: "Ms. Vineeta Joshi", 
     role: "Corporate HR Head", 
     delay: 0.5, 
-    img: "/award/vineeta.jpeg", 
+    img: "/images-optimized/award/vineeta.jpeg", 
     linkedin: "https://www.linkedin.com/in/barun-kumar-maji-517223225/" 
   },
 ];

@@ -12,29 +12,29 @@ import {
 const galleryItems = [
   // ROW 1: Industrial Scale
 
-  { id: 3, src: "/gallery/gallery_activity3.jpeg", category: "Safety", size: "small", title: "Standard Protocol Check" },
+  { id: 3, src: "/images-optimized/gallery/gallery_activity3.jpeg", category: "Safety", size: "small", title: "Standard Protocol Check" },
 
   // ROW 4: Corporate & Team (Added from your prev request)
 
 
-  { id: 4, src: "/gallery/gallery_activity4.jpeg", category: "Training", size: "big", title: "Site Infrastructure" },
-  { id: 2, src: "/gallery/gallery_machine.jpg", category: "Machinery", size: "tall", title: "Advanced Industrial Machinery" },
+  { id: 4, src: "/images-optimized/gallery/gallery_activity4.jpeg", category: "Training", size: "big", title: "Site Infrastructure" },
+  { id: 2, src: "/images-optimized/gallery/gallery_machine.jpg", category: "Machinery", size: "tall", title: "Advanced Industrial Machinery" },
   // ROW 2: Safety & CSR
-  { id: 7, src: "/gallery/gallery_activity1.jpg", category: "Safety", size: "small", title: "Emergency Rescue Drill" },
-  { id: 8, src: "/gallery/gallery_img1.jpg", category: "Awards", size: "big", title: "CSR: Blood Donation Drive" },
-  { id: 6, src: "/gallery/gallery_img3.jpg", category: "Awards", size: "big", title: "Employee Excellence Awards" },
-  { id: 1, src: "/sector/port/b.jpeg", category: "Projects", size: "big", title: "Port Operations & Bulk Handling" },
-  { id: 5, src: "/gallery/gallery_img2.jpg", category: "Training", size: "big", title: "Safety Induction Seminar" },
+  { id: 7, src: "/images-optimized/gallery/gallery_activity1.jpg", category: "Safety", size: "small", title: "Emergency Rescue Drill" },
+  { id: 8, src: "/images-optimized/gallery/gallery_img1.jpg", category: "Awards", size: "big", title: "CSR: Blood Donation Drive" },
+  { id: 6, src: "/images-optimized/gallery/gallery_img3.jpg", category: "Awards", size: "big", title: "Employee Excellence Awards" },
+  { id: 1, src: "/images-optimized/sector/port/b.jpeg", category: "Projects", size: "big", title: "Port Operations & Bulk Handling" },
+  { id: 5, src: "/images-optimized/gallery/gallery_img2.jpg", category: "Training", size: "big", title: "Safety Induction Seminar" },
 
   // ROW 3: Onsite Work
-  { id: 9, src: "/sefty_images/sefty3.jpg", category: "Machinery", size: "tall", title: "Heavy Duty Equipment" },
-  { id: 13, src: "/sefty_images/sefty7.jpg", category: "Projects", size: "big", title: "Comprehensive Site Inspection" },
-  { id: 10, src: "/sefty_images/sefty4.jpg", category: "Training", size: "small", title: "Corporate Setup" },
+  { id: 9, src: "/images-optimized/sefty_images/sefty3.jpg", category: "Machinery", size: "tall", title: "Heavy Duty Equipment" },
+  { id: 13, src: "/images-optimized/sefty_images/sefty7.jpg", category: "Projects", size: "big", title: "Comprehensive Site Inspection" },
+  { id: 10, src: "/images-optimized/sefty_images/sefty4.jpg", category: "Training", size: "small", title: "Corporate Setup" },
 
   // Extra Details
-  { id: 11, src: "/sefty_images/sefty5.jpg", category: "Training", size: "small", title: "Technical Workshop" },
-  { id: 12, src: "/sefty_images/sefty6.jpg", category: "Training", size: "small", title: "Safety Recognition" },
-  { id: 15, src: "/gallery/gallery_activity5.jpeg", category: "Awards", size: "small", title: "Operational Safety" },
+  { id: 11, src: "/images-optimized/sefty_images/sefty5.jpg", category: "Training", size: "small", title: "Technical Workshop" },
+  { id: 12, src: "/images-optimized/sefty_images/sefty6.jpg", category: "Training", size: "small", title: "Safety Recognition" },
+  { id: 15, src: "/images-optimized/gallery/gallery_activity5.jpeg", category: "Awards", size: "small", title: "Operational Safety" },
 
 ];
 
@@ -76,7 +76,7 @@ export default function CompleteGalleryPage() {
           animate={{ scale: 1 }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/gallery/gallery_img3.jpg')" }}
+          style={{ backgroundImage: "url('/images-optimized/gallery/gallery_img3.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#002147]/70 to-transparent" />
 

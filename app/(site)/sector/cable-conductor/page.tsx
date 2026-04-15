@@ -73,15 +73,15 @@ export default function CableConductorPage() {
         description="Vaaman Engineers has grown into one of India’s reputed O&M contractors for aluminium wire rod mills, overhead conductor, and cable manufacturing industries with long-running execution across major industrial hubs."
         currentLabel="Cable & Conductor"
         backgroundImage={{
-          src: '/sector/cable-conductor/cable-2.jpeg',
+          src: '/images-optimized/sector/cable-conductor/cable-2.jpeg',
           alt: 'Cable and conductor manufacturing facility',
         }}
         collageTopImage={{
-          src: '/sector/cable-conductor/cable-1.jpeg',
+          src: '/images-optimized/sector/cable-conductor/cable-1.jpeg',
           alt: 'Cable manufacturing setup',
         }}
         collageBottomImage={{
-          src: '/sector/cable-conductor/cable-3.jpeg',
+          src: '/images-optimized/sector/cable-conductor/cable-3.jpeg',
           alt: 'Conductor and cable line support',
         }}
         metrics={heroMetrics}
@@ -114,7 +114,7 @@ export default function CableConductorPage() {
 
           <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/sector/cable-conductor/cable-1.jpeg"
+              src="/images-optimized/sector/cable-conductor/cable-1.jpeg"
               alt="Cable manufacturing setup"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"
@@ -193,7 +193,7 @@ export default function CableConductorPage() {
 
           <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
             <Image
-              src="/sector/cable-conductor/cable-3.jpeg"
+              src="/images-optimized/sector/cable-conductor/cable-3.jpeg"
               alt="Conductor and cable line support"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

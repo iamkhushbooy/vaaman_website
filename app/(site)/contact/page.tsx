@@ -37,7 +37,7 @@ export default function Contact() {
                 <section className="relative h-96 bg-blue-950 text-white flex items-center overflow-hidden">
                     <div className="absolute inset-0">
                         <img
-                            src="/contact/hero1.jpeg"
+                            src="/images-optimized/contact/hero1.jpeg"
                             alt="Contact banner"
                             className="w-full h-full object-cover"
                         />
@@ -50,7 +50,7 @@ export default function Contact() {
                         <p className="text-lg text-gray-200">
                             <Link href="/" className="hover:text-white transition">Home</Link>
                             {' / '}
-                            <Link href="/contact" className="hover:text-white transition">Pages</Link>
+                            <Link href="/images-optimized/contact" className="hover:text-white transition">Pages</Link>
                             {' / '}
                             <span className="text-[rgb(254,94,21)]">Contact</span>
                         </p>
@@ -124,7 +124,7 @@ export default function Contact() {
 
                         <div className="w-full mb-16 overflow-hidden flex items-center justify-center">
                             <Image
-                                src="/contact/m.png"
+                                src="/images-optimized/contact/m.png"
                                 alt="India Map"
                                 width={800}
                                 height={400}

@@ -9,14 +9,13 @@ import {
   faBuilding, faExpand, faUserTie, faProjectDiagram 
 } from '@fortawesome/free-solid-svg-icons';
 
-
 const vaamanAwards = [
   {
     id: 1,
     title: "Best Performer 2024",
     issuedBy: "JSW Steel Ltd. (Bulk Handling)",
     desc: "Recognized for maintaining Zero Harm records and exemplary safety standards in material handling.",
-    image: "/award/award_tropy2.jpg", 
+    image: "/images-optimized/award/award_tropy2.jpg", 
     size: "big",
     category: "Safety Excellence"
   },
@@ -25,7 +24,7 @@ const vaamanAwards = [
     title: "Zero Harm Milestone",
     issuedBy: "Occupational Safety Council",
     desc: "Honored for completing 2 million safe man-hours in high-risk port operations.",
-    image: "/award/award_tropy4.jpg", 
+    image: "/images-optimized/award/award_tropy4.jpg", 
     size: "small",
     category: "Operational Safety"
   },
@@ -34,7 +33,7 @@ const vaamanAwards = [
     title: "Vendor Appreciation",
     issuedBy: "Major Port Authority",
     desc: "Awarded for exceptional efficiency during breakdown maintenance of port cranes.",
-    image: "/award/award_tropy6.jpg", 
+    image: "/images-optimized/award/award_tropy6.jpg", 
     size: "tall",
     category: "Technical Service"
   },
@@ -43,7 +42,7 @@ const vaamanAwards = [
     title: "Service Excellence",
     issuedBy: "Corporate Logistics Partner",
     desc: "Acknowledged for supporting expansion activities in the bulk storage sector.",
-    image: "/award/award_tropy1.jpg", 
+    image: "/images-optimized/award/award_tropy1.jpg", 
     size: "small",
     category: "On-site Execution"
   }
@@ -56,7 +55,7 @@ const vaamanCertificates = [
     title: "ISO 9001:2015",
     issuedBy: "Quality Management System",
     desc: "International standard for providing high-quality technical and engineering services.",
-    image: "/award/award_cert1.jpg", 
+    image: "/images-optimized/award/award_cert1.jpg", 
     type: "Quality Accreditation"
   },
   {
@@ -64,7 +63,7 @@ const vaamanCertificates = [
     title: "Statutory Compliance",
     issuedBy: "Labor & Safety Dept.",
     desc: "Official certification for adherence to industrial safety norms and labor laws.",
-    image: "/award/award_cert3.jpg", 
+    image: "/images-optimized/award/award_cert3.jpg", 
     type: "Safety Compliance"
   },
   {
@@ -72,7 +71,7 @@ const vaamanCertificates = [
     title: "Technical License",
     issuedBy: "Port Technical Authority",
     desc: "Authorization for operation of heavy-duty machinery and engineering repairs.",
-    image: "/award/award_cert2.jpg", 
+    image: "/images-optimized/award/award_cert2.jpg", 
     type: "Operational License"
   }
 ];
@@ -89,7 +88,7 @@ export default function ProfessionalAwardPage() {
         <motion.div 
           initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 10 }}
     className="absolute inset-0 bg-cover bg-center  bg-no-repeat"
-    style={{ backgroundImage: "url('/award/award_tropy6.jpg')" }}
+    style={{ backgroundImage: "url('/images-optimized/award/award_tropy6.jpg')" }}
         />
         {/* Blue Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#002147]/70 to-transparent" />
@@ -232,7 +231,7 @@ export default function ProfessionalAwardPage() {
 
       <section className="py-28 bg-[#f8f9fa] overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
-            <div className="col-span-1 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl"><img src="/award/CEO'S Corner.jpeg" alt="CEO" /></div>
+            <div className="col-span-1 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl"><img src="/images-optimized/award/CEO'S Corner.jpeg" alt="CEO" /></div>
             <div className="col-span-2">
                 
                 <h3 className="text-[#002147] text-4xl font-black mb-6 leading-tight">A Message of Trust from the CEO</h3>
