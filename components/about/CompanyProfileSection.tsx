@@ -2,6 +2,7 @@
 
 import { Mail, Phone, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const highlights = [
     'Bulk Material Handling',
@@ -88,43 +89,28 @@ export default function CompanyProfileSection() {
                             </div>
                         </div>
                     </motion.div>
+                    
+                    {/* RIGHT SIDE: Image Section */}
                     <motion.div
                         initial={{ x: 100, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className="relative"
+                        className="relative flex justify-center"
                     >
-                        <img
+                        <Image
                             src="/about_img1.png"
                             alt="Vaaman Engineers Industrial Service"
-                            // Fixed height added (h-[450px]) - change this value as needed
-                            className="w-full h-[780px] object-cover rounded-md shadow-lg"
+                            width={600}
+                            height={800} 
+                            className="w-auto h-auto max-h-[600px] object-contain rounded-md shadow-lg"
                         />
 
                         {/* Decorative background box */}
-                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-orange-500/10 -z-10 rounded-md"></div>
+                        <div className="absolute -bottom-6 right-0 w-32 h-32 bg-orange-500/10 -z-10 rounded-md"></div>
                     </motion.div>
                 </div>
             </div>
         </section>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

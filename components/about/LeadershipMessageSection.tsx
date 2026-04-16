@@ -1,5 +1,5 @@
 'use client';
-
+import Image from "next/image";
 type LeadershipMessageSectionProps = {
     eyebrow: string;
     title: string;
@@ -34,11 +34,13 @@ export default function LeadershipMessageSection({
                     </div>
                 </div>
 
-                <div className="rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 bg-white">
-                    <img
+                <div className="rounded-[2rem] overflow-hidden ml-30">
+                    <Image
                         src={imageSrc}
                         alt={imageAlt}
-                        className="w-full h-[750px] object-cover"
+                            width={600}
+                            height={800} 
+                            className="w-auto h-auto max-h-[600px] object-contain rounded-md shadow-lg"
                     />
                 </div>
             </div>
