@@ -50,12 +50,12 @@ export const features = [
 
 export const services = [
     {
-        img: '/images-optimized/images/hero/',
+       img:"/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg",
         title: 'Operations & Maintenance',
         desc: 'Comprehensive O&M services for steel, aluminium, zinc, and port plants across India.',
     },
     {
-        img: '/images-optimized/images/hero/',
+        img:"/images-optimized/services/material-handling/material-handling-overview.jpg",
         title: 'Material Handling',
         desc: 'End-to-end raw material handling solutions including HEMM operations and logistics.',
     },

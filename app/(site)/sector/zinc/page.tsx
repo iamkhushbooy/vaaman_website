@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { ChevronRight, Zap, Droplets, Settings, Flame } from 'lucide-react';
 import { SectorHero } from '@/components/sector/SectorHero';
@@ -82,15 +81,15 @@ export default function ZincPage() {
                 description="Vaaman Engineers supports zinc operations from mine-linked activities to smelting and casting, helping clients improve output quality, process discipline, and plant uptime."
                 currentLabel="Zinc"
                 backgroundImage={{
-                    src: '/images-optimized/sector/zinc/zinc.jpeg',
+                    src: '/images-optimized/sector/zinc/zinc-hero.jpg',
                     alt: 'Zinc processing facility',
                 }}
                 collageTopImage={{
-                    src: '/images-optimized/sector/zinc/zinc2.jpg',
+                    src: '/images-optimized/sector/zinc/zinc-collage-top.jpg',
                     alt: 'Zinc processing operations',
                 }}
                 collageBottomImage={{
-                    src: '/images-optimized/sector/zinc/zinc3.jpg',
+                    src: '/images-optimized/sector/zinc/zinc-collage-bottom.jpg',
                     alt: 'Zinc plant infrastructure and process support',
                 }}
                 metrics={heroMetrics}
@@ -117,7 +116,7 @@ export default function ZincPage() {
 
                     <motion.div variants={itemVariants} className="relative h-72 md:h-96 w-full rounded-xl overflow-hidden shadow-xl">
                         <Image
-                            src="/images-optimized/sector/zinc/zinc2.jpg"
+                            src="/images-optimized/sector/zinc/zinc-detail.jpg"
                             alt="Zinc Processing Operations"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
@@ -296,7 +295,7 @@ export default function ZincPage() {
                 <div className="grid md:grid-cols-2 gap-12 mb-12 items-center">
                     <motion.div variants={itemVariants} className="relative h-72 md:h-full min-h-[350px] w-full rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
                         <Image
-                            src="/images-optimized/sector/zinc/zinc3.jpg"
+                            src="/images-optimized/sector/zinc/zinc-collage-top.jpg"
                             alt="Zinc Mining and Maintenance"
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"

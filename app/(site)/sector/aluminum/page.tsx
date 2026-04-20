@@ -48,25 +48,25 @@ export default function Aluminium() {
 
   return (
     <>
-      {/* <SectorHero
+      <SectorHero
         badge="Aluminium Operations"
         title="Specialized O&M Services for Aluminium Production and Processing"
         description="Vaaman Engineers supports aluminium plants with reliable operation and maintenance services across casting, rolling, utilities, and critical production systems."
         currentLabel="Aluminium"
         backgroundImage={{
-          src: '/gallery/gallery_machine.jpg',
-          alt: 'Industrial robotic equipment in an aluminium production setup',
+          src: '/images-optimized/sector/aluminum/aluminum-billet-1.jpg',
+          alt: 'Aluminium billet production operations',
         }}
         collageTopImage={{
-          src: '/project/amns/image2.jpg',
-          alt: 'Industrial steel structure and plant support work',
+          src: '/images-optimized/sector/aluminum/aluminum-billet-2.jpg',
+          alt: 'Aluminium billet product handling',
         }}
         collageBottomImage={{
-          src: '/project/amns/image1.png',
-          alt: 'Heavy industrial lifting and erection activity',
+          src: '/images-optimized/sector/aluminum/aluminum-wire-rod.jpg',
+          alt: 'Aluminium wire rod product line',
         }}
         metrics={heroMetrics}
-      /> */}
+      />
 
       {/* Introduction Section */}
       <section className="py-20 bg-white">

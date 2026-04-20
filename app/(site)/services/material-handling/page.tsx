@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Check, Truck, Package, Layers, Cpu } from 'lucide-react';
-
+import Image from 'next/image';
 export default function MaterialHandling() {
   const salientFeatures = [
     {
@@ -54,7 +54,11 @@ export default function MaterialHandling() {
       {/* Hero Banner */}
       <section className="relative h-[500px] bg-blue-950 text-white flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/hero/hero-3.jpg" alt="Material Handling" className="w-full h-full object-cover" />
+          <img
+            src="/images-optimized/services/material-handling/material-handling-hero.jpg"
+            alt="Material handling operations"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/70 to-transparent"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -111,7 +115,11 @@ export default function MaterialHandling() {
               className="relative"
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
-                {/* <img src="/images/hero/hero-5.jpg" alt="Material Handling Operations" className="w-full h-full object-cover" /> */}
+                <img
+                  src="/images-optimized/services/material-handling/material-handling-overview.jpg"
+                  alt="Material flow operations"
+                  className="w-full h-full object-cover"
+                />
               </div>
               {/* <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
                 <p className="text-2xl font-extrabold">ISO 9001:2015</p>
@@ -162,7 +170,11 @@ export default function MaterialHandling() {
       {/* Equipment List — bg image section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/hero/hero-7.jpeg" alt="Equipment background" className="w-full h-full object-cover" />
+          <img
+            src="/images-optimized/services/material-handling/material-handling-fleet.jpg"
+            alt="Material handling fleet"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-[#03245a]/88"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -239,7 +251,11 @@ export default function MaterialHandling() {
               viewport={{ once: true }}
               className="rounded-2xl overflow-hidden shadow-2xl h-[400px]"
             >
-              {/* <img src="/images/hero/hero-9.jpeg" alt="Vaaman fleet at work" className="w-full h-full object-cover" /> */}
+              <Image
+                src="/images-optimized/services/material-handling/material-handling-overview.jpg"
+                alt="Vaaman material handling support"
+                className="w-full h-full object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 30 }}

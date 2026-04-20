@@ -120,25 +120,25 @@ export default function SteelPage() {
 
     return (
         <main className="bg-white">
-            {/* <SectorHero
+            <SectorHero
                 badge="Steel Operations"
                 title="Performance-Driven Operation & Maintenance Support for Steel Plants"
                 description="Vaaman Engineers delivers reliable O&M, manpower deployment, and project support across iron making, steel making, rolling mills, utilities, and power plant systems."
                 currentLabel="Steel"
                 backgroundImage={{
-                    src: '/project/amns/image1.png',
-                    alt: 'Steel plant construction and operations support',
+                    src: '/images-optimized/sector/steel/steel-billet-casting.jpg',
+                    alt: 'Steel billet casting operation',
                 }}
                 collageTopImage={{
-                    src: '/project/amns/image2.jpg',
-                    alt: 'Steel plant maintenance and structural support work',
+                    src: '/images-optimized/sector/steel/steel-sms-operation.jpg',
+                    alt: 'Steel SMS operation',
                 }}
                 collageBottomImage={{
-                    src: '/gallery/gallery_machine.jpg',
-                    alt: 'Industrial equipment operating inside a plant',
+                    src: '/images-optimized/sector/steel/steel-dispatch-unit.jpg',
+                    alt: 'Dispatch unit for WRM operations',
                 }}
                 metrics={heroMetrics}
-            /> */}
+            />
 
             {/* Introduction */}
             <section className="py-16 md:py-24 bg-white overflow-hidden">
@@ -173,12 +173,12 @@ export default function SteelPage() {
                             className="relative group"
                         >
                             <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl">
-                                {/* <Image
-                                    src="/project/amns/image1.png"
-                                    alt="Steel plant operations and maintenance"
+                                <Image
+                                    src="/images-optimized/sector/steel/steel-fabrication-erection.jpg"
+                                    alt="Steel fabrication and erection work"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                /> */}
+                                />
                                 {/* Decorative overlay border */}
                                 <div className="absolute inset-0 border-8 border-white/10 rounded-2xl pointer-events-none"></div>
                             </div>
@@ -187,6 +187,59 @@ export default function SteelPage() {
                             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[rgb(254,94,21)]/10 rounded-full -z-10 blur-2xl"></div>
                         </motion.div>
 
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-12 md:py-16 px-4 md:px-8 bg-white">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="mb-10 text-center"
+                    >
+                        <span className="inline-flex items-center rounded-full border border-[rgb(254,94,21)]/20 bg-[rgb(254,94,21)]/8 px-4 py-1 text-sm font-semibold uppercase tracking-[0.2em] text-[rgb(254,94,21)]">
+                            Field Visuals
+                        </span>
+                        <h2 className="mt-4 text-3xl font-bold text-[rgb(3,36,90)] md:text-4xl">
+                            Steel Plant Activity Snapshots
+                        </h2>
+                    </motion.div>
+                    <div className="grid gap-8 md:grid-cols-2">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <div className="relative h-[320px] overflow-hidden rounded-[28px] shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+                                <Image
+                                    src="/images-optimized/sector/steel/steel-dispatch-unit.jpg"
+                                    alt="Dispatch unit for WRM"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <div className="relative h-[320px] overflow-hidden rounded-[28px] shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+                                <Image
+                                    src="/images-optimized/sector/steel/steel-slag-handling.jpg"
+                                    alt="Slag handling operations"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

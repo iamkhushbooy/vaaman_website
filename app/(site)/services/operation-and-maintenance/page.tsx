@@ -111,7 +111,7 @@ export default function OperationAndMaintenance() {
       <section className="relative h-[500px] bg-blue-950 text-white flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/images/hero/hero-1.jpeg" 
+            src="/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg" 
             alt="Operations and Maintenance" 
             className="w-full h-full object-cover" 
           />
@@ -171,7 +171,11 @@ export default function OperationAndMaintenance() {
               className="relative"
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px] bg-white">
-                {/* <img src="/images/hero/hero-4.jpeg" alt="O&M Operations" className="w-full h-full object-cover" /> */}
+                <img
+                  src="/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg"
+                  alt="Blast furnace operation and maintenance"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
           </div>
@@ -332,7 +336,7 @@ export default function OperationAndMaintenance() {
               <p className="text-[rgb(254,94,21)] font-bold text-sm mb-3 uppercase tracking-widest">Our Clients</p>
               <h2 className="text-4xl font-extrabold text-[#03245a] mb-6">Trusted by Industry Leaders</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Active O&M contracts with some of India's largest industrial conglomerates — delivering excellence day after day, site after site.
+                Active O&amp;M contracts with some of India&apos;s largest industrial conglomerates — delivering excellence day after day, site after site.
               </p>
               <ul className="space-y-4">
                 {[

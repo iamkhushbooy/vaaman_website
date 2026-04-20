@@ -53,4 +53,39 @@
   .animate-fade-in {
     animation: fade-in 0.5s ease-in forwards; 
   }
+
+  @keyframes safety-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .safety-marquee {
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .safety-marquee-track {
+    display: inline-flex;
+    width: max-content;
+    min-width: 200%;
+    animation: safety-marquee 14s linear infinite;
+    will-change: transform;
+  }
+
+  .safety-marquee-track-fast {
+    animation-duration: 9s;
+  }
+
+  .safety-marquee-text {
+    display: inline-block;
+    flex: 0 0 auto;
+    padding-right: 3rem;
+    font-size: clamp(1rem, 1.9vw, 1.45rem);
+    line-height: 1.4;
+  }
 }
