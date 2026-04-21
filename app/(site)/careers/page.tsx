@@ -29,7 +29,7 @@ type JobsApiResponse = {
     error?: string;
 };
 
-const JOBS_PER_BATCH = 20;
+const JOBS_PER_BATCH = 10;
 
 const benefits = [
     {

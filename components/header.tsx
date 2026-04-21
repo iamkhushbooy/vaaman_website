@@ -80,7 +80,7 @@ export function Header() {
                 { label: 'Gallery', href: '/media/gallery' },
             ]
         },
-        { label: 'Contact', href: '/contact' }
+        // { label: 'Contact', href: '/contact' }
     ];
 
     return (
@@ -144,9 +144,9 @@ export function Header() {
                         <div className="hidden xl:flex gap-4 shrink-0">
                             <Link
                                 href="/contact"
-                                className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-orange-600 transition"
+                                className="px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-orange-600 transition rounded"
                             >
-                                Get Quote
+                                Contact
                             </Link>
                         </div>
 

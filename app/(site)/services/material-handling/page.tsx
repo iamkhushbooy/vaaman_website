@@ -243,13 +243,13 @@ export default function MaterialHandling() {
           </div>
 
           {/* Why Vaaman */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-50 ">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-2xl h-[400px]"
+              className="rounded-2xl overflow-hidden shadow-2xl h-100"
             >
               <img
                 src="/images-optimized/services/material-handling/material-handling-overview.jpg"
