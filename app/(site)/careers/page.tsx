@@ -373,7 +373,7 @@ export default function CareersPage() {
                             <span className="inline-flex rounded-full bg-[#03245a] px-4 py-1 text-xs font-semibold tracking-[0.2em] text-white uppercase">
                                 Open Positions
                             </span>
-                            <h2 className="mt-4 text-3xl font-bold text-[#03245a] md:text-4xl">
+                            <h2 className="mt-4 text-3xl font-bold text-[#03245a] md:text-3xl">
                                 Current Job Openings from Our Recruitment System
                             </h2>
                         </div>
@@ -424,37 +424,37 @@ export default function CareersPage() {
                         </div>
                     )}
 
-{!isLoading && !error && jobs.length > 0 && (
-    <>
-        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {visibleJobs.map((job, index) => (
-                <JobRow
-                    key={job.id}
-                    job={job}
-                    sequence={index}
-                    onApply={openApplyModal}
-                    onViewDetails={openDetailsModal}
-                />
-            ))}
-        </div>
+                    {!isLoading && !error && jobs.length > 0 && (
+                        <>
+                            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                                {visibleJobs.map((job, index) => (
+                                    <JobRow
+                                        key={job.id}
+                                        job={job}
+                                        sequence={index}
+                                        onApply={openApplyModal}
+                                        onViewDetails={openDetailsModal}
+                                    />
+                                ))}
+                            </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4">
-            <p className="text-sm text-slate-500">
-                Showing {visibleJobs.length} of {jobs.length} open job openings.
-            </p>
+                            <div className="mt-10 flex flex-col items-center gap-4">
+                                <p className="text-sm text-slate-500">
+                                    Showing {visibleJobs.length} of {jobs.length} open job openings.
+                                </p>
 
-            {hasMoreJobs && (
-                <button
-                    type="button"
-                    onClick={() => setVisibleCount((currentCount) => currentCount + JOBS_PER_BATCH)}
-                    className="inline-flex items-center justify-center rounded-xl border border-[#03245a] px-6 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:bg-[#03245a] hover:text-white"
-                >
-                    See More
-                </button>
-            )}
-        </div>
-    </>
-)}
+                                {hasMoreJobs && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setVisibleCount((currentCount) => currentCount + JOBS_PER_BATCH)}
+                                        className="inline-flex items-center justify-center rounded-xl border border-[#03245a] px-6 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:bg-[#03245a] hover:text-white"
+                                    >
+                                        See More
+                                    </button>
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
 
@@ -497,10 +497,10 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            <ApplyJobModal 
-                isOpen={isApplyModalOpen} 
-                job={selectedJob} 
-                onClose={closeApplyModal} 
+            <ApplyJobModal
+                isOpen={isApplyModalOpen}
+                job={selectedJob}
+                onClose={closeApplyModal}
             />
 
             {isDetailsModalOpen && detailsJob && (
@@ -516,72 +516,72 @@ export default function CareersPage() {
                             <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#03245a_0%,rgb(254,94,21)_55%,#03245a_100%)]" />
 
                             <div className="relative p-6 sm:p-8">
-                        <button
-                            type="button"
-                            onClick={closeDetailsModal}
-                            className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-800 hover:shadow-md"
-                            aria-label="Close job details"
-                        >
-                            <X size={18} />
-                        </button>
+                                <button
+                                    type="button"
+                                    onClick={closeDetailsModal}
+                                    className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-800 hover:shadow-md"
+                                    aria-label="Close job details"
+                                >
+                                    <X size={18} />
+                                </button>
 
-                        <div className="pr-12">
-                            <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.16em] text-[rgb(254,94,21)] uppercase">
-                                Job Details
-                            </span>
-                            <h3 className="mt-4 text-3xl font-bold text-[#03245a]">
-                                {detailsJob.title}
-                            </h3>
-                            <p className="mt-2 text-sm font-medium text-[rgb(254,94,21)]">
-                                {detailsJob.id}
-                            </p>
-                        </div>
-
-                        <div className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2 xl:grid-cols-4">
-                            {(detailsJob.designation || detailsJob.department) && (
-                                <div className="flex items-center gap-2">
-                                    <Users size={16} className="text-[rgb(254,94,21)]" />
-                                    <span>{[detailsJob.designation, detailsJob.department].filter(Boolean).join(' • ')}</span>
+                                <div className="pr-12">
+                                    <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.16em] text-[rgb(254,94,21)] uppercase">
+                                        Job Details
+                                    </span>
+                                    <h3 className="mt-4 text-3xl font-bold text-[#03245a]">
+                                        {detailsJob.title}
+                                    </h3>
+                                    <p className="mt-2 text-sm font-medium text-[rgb(254,94,21)]">
+                                        {detailsJob.id}
+                                    </p>
                                 </div>
-                            )}
 
-                            {detailsJob.company && (
-                                <div className="flex items-center gap-2">
-                                    <Building2 size={16} className="text-[rgb(254,94,21)]" />
-                                    <span>{detailsJob.company}</span>
+                                <div className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2 xl:grid-cols-4">
+                                    {(detailsJob.designation || detailsJob.department) && (
+                                        <div className="flex items-center gap-2">
+                                            <Users size={16} className="text-[rgb(254,94,21)]" />
+                                            <span>{[detailsJob.designation, detailsJob.department].filter(Boolean).join(' • ')}</span>
+                                        </div>
+                                    )}
+
+                                    {detailsJob.company && (
+                                        <div className="flex items-center gap-2">
+                                            <Building2 size={16} className="text-[rgb(254,94,21)]" />
+                                            <span>{detailsJob.company}</span>
+                                        </div>
+                                    )}
+
+                                    <div className="flex items-center gap-2">
+                                        <CalendarDays size={16} className="text-[rgb(254,94,21)]" />
+                                        <span>Published {formatPublishedOn(detailsJob.publishedOn)}</span>
+                                    </div>
+
+                                    <div className="flex items-center gap-2">
+                                        <BriefcaseBusiness size={16} className="text-[rgb(254,94,21)]" />
+                                        <span>{detailsJob.status ?? 'Open'}</span>
+                                    </div>
                                 </div>
-                            )}
 
-                            <div className="flex items-center gap-2">
-                                <CalendarDays size={16} className="text-[rgb(254,94,21)]" />
-                                <span>Published {formatPublishedOn(detailsJob.publishedOn)}</span>
-                            </div>
+                                <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                                    <h4 className="text-lg font-semibold text-[#03245a]">
+                                        Description
+                                    </h4>
 
-                            <div className="flex items-center gap-2">
-                                <BriefcaseBusiness size={16} className="text-[rgb(254,94,21)]" />
-                                <span>{detailsJob.status ?? 'Open'}</span>
-                            </div>
-                        </div>
+                                    {detailsJob.description ? (
+                                        <div
+                                            className="prose prose-slate mt-4 max-w-none text-sm leading-7"
+                                            dangerouslySetInnerHTML={{ __html: detailsJob.description }}
+                                        />
+                                    ) : (
+                                        <p className="mt-4 text-sm leading-7 text-slate-600">
+                                            Description is not available for this job opening.
+                                        </p>
+                                    )}
+                                </div>
 
-                        <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
-                            <h4 className="text-lg font-semibold text-[#03245a]">
-                                Description
-                            </h4>
-
-                            {detailsJob.description ? (
-                                <div
-                                    className="prose prose-slate mt-4 max-w-none text-sm leading-7"
-                                    dangerouslySetInnerHTML={{ __html: detailsJob.description }}
-                                />
-                            ) : (
-                                <p className="mt-4 text-sm leading-7 text-slate-600">
-                                    Description is not available for this job opening.
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-                            {/* {detailsJob.route && (
+                                <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                                    {/* {detailsJob.route && (
                                 <a
                                     href={detailsJob.route}
                                     target="_blank"
@@ -592,17 +592,17 @@ export default function CareersPage() {
                                 </a>
                             )} */}
 
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    closeDetailsModal();
-                                    openApplyModal(detailsJob);
-                                }}
-                                className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[rgb(220,80,15)] hover:shadow-lg"
-                            >
-                                Apply Now
-                            </button>
-                        </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            closeDetailsModal();
+                                            openApplyModal(detailsJob);
+                                        }}
+                                        className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[rgb(220,80,15)] hover:shadow-lg"
+                                    >
+                                        Apply Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
