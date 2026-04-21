@@ -129,81 +129,79 @@ function JobRow({
     onViewDetails: (job: JobOpening) => void;
 }) {
     return (
-        <article className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                <div className="flex flex-1 gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#03245a] text-lg font-bold text-white">
-                        {formatSequence(sequence)}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                            <div>
-                                <p className="text-xs font-semibold tracking-[0.18em] text-slate-400 uppercase">
-                                    Job Opening ID
-                                </p>
-                                <h3 className="mt-1 text-2xl font-bold text-[#03245a]">
-                                    {job.title}
-                                </h3>
-                                <p className="mt-1 text-sm font-medium text-[rgb(254,94,21)]">
-                                    {job.id}
-                                </p>
-                            </div>
-
-                            <span className="inline-flex w-fit rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[rgb(254,94,21)] uppercase">
-                                {job.status ?? 'Open'}
-                            </span>
-                        </div>
-
-                        <div className="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2 xl:grid-cols-4">
-                            {(job.designation || job.department) && (
-                                <div className="flex items-center gap-2">
-                                    <Users size={16} className="text-[rgb(254,94,21)]" />
-                                    <span>{[job.designation, job.department].filter(Boolean).join(' • ')}</span>
-                                </div>
-                            )}
-
-                            {job.company && (
-                                <div className="flex items-center gap-2">
-                                    <Building2 size={16} className="text-[rgb(254,94,21)]" />
-                                    <span>{job.company}</span>
-                                </div>
-                            )}
-
-                            <div className="flex items-center gap-2">
-                                <CalendarDays size={16} className="text-[rgb(254,94,21)]" />
-                                <span>Published {formatPublishedOn(job.publishedOn)}</span>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <BriefcaseBusiness size={16} className="text-[rgb(254,94,21)]" />
-                                <span>Sequence #{formatSequence(sequence)}</span>
-                            </div>
-                        </div>
-
-                        <p className="mt-5 text-sm leading-7 text-slate-600">
-                            {getJobSummary(job)}
-                        </p>
-                    </div>
+        <article className="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="flex gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#03245a] text-lg font-bold text-white">
+                    {formatSequence(sequence)}
                 </div>
 
-                <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
-                    <button
-                        type="button"
-                        onClick={() => onApply(job)}
-                        className="inline-flex items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgb(220,80,15)]"
-                    >
-                        Apply Now
-                    </button>
+                <div className="min-w-0 flex-1">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <p className="text-xs font-semibold tracking-[0.18em] text-slate-400 uppercase">
+                                Job Opening ID
+                            </p>
+                            <h3 className="mt-1 line-clamp-2 text-xl font-bold text-[#03245a]">
+                                {job.title}
+                            </h3>
+                            <p className="mt-1 text-sm font-medium text-[rgb(254,94,21)]">
+                                {job.id}
+                            </p>
+                        </div>
 
-                    <button
-                        type="button"
-                        onClick={() => onViewDetails(job)}
-                        className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:border-[#03245a] hover:bg-slate-50"
-                    >
-                        View Details
-                    </button>
+                        <span className="inline-flex shrink-0 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[rgb(254,94,21)] uppercase">
+                            {job.status ?? 'Open'}
+                        </span>
+                    </div>
                 </div>
+            </div>
+
+            <div className="mb-6 mt-6 grid grid-cols-1 gap-3 text-sm text-slate-600 sm:grid-cols-2">
+                {(job.designation || job.department) && (
+                    <div className="flex items-center gap-2">
+                        <Users size={16} className="shrink-0 text-[rgb(254,94,21)]" />
+                        <span className="truncate">{[job.designation, job.department].filter(Boolean).join(' • ')}</span>
+                    </div>
+                )}
+
+                {job.company && (
+                    <div className="flex items-center gap-2">
+                        <Building2 size={16} className="shrink-0 text-[rgb(254,94,21)]" />
+                        <span className="truncate">{job.company}</span>
+                    </div>
+                )}
+
+                <div className="flex items-center gap-2">
+                    <CalendarDays size={16} className="shrink-0 text-[rgb(254,94,21)]" />
+                    <span>Published {formatPublishedOn(job.publishedOn)}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <BriefcaseBusiness size={16} className="shrink-0 text-[rgb(254,94,21)]" />
+                    <span>Sequence #{formatSequence(sequence)}</span>
+                </div>
+            </div>
+
+            <p className="mb-6 line-clamp-3 text-sm leading-7 text-slate-600">
+                {getJobSummary(job)}
+            </p>
+
+            <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
+                <button
+                    type="button"
+                    onClick={() => onApply(job)}
+                    className="inline-flex flex-1 items-center justify-center rounded-xl bg-[rgb(254,94,21)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgb(220,80,15)]"
+                >
+                    Apply Now
+                </button>
+
+                <button
+                    type="button"
+                    onClick={() => onViewDetails(job)}
+                    className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:border-[#03245a] hover:bg-slate-50"
+                >
+                    View Details
+                </button>
             </div>
         </article>
     );
@@ -338,7 +336,7 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            <section className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+            <section className="mx-auto mt-12 max-w-375 px-4 sm:px-6 lg:px-8">
                 <div className="mb-12 text-center">
                     <h2 className="mb-4 text-3xl font-bold text-[#03245a] md:text-4xl">
                         Benefits of Working at Vaaman Engineers
@@ -368,8 +366,8 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            <section className="mx-auto mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#fff_0%,#f8fafc_100%)] p-8 shadow-xl md:p-12">
+            <section className="mx-auto mt-24 max-w-375 px-4 sm:px-6 lg:px-8">
+                <div className="rounded-4xl border border-slate-200 bg-[linear-gradient(180deg,#fff_0%,#f8fafc_100%)] p-8 shadow-xl md:p-12">
                     <div className="flex flex-col gap-5 border-b border-slate-200 pb-8 md:flex-row md:items-end md:justify-between">
                         <div className="max-w-3xl">
                             <span className="inline-flex rounded-full bg-[#03245a] px-4 py-1 text-xs font-semibold tracking-[0.2em] text-white uppercase">
@@ -426,35 +424,37 @@ export default function CareersPage() {
                         </div>
                     )}
 
-                    {!isLoading && !error && jobs.length > 0 && (
-                        <div className="mt-10 space-y-5">
-                            {visibleJobs.map((job, index) => (
-                                <JobRow
-                                    key={job.id}
-                                    job={job}
-                                    sequence={index}
-                                    onApply={openApplyModal}
-                                    onViewDetails={openDetailsModal}
-                                />
-                            ))}
+{!isLoading && !error && jobs.length > 0 && (
+    <>
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {visibleJobs.map((job, index) => (
+                <JobRow
+                    key={job.id}
+                    job={job}
+                    sequence={index}
+                    onApply={openApplyModal}
+                    onViewDetails={openDetailsModal}
+                />
+            ))}
+        </div>
 
-                            <div className="flex flex-col items-center gap-4 pt-4">
-                                <p className="text-sm text-slate-500">
-                                    Showing {visibleJobs.length} of {jobs.length} open job openings.
-                                </p>
+        <div className="mt-10 flex flex-col items-center gap-4">
+            <p className="text-sm text-slate-500">
+                Showing {visibleJobs.length} of {jobs.length} open job openings.
+            </p>
 
-                                {hasMoreJobs && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setVisibleCount((currentCount) => currentCount + JOBS_PER_BATCH)}
-                                        className="inline-flex items-center justify-center rounded-xl border border-[#03245a] px-6 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:bg-[#03245a] hover:text-white"
-                                    >
-                                        See More
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    )}
+            {hasMoreJobs && (
+                <button
+                    type="button"
+                    onClick={() => setVisibleCount((currentCount) => currentCount + JOBS_PER_BATCH)}
+                    className="inline-flex items-center justify-center rounded-xl border border-[#03245a] px-6 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:bg-[#03245a] hover:text-white"
+                >
+                    See More
+                </button>
+            )}
+        </div>
+    </>
+)}
                 </div>
             </section>
 

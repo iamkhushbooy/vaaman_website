@@ -4,14 +4,20 @@ export const PRIMARY = '#FF5E14';
 export const DARK = '#02245B';
 
 export const heroSlides = [
+    { src: '/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg', alt: 'Services', sub: 'Services', title: 'Operations & Maintenance' },
+    { src: '/images-optimized/services/material-handling/material-handling-hero.jpg', alt: 'Services', sub: 'Services', title: 'Material Handling' },
+    { src: '/images-optimized/project/common.jpeg', alt: 'Project Site', sub: 'Projects', title: 'EPC & Project Services' },
     { src: '/images-optimized/project/amns/image1.png', alt: 'Project Site', sub: 'Amns Projects', title: 'EPC & Project Services' },
     { src: '/images-optimized/project/chanderiya/WhatsApp Image 2026-01-28 at 12.57.07.jpeg', alt: 'Project Site', sub: 'Chanderiya Projects', title: 'EPC & Project Services' },
     { src: '/images-optimized/project/mettube/WhatsApp Image 2026-03-30 at 14.52.19.jpeg', alt: 'Project Site', sub: 'Mettube Projects', title: 'EPC & Project Services' },
+    { src: '/images-optimized/sector/aluminum/aluminum-billet-2.jpg', alt: 'Aluminium Operations', sub: 'Aluminium Operations', title: 'Specialized O&M Services\nfor Aluminium Production\nand Processing' },
+    { src: '/images-optimized/sector/steel/steel-billet-casting.jpg', alt: 'Steel Operations', sub: 'Steel Operations', title: 'Performance-Driven\nOperation & Maintenance\nSupport for Steel Plants' },
+    { src: '/images-optimized/sector/cable-conductor/cable-2.jpeg', alt: 'Project Site', sub: 'Cable And Conductor', title: 'Trusted O&M Partner for Wire Rod, \nConductor and Cable Plants' },
     { src: '/images-optimized/sector/port/b.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Port Operations & Material Handling \nExcellence' },
     { src: '/images-optimized/sector/port/b3.jpeg', alt: 'Port Operations', sub: 'Port & Logistics Operations', title: 'Port Operations & Material Handling \nExcellence' },
     { src: '/images-optimized/sector/manufacturing/shed-building.jpeg', alt: 'shed-building', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions' },
     { src: '/images-optimized/sector/manufacturing/manufacturing-shed.jpeg', alt: 'Manufacturing Shed', sub: 'Manufacturing Solutions', title: 'Manufacturing\nSolutions' },
-    { src: '/images-optimized/sector/cable-conductor/cable-2.jpeg', alt: 'Project Site', sub: 'Cable And Conductor', title: 'Trusted O&M Partner for Wire Rod, \nConductor and Cable Plants' },
+
 ];
 
 export const stats = [
@@ -50,12 +56,12 @@ export const features = [
 
 export const services = [
     {
-       img:"/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg",
+        img: "/images-optimized/services/operation-and-maintenance/operation-maintenance-blast-furnace.jpg",
         title: 'Operations & Maintenance',
         desc: 'Comprehensive O&M services for steel, aluminium, zinc, and port plants across India.',
     },
     {
-        img:"/images-optimized/services/material-handling/material-handling-overview.jpg",
+        img: "/images-optimized/services/material-handling/material-handling-overview.jpg",
         title: 'Material Handling',
         desc: 'End-to-end raw material handling solutions including HEMM operations and logistics.',
     },

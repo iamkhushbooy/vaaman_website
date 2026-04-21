@@ -251,7 +251,7 @@ export default function MaterialHandling() {
               viewport={{ once: true }}
               className="rounded-2xl overflow-hidden shadow-2xl h-[400px]"
             >
-              <Image
+              <img
                 src="/images-optimized/services/material-handling/material-handling-overview.jpg"
                 alt="Vaaman material handling support"
                 className="w-full h-full object-cover"
