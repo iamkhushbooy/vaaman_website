@@ -116,7 +116,7 @@ export default function MaterialHandling() {
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
                 <img
-                  src="/images-optimized/services/material-handling/material-handling-overview.jpg"
+                  src="/images-optimized/services/material-handling/material-handling-fleet.jpg"
                   alt="Material flow operations"
                   className="w-full h-full object-cover"
                 />
