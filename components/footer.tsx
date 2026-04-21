@@ -119,11 +119,27 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[rgb(5,47,116)] pt-8 text-center">
-          <p className="text-sm text-gray-400">
-            Copyright © <span className="font-semibold text-[rgb(225,84,18)]">Vaaman Engineers</span>, All Right Reserved.
-          </p>
-        </div>
+<div className="mt-12 border-t border-[rgb(5,47,116)] pt-8 text-center">
+            <p className="text-sm text-gray-400">
+              Copyright © <span className="font-semibold text-[rgb(225,84,18)]">Vaaman Engineers</span>. All Rights Reserved.
+            </p>
+
+            {/* Visual separator for desktop */}
+            <span className="hidden h-1 w-1 rounded-full bg-gray-600 md:block"></span>
+
+            <p className="text-sm text-gray-400 ">
+              Designed & Developed by{" "}
+              <a
+                href="https://octavision.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[rgb(225,84,18)] transition-colors duration-200"
+              >
+                Octavision
+              </a>
+            </p>
+          </div>
+   
       </div>
 
       <button
