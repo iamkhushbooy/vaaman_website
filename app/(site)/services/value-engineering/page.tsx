@@ -89,46 +89,6 @@ export default function ValueEngineering() {
         </div>
       </section>
 
-      {/* Intro + Image Split */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-[rgb(254,94,21)] font-bold text-sm mb-3 uppercase tracking-widest">What We Do</p>
-              <h2 className="text-4xl font-extrabold text-[#03245a] leading-tight mb-6">
-                Smarter Methods.<br /> Better Results. Lower Costs.
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Vaaman Engineers is dedicated to maximizing value. Our Value Engineering approach focuses on refining methods and materials, ensuring cost-effectiveness without compromising on quality.
-              </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                We work closely with clients to identify where value can be unlocked and deliver tangible, measurable improvements across Aluminium, Steel, Zinc, and other industrial sectors.
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="rounded-2xl overflow-hidden shadow-2xl h-[420px]">
-                {/* <img src="/images/hero/hero-4.jpeg" alt="Value Engineering at work" className="w-full h-full object-cover" /> */}
-              </div>
-              {/* <div className="absolute -bottom-6 -left-6 bg-[rgb(254,94,21)] text-white px-6 py-4 rounded-xl shadow-lg">
-                <p className="text-2xl font-extrabold">35 Years</p>
-                <p className="text-sm opacity-90">Industry Experience</p>
-              </div> */}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Focus Areas */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -249,9 +209,6 @@ export default function ValueEngineering() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="rounded-2xl overflow-hidden shadow-xl h-60">
-                <img src="/images/hero/hero-8.jpeg" alt="Value Engineering results" className="w-full h-full object-cover" />
-              </div>
               <div className="bg-gradient-to-br from-[#03245a] to-[#03245a]/90 text-white p-8 rounded-2xl shadow-xl">
                 <h3 className="text-xl font-bold mb-5">Why Choose Vaaman?</h3>
                 <ul className="space-y-4">
