@@ -60,8 +60,8 @@ export default function ValueEngineering() {
       description: "Improving asset reliability and reducing unplanned failures through design improvements.",
     },
     {
-      title: "Concept to Execution",
-      description: "Full ownership of the value engineering cycle — from ideation through to on-site implementation.",
+      title: "Digitization & Mechanization",
+      description: "",
     },
   ];
 

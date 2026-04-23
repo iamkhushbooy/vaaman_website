@@ -115,19 +115,19 @@ export const testimonials = [
 ];
 
 export const clients = [
-    { logo: '/images-optimized/images/clients/jsw-steel.jpeg', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/jsw-steel.jpeg', whiteLogo: false,logoClassName: 'scale-[1.25]'  },
     { logo: '/images-optimized/images/clients/tata-steel.png', whiteLogo: false },
     { logo: '/images-optimized/images/clients/hindustan-zinc.svg', whiteLogo: false },
-    { logo: '/images-optimized/images/clients/vedanta.svg', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/vedanta.svg', whiteLogo: false ,logoClassName: 'scale-[1.25]' },
     { logo: '/images-optimized/images/clients/adani.svg', whiteLogo: false },
     { logo: '/images-optimized/images/clients/jspllogo.jpeg', whiteLogo: false },
     { logo: '/images-optimized/images/clients/sterlite.svg', whiteLogo: false },
-    { logo: '/images-optimized/images/clients/jsw-infra.jpeg', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/image.png', whiteLogo: false , logoClassName: 'scale-[1.75]'},
     { logo: '/images-optimized/images/clients/runaya.png', whiteLogo: false },
     { logo: '/images-optimized/images/clients/mettube.png', whiteLogo: false },
-    { logo: '/images-optimized/images/clients/hindalco.webp', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/hindalco.webp', whiteLogo: false, logoClassName: 'scale-[1.75]' },
     { logo: '/images-optimized/images/clients/transrail.webp', whiteLogo: false },
-    { logo: '/images-optimized/images/clients/vedanta-balco.png', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/vedanta-balco.png', whiteLogo: false ,logoClassName: 'scale-[1.55]'},
     { logo: '/images-optimized/images/clients/jsw-bpsl.png', whiteLogo: false },
-    { logo: '/images-optimized/images/clients/stl.png', whiteLogo: false },
+    { logo: '/images-optimized/images/clients/stl.png', whiteLogo: false ,logoClassName: 'scale-[1.55]' },
 ];

@@ -217,8 +217,8 @@ export default function ZincPage() {
                                 <p className="text-sm text-gray-700">Zinc & Lead casting, and silver plant refining operations</p>
                             </div>
                             <div>
-                                <p className="font-semibold text-gray-900 mb-2">Mining Operations</p>
-                                <p className="text-sm text-gray-700">Multiple mine sites across Rajasthan and Madhya Pradesh</p>
+                                <p className="font-semibold text-gray-900 mb-2">Ore beneficiation plant</p>
+                                <p className="text-sm text-gray-700">6.5MMTPA at SK MILL HZL</p>
                             </div>
                         </div>
                     </motion.div>

@@ -13,7 +13,7 @@ export function ClientsSection() {
                     </h2>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    {clients.map(({logo, whiteLogo }) => (
+                    {clients.map(({ logo, whiteLogo, logoClassName }) => (
                         <div
                             key={logo}
                             className="flex flex-col items-center justify-center gap-3 bg-white py-8 px-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-lg cursor-default"
@@ -22,7 +22,8 @@ export function ClientsSection() {
                             <div className="flex items-center justify-center" style={{ height: '48px', width: '140px' }}>
                                 <img
                                     src={logo!}
-                                
+                                    alt=""
+                                    className={logoClassName}
                                     style={{
                                         maxHeight: '48px',
                                         maxWidth: '140px',

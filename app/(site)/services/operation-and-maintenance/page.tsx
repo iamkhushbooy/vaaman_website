@@ -60,7 +60,7 @@ export default function OperationAndMaintenance() {
   const sectorScope = [
     {
       sector: "Aluminium",
-      image: "/images/hero/hero-5.jpg",
+      image: '/images-optimized/sector/aluminum/aluminum-billet-1.jpg',
       items: [
         "Oil fired / Electrically heated furnaces",
         "Casting machines for Wire Rod",
@@ -75,7 +75,7 @@ export default function OperationAndMaintenance() {
     },
     {
       sector: "Steel",
-      image: "/images/hero/hero-7.jpeg",
+      image: "/images-optimized/sector/steel/steel-billet-casting.jpg",
       items: [
         "DE system maintenance (119 systems)",
         "Blast furnace maintenance",
@@ -90,7 +90,7 @@ export default function OperationAndMaintenance() {
     },
     {
       sector: "Zinc",
-      image: "/images/hero/hero-8.jpeg",
+      image: "/images-optimized/sector/zinc/zinc-collage-bottom.jpg",
       items: [
         "Zinc and Lead Strapping Robots",
         "Induction furnaces",
@@ -278,7 +278,7 @@ export default function OperationAndMaintenance() {
                 className="rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition"
               >
                 <div className="h-44 overflow-hidden relative">
-                  {/* <img src={sector.image} alt={sector.sector} className="w-full h-full object-cover" /> */}
+                  <img src={sector.image} alt={`${sector.sector} operation and maintenance`} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#03245a]/80 to-transparent flex items-end p-4">
                     <h3 className="text-white text-xl font-bold">{sector.sector}</h3>
                   </div>

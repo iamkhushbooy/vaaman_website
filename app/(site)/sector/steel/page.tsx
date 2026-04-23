@@ -34,11 +34,6 @@ export default function SteelPage() {
             icon: ShieldCheck,
         },
         {
-            title: 'Power Plant (Mechanical)',
-            description: 'Maintenance and operation support for plant reliability',
-            icon: Users,
-        },
-        {
             title: 'Material Handling Systems',
             description: 'Operational support for conveyors, stock movement, and in-plant material flow',
             icon: Briefcase,
