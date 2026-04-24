@@ -374,7 +374,7 @@ export default function CareersPage() {
                                 Open Positions
                             </span>
                             <h2 className="mt-4 text-3xl font-bold text-[#03245a] md:text-3xl">
-                                Current Job Openings from Our Recruitment System
+                                Current Job Openings
                             </h2>
                         </div>
 
