@@ -100,7 +100,7 @@ export default function Contact() {
                                 <p className="text-gray-600 mb-2">510, Sai Leela Commercial Complex, S.V.Road, Borivali (West), Mumbai-400092, India</p>
                                 {/* <p className="text-gray-600 mb-6">+91 9928036938</p> */}
                                 <Link
-                                    href="#"
+                                    href="#contact-map"
                                     className="inline-flex items-center gap-2 px-6 py-2 bg-[rgb(254,94,21)] text-white font-semibold hover:bg-amber-600 transition"
                                 >
                                     Direction <span>→</span>
@@ -122,7 +122,7 @@ export default function Contact() {
                         </div> */}
 
 
-                        <div className="w-full mb-16 overflow-hidden flex items-center justify-center">
+                        <div id="contact-map" className="w-full mb-16 overflow-hidden flex items-center justify-center scroll-mt-24">
                             <Image
                                 src="/images-optimized/contact/m.png"
                                 alt="India Map"
@@ -138,10 +138,10 @@ export default function Contact() {
                             <div>
                                 <p className="text-[rgb(254,94,21)] font-semibold text-lg mb-2">CONTACT US</p>
                                 <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 leading-tight">
-                                    Have something on your mind? Don't hesitate to get in touch.
+                                    Have something on your mind? Don&apos;t hesitate to get in touch.
                                 </h2>
                                 <p className="text-gray-600 mb-8 leading-relaxed">
-                                    At Vaaman, we are committed to delivering excellence and innovation in every project. Whether you have a specific inquiry, need a detailed quote, or want to discuss a potential partnership, our team of experts is here to help. Fill out the form, and let's bring your vision to life.
+                                    At Vaaman, we are committed to delivering excellence and innovation in every project. Whether you have a specific inquiry, need a detailed quote, or want to discuss a potential partnership, our team of experts is here to help. Fill out the form, and let&apos;s bring your vision to life.
                                 </p>
 
                                 {/* Contact Info with Icons */}

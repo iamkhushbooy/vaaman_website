@@ -7,12 +7,12 @@ import {
     BriefcaseBusiness,
     Building2,
     CalendarDays,
+    ChevronLeft,
     ChevronRight,
     HeartPulse,
     Lightbulb,
     Linkedin,
     Mail,
-    RefreshCcw,
     ShieldCheck,
     TrendingUp,
     Users,
@@ -26,6 +26,11 @@ import ApplyJobModal from '@/components/career/ApplyJobModal';
 
 type JobsApiResponse = {
     jobs: JobOpening[];
+    error?: string;
+};
+
+type JobDetailApiResponse = {
+    job: JobOpening | null;
     error?: string;
 };
 
@@ -64,26 +69,44 @@ const benefits = [
     }
 ];
 
-function formatPublishedOn(date: string | null) {
+function formatDateTimeValue(date: string | null) {
     if (!date) {
-        return 'Recently updated';
+        return 'Not specified';
     }
 
     const parsedDate = new Date(date);
 
     if (Number.isNaN(parsedDate.getTime())) {
-        return 'Recently updated';
+        return date;
     }
 
     return new Intl.DateTimeFormat('en-IN', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Kolkata'
     }).format(parsedDate);
 }
 
-function formatSequence(index: number) {
-    return String(index + 1).padStart(2, '0');
+function DetailField({
+    label,
+    value
+}: {
+    label: string;
+    value: string | null;
+}) {
+    return (
+        <div className="border-b border-slate-200 pb-4 last:border-b-0">
+            <p className="text-xs font-semibold tracking-[0.14em] text-slate-400 uppercase">{label}</p>
+            <p className="mt-2 text-base font-semibold text-slate-800">
+                {value && value.trim() ? value : 'Not specified'}
+            </p>
+        </div>
+    );
 }
 
 function getJobSummary(job: JobOpening) {
@@ -119,51 +142,27 @@ function sortJobsSequenceWise(jobs: JobOpening[]) {
 
 function JobRow({
     job,
-    sequence,
     onApply,
     onViewDetails
 }: {
     job: JobOpening;
-    sequence: number;
     onApply: (job: JobOpening) => void;
     onViewDetails: (job: JobOpening) => void;
 }) {
     return (
         <article className="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="flex gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#03245a] text-lg font-bold text-white">
-                    {formatSequence(sequence)}
-                </div>
-
-                <div className="min-w-0 flex-1">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <div>
-                            <p className="text-xs font-semibold tracking-[0.18em] text-slate-400 uppercase">
-                                Job Opening ID
-                            </p>
-                            <h3 className="mt-1 line-clamp-2 text-xl font-bold text-[#03245a]">
-                                {job.title}
-                            </h3>
-                            <p className="mt-1 text-sm font-medium text-[rgb(254,94,21)]">
-                                {job.id}
-                            </p>
-                        </div>
-
-                        <span className="inline-flex shrink-0 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[rgb(254,94,21)] uppercase">
-                            {job.status ?? 'Open'}
-                        </span>
-                    </div>
-                </div>
+            <div className="min-w-0 flex-1">
+                <p className="text-xs font-semibold tracking-[0.18em] text-slate-400 uppercase">
+                    Job Opening ID
+                </p>
+                <h3 className="mt-1 line-clamp-2 text-xl font-bold text-[#03245a]">
+                    {job.title}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-[rgb(254,94,21)]">
+                    {job.id}
+                </p>
             </div>
-
             <div className="mb-6 mt-6 grid grid-cols-1 gap-3 text-sm text-slate-600 sm:grid-cols-2">
-                {(job.designation || job.department) && (
-                    <div className="flex items-center gap-2">
-                        <Users size={16} className="shrink-0 text-[rgb(254,94,21)]" />
-                        <span className="truncate">{[job.designation, job.department].filter(Boolean).join(' • ')}</span>
-                    </div>
-                )}
-
                 {job.company && (
                     <div className="flex items-center gap-2">
                         <Building2 size={16} className="shrink-0 text-[rgb(254,94,21)]" />
@@ -173,12 +172,19 @@ function JobRow({
 
                 <div className="flex items-center gap-2">
                     <CalendarDays size={16} className="shrink-0 text-[rgb(254,94,21)]" />
-                    <span>Published {formatPublishedOn(job.publishedOn)}</span>
+                    <span>{job.location ?? 'Location not specified'}</span>
                 </div>
+
+                {job.employmentType && (
+                    <div className="flex items-center gap-2">
+                        <BriefcaseBusiness size={16} className="shrink-0 text-[rgb(254,94,21)]" />
+                        <span>{job.employmentType}</span>
+                    </div>
+                )}
 
                 <div className="flex items-center gap-2">
                     <BriefcaseBusiness size={16} className="shrink-0 text-[rgb(254,94,21)]" />
-                    <span>Sequence #{formatSequence(sequence)}</span>
+                    <span>{job.title}</span>
                 </div>
             </div>
 
@@ -211,12 +217,17 @@ export default function CareersPage() {
     const [jobs, setJobs] = useState<JobOpening[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [visibleCount, setVisibleCount] = useState(JOBS_PER_BATCH);
-    const [reloadKey, setReloadKey] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [departmentFilter, setDepartmentFilter] = useState('');
+    const [designationFilter, setDesignationFilter] = useState('');
+    const [locationFilter, setLocationFilter] = useState('');
+    const [employmentTypeFilter, setEmploymentTypeFilter] = useState('');
     const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
     const [selectedJob, setSelectedJob] = useState<JobOpening | null>(null);
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
     const [detailsJob, setDetailsJob] = useState<JobOpening | null>(null);
+    const [isDetailsLoading, setIsDetailsLoading] = useState(false);
+    const [detailsError, setDetailsError] = useState<string | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -235,7 +246,7 @@ export default function CareersPage() {
 
                 if (isMounted) {
                     setJobs(sortJobsSequenceWise(payload.jobs ?? []));
-                    setVisibleCount(JOBS_PER_BATCH);
+                    setCurrentPage(1);
                 }
             } catch (requestError) {
                 if (isMounted) {
@@ -257,7 +268,7 @@ export default function CareersPage() {
         return () => {
             isMounted = false;
         };
-    }, [reloadKey]);
+    }, []);
 
     useEffect(() => {
         if (!isDetailsModalOpen) {
@@ -277,8 +288,38 @@ export default function CareersPage() {
         };
     }, [isDetailsModalOpen]);
 
-    const visibleJobs = jobs.slice(0, visibleCount);
-    const hasMoreJobs = jobs.length > visibleCount;
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [departmentFilter, designationFilter, locationFilter, employmentTypeFilter]);
+
+    const normalizedDepartmentFilter = departmentFilter.trim().toLowerCase();
+    const normalizedDesignationFilter = designationFilter.trim().toLowerCase();
+    const normalizedLocationFilter = locationFilter.trim().toLowerCase();
+    const normalizedEmploymentTypeFilter = employmentTypeFilter.trim().toLowerCase();
+
+    const filteredJobs = jobs.filter((job) => {
+        const designationValue = `${job.designation ?? ''} ${job.title}`.toLowerCase();
+        const employmentTypeValue = `${job.employmentType ?? ''}`.toLowerCase();
+        const matchesDepartment =
+            !normalizedDepartmentFilter ||
+            (job.department ?? '').toLowerCase().includes(normalizedDepartmentFilter);
+        const matchesDesignation =
+            !normalizedDesignationFilter ||
+            designationValue.includes(normalizedDesignationFilter);
+        const matchesLocation =
+            !normalizedLocationFilter ||
+            (job.location ?? '').toLowerCase().includes(normalizedLocationFilter);
+        const matchesEmploymentType =
+            !normalizedEmploymentTypeFilter ||
+            employmentTypeValue.includes(normalizedEmploymentTypeFilter);
+
+        return matchesDepartment && matchesDesignation && matchesLocation && matchesEmploymentType;
+    });
+
+    const totalPages = Math.max(1, Math.ceil(filteredJobs.length / JOBS_PER_BATCH));
+    const currentPageStartIndex = (currentPage - 1) * JOBS_PER_BATCH;
+    const visibleJobs = filteredJobs.slice(currentPageStartIndex, currentPageStartIndex + JOBS_PER_BATCH);
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     function openApplyModal(job: JobOpening) {
         setSelectedJob(job);
@@ -292,12 +333,41 @@ export default function CareersPage() {
 
     function openDetailsModal(job: JobOpening) {
         setDetailsJob(job);
+        setDetailsError(null);
         setIsDetailsModalOpen(true);
+        setIsDetailsLoading(true);
+
+        void (async () => {
+            try {
+                const response = await fetch(`/api/jobs/${encodeURIComponent(job.id)}`, {
+                    cache: 'no-store'
+                });
+                const payload = (await response.json()) as JobDetailApiResponse;
+
+                if (!response.ok) {
+                    throw new Error(payload.error ?? 'Unable to load job details.');
+                }
+
+                if (payload.job) {
+                    setDetailsJob(payload.job);
+                }
+            } catch (requestError) {
+                setDetailsError(
+                    requestError instanceof Error
+                        ? requestError.message
+                        : 'Unable to load job details.'
+                );
+            } finally {
+                setIsDetailsLoading(false);
+            }
+        })();
     }
 
     function closeDetailsModal() {
         setIsDetailsModalOpen(false);
         setDetailsJob(null);
+        setDetailsError(null);
+        setIsDetailsLoading(false);
     }
 
     return (
@@ -388,6 +458,78 @@ export default function CareersPage() {
                         </button> */}
                     </div>
 
+                    {!isLoading && !error && jobs.length > 0 && (
+                        <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-5 sm:p-6">
+                            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                                <div>
+                                    <h3 className="text-lg font-bold text-[#03245a]">Filter Openings</h3>
+                                    <p className="mt-1 text-sm text-slate-500">
+                                        Search by department, designation, location, and employment type.
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setDepartmentFilter('');
+                                        setDesignationFilter('');
+                                        setLocationFilter('');
+                                        setEmploymentTypeFilter('');
+                                    }}
+                                    className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50"
+                                >
+                                    Clear Filters
+                                </button>
+                            </div>
+
+                            <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+                                <label className="block">
+                                    <span className="text-sm font-semibold text-slate-700">Department</span>
+                                    <input
+                                        type="text"
+                                        value={departmentFilter}
+                                        onChange={(event) => setDepartmentFilter(event.target.value)}
+                                        placeholder="Filter by department"
+                                        className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#03245a] focus:bg-white"
+                                    />
+                                </label>
+
+                                <label className="block">
+                                    <span className="text-sm font-semibold text-slate-700">Designation</span>
+                                    <input
+                                        type="text"
+                                        value={designationFilter}
+                                        onChange={(event) => setDesignationFilter(event.target.value)}
+                                        placeholder="Filter by designation"
+                                        className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#03245a] focus:bg-white"
+                                    />
+                                </label>
+
+                                <label className="block">
+                                    <span className="text-sm font-semibold text-slate-700">Location</span>
+                                    <input
+                                        type="text"
+                                        value={locationFilter}
+                                        onChange={(event) => setLocationFilter(event.target.value)}
+                                        placeholder="Filter by location"
+                                        className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#03245a] focus:bg-white"
+                                    />
+                                </label>
+
+                                <label className="block">
+                                    <span className="text-sm font-semibold text-slate-700">Employment Type</span>
+                                    <input
+                                        type="text"
+                                        value={employmentTypeFilter}
+                                        onChange={(event) => setEmploymentTypeFilter(event.target.value)}
+                                        placeholder="Filter by employment type"
+                                        className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#03245a] focus:bg-white"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    )}
+
                     {isLoading && (
                         <div className="mt-10 space-y-4">
                             {Array.from({ length: 4 }).map((_, index) => (
@@ -424,14 +566,24 @@ export default function CareersPage() {
                         </div>
                     )}
 
-                    {!isLoading && !error && jobs.length > 0 && (
+                    {!isLoading && !error && jobs.length > 0 && filteredJobs.length === 0 && (
+                        <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-10 text-center">
+                            <h3 className="text-2xl font-bold text-[#03245a]">
+                                No matching openings found
+                            </h3>
+                            <p className="mx-auto mt-4 max-w-2xl text-slate-600">
+                                Try adjusting the department, designation, location, or employment type filters to widen the results.
+                            </p>
+                        </div>
+                    )}
+
+                    {!isLoading && !error && filteredJobs.length > 0 && (
                         <>
                             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                                {visibleJobs.map((job, index) => (
+                                {visibleJobs.map((job) => (
                                     <JobRow
                                         key={job.id}
                                         job={job}
-                                        sequence={index}
                                         onApply={openApplyModal}
                                         onViewDetails={openDetailsModal}
                                     />
@@ -440,17 +592,47 @@ export default function CareersPage() {
 
                             <div className="mt-10 flex flex-col items-center gap-4">
                                 <p className="text-sm text-slate-500">
-                                    Showing {visibleJobs.length} of {jobs.length} open job openings.
+                                    Showing {currentPageStartIndex + 1} to {Math.min(currentPageStartIndex + visibleJobs.length, filteredJobs.length)} of {filteredJobs.length} open job openings.
                                 </p>
 
-                                {hasMoreJobs && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setVisibleCount((currentCount) => currentCount + JOBS_PER_BATCH)}
-                                        className="inline-flex items-center justify-center rounded-xl border border-[#03245a] px-6 py-3 text-sm font-semibold text-[#03245a] transition-colors hover:bg-[#03245a] hover:text-white"
-                                    >
-                                        See More
-                                    </button>
+                                {totalPages > 1 && (
+                                    <div className="flex flex-wrap items-center justify-center gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                                            disabled={currentPage === 1}
+                                            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                        >
+                                            <ChevronLeft size={16} />
+                                            Previous
+                                        </button>
+
+                                        {pageNumbers.map((pageNumber) => (
+                                            <button
+                                                key={pageNumber}
+                                                type="button"
+                                                onClick={() => setCurrentPage(pageNumber)}
+                                                aria-current={currentPage === pageNumber ? 'page' : undefined}
+                                                className={`inline-flex h-11 min-w-11 items-center justify-center rounded-xl border px-4 text-sm font-semibold shadow-sm transition-colors ${
+                                                    currentPage === pageNumber
+                                                        ? 'border-slate-200 bg-slate-200 text-slate-900'
+                                                        : 'border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:bg-slate-50'
+                                                }`}
+                                            >
+                                                {pageNumber}
+                                            </button>
+                                        ))}
+
+                                        <button
+                                            type="button"
+                                            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                                            disabled={currentPage === totalPages}
+                                            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                        >
+                                            Next
+                                            <ChevronRight size={16} />
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         </>
@@ -469,7 +651,7 @@ export default function CareersPage() {
                         Use the Apply Now action on any listed job to open the application form popup and submit your details directly into the recruitment system.
                     </p>
 
-                    <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                    {/* <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
                         <a
                             href="https://www.linkedin.com/company/vaaman-engineers"
                             target="_blank"
@@ -493,7 +675,7 @@ export default function CareersPage() {
                             <Mail size={20} />
                             Open Application Form
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
@@ -537,31 +719,27 @@ export default function CareersPage() {
                                     </p>
                                 </div>
 
-                                <div className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2 xl:grid-cols-4">
-                                    {(detailsJob.designation || detailsJob.department) && (
-                                        <div className="flex items-center gap-2">
-                                            <Users size={16} className="text-[rgb(254,94,21)]" />
-                                            <span>{[detailsJob.designation, detailsJob.department].filter(Boolean).join(' • ')}</span>
-                                        </div>
-                                    )}
-
-                                    {detailsJob.company && (
-                                        <div className="flex items-center gap-2">
-                                            <Building2 size={16} className="text-[rgb(254,94,21)]" />
-                                            <span>{detailsJob.company}</span>
-                                        </div>
-                                    )}
-
-                                    <div className="flex items-center gap-2">
-                                        <CalendarDays size={16} className="text-[rgb(254,94,21)]" />
-                                        <span>Published {formatPublishedOn(detailsJob.publishedOn)}</span>
+                                {detailsError && (
+                                    <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                                        {detailsError}
                                     </div>
+                                )}
 
-                                    <div className="flex items-center gap-2">
-                                        <BriefcaseBusiness size={16} className="text-[rgb(254,94,21)]" />
-                                        <span>{detailsJob.status ?? 'Open'}</span>
-                                    </div>
+                                <div className="mt-8 grid gap-x-8 gap-y-5 rounded-3xl border border-slate-200 bg-white p-6 sm:grid-cols-2">
+                                    <DetailField label="Job Title" value={detailsJob.title} />
+                                    <DetailField label="Status" value={detailsJob.status ?? 'Open'} />
+                                    <DetailField label="Designation" value={detailsJob.designation} />
+                                    <DetailField label="Posted On" value={formatDateTimeValue(detailsJob.publishedOn)} />
+                                    <DetailField label="Closes On" value={formatDateTimeValue(detailsJob.closesOn)} />
+                                    <DetailField label="Company" value={detailsJob.company} />
+                                    <DetailField label="Employment Type" value={detailsJob.employmentType} />
+                                    <DetailField label="Department" value={detailsJob.department} />
+                                    <DetailField label="Location" value={detailsJob.location} />
                                 </div>
+
+                                {isDetailsLoading && (
+                                    <p className="mt-4 text-sm text-slate-500">Loading latest job details...</p>
+                                )}
 
                                 <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
                                     <h4 className="text-lg font-semibold text-[#03245a]">

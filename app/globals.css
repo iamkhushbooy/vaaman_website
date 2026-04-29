@@ -7,6 +7,10 @@
   --scroll-padding: 20px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
  
   @keyframes slide-up {

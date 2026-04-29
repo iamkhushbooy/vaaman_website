@@ -42,6 +42,10 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function isValidSignature(signature: string) {
+  return /^[A-Za-z\s]+$/.test(signature);
+}
+
 function parseOptionalNumber(value?: string) {
   if (!value) {
     return undefined;
@@ -267,6 +271,15 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Enter a valid email address.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (!isValidSignature(signature)) {
+    return NextResponse.json(
+      {
+        error: "Signature can contain only alphabets and spaces.",
       },
       { status: 400 },
     );

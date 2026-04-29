@@ -2,36 +2,29 @@ import { NextResponse } from "next/server";
 
 import {
   getApiBaseUrl,
+  getFrappeErrorMessage,
   getEnvValue,
   getFrappeHeaders,
-  getMissingEnvVars,
 } from "@/lib/frappe";
-import { jobOpeningFields, mapJobOpening } from "@/lib/jobs";
+import { jobOpeningListFields, mapJobOpening } from "@/lib/jobs";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+function needsFilterFieldHydration(job: ReturnType<typeof mapJobOpening>) {
+  return !job.department || !job.designation || !job.location || !job.employmentType;
+}
+
 export async function GET() {
-  const missingEnvVars = getMissingEnvVars();
-
-  // if (missingEnvVars.length > 0) {
-  //   return NextResponse.json(
-  //     {
-  //       jobs: [],
-  //       error: `Missing env vars: ${missingEnvVars.join(", ")}`,
-  //     },
-  //     { status: 500 },
-  //   );
-  // }
-
   const baseUrl = getEnvValue("FRAPPE_API_BASE_URL")!;
   const apiKey = getEnvValue("FRAPPE_API_KEY")!;
   const apiSecret = getEnvValue("FRAPPE_API_SECRET")!;
+  const apiBaseUrl = getApiBaseUrl(baseUrl);
 
   let url: URL;
 
   try {
-    url = new URL("api/resource/Job Opening", getApiBaseUrl(baseUrl));
+    url = new URL("api/resource/Job Opening", apiBaseUrl);
   } catch {
     return NextResponse.json(
       {
@@ -43,10 +36,10 @@ export async function GET() {
     );
   }
 
-  url.searchParams.set("fields", JSON.stringify(jobOpeningFields));
+  url.searchParams.set("fields", JSON.stringify(jobOpeningListFields));
   url.searchParams.set(
     "filters",
-    JSON.stringify([["status", "=", "Open"],["publish", "=", 1]]),
+    JSON.stringify([["status", "=", "Open"]]),
   );
   url.searchParams.set("limit_page_length", "100");
   url.searchParams.set("order_by", "name asc");
@@ -76,16 +69,49 @@ export async function GET() {
     };
 
     const jobs = (payload.data ?? []).map((job) => mapJobOpening(job));
+    const jobsNeedingHydration = jobs.filter(needsFilterFieldHydration);
 
-    return NextResponse.json({ jobs });
+    if (jobsNeedingHydration.length === 0) {
+      return NextResponse.json({ jobs });
+    }
+
+    const hydratedJobs = await Promise.all(
+      jobs.map(async (job) => {
+        if (!needsFilterFieldHydration(job)) {
+          return job;
+        }
+
+        try {
+          const detailUrl = new URL(
+            `api/resource/Job Opening/${encodeURIComponent(job.id)}`,
+            apiBaseUrl,
+          );
+          const detailResponse = await fetch(detailUrl, {
+            headers: getFrappeHeaders(apiKey, apiSecret),
+            cache: "no-store",
+          });
+
+          if (!detailResponse.ok) {
+            return job;
+          }
+
+          const detailPayload = (await detailResponse.json()) as {
+            data?: Record<string, string | null | undefined>;
+          };
+
+          return detailPayload.data ? mapJobOpening(detailPayload.data) : job;
+        } catch {
+          return job;
+        }
+      }),
+    );
+
+    return NextResponse.json({ jobs: hydratedJobs });
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Unexpected error";
-
     return NextResponse.json(
       {
         jobs: [],
-        error: message,
+        error: getFrappeErrorMessage(error),
       },
       { status: 500 },
     );

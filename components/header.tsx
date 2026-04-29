@@ -93,7 +93,7 @@ export function Header() {
                         <span>Call Us: +91 22 28925400</span>
 
                     </div>
-                    <div className="flex items-center gap-4">
+                    {/* <div className="flex items-center gap-4">
                         <span className="text-sm">Follow Us:</span>
                         <div className="flex gap-3">
                             <Link href="#" className="hover:text-[rgb(254,94,21)] transition">
@@ -114,7 +114,7 @@ export function Header() {
                                 <Linkedin size={16} />
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

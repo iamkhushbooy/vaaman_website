@@ -104,7 +104,7 @@ export function Footer() {
             <p className="mb-4 text-sm leading-6 text-gray-300">
               Stay updated with the latest industry insights, project milestones, and company news from Vaaman.
             </p>
-            <div className="mt-6 flex gap-3">
+            {/* <div className="mt-6 flex gap-3">
               {[Twitter, Facebook, Linkedin, Instagram].map((Icon, index) => (
                 <button
                   key={index}
@@ -115,7 +115,7 @@ export function Footer() {
                   <Icon size={18} />
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
 
