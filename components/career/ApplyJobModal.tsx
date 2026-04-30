@@ -26,6 +26,9 @@ type JobApplicationFormState = {
     currentSalary: string;
     expectedSalary: string;
     highestQualification: string;
+    isEmployeeReferral: boolean;
+    employeeReferralEmail: string;
+    employeeReferralCode: string;
     coverLetter: string;
     signature: string;
     applicationDate: string;
@@ -97,6 +100,9 @@ function createInitialFormState(job: JobOpening | null = null): JobApplicationFo
         currentSalary: '',
         expectedSalary: '',
         highestQualification: '',
+        isEmployeeReferral: false,
+        employeeReferralEmail: '',
+        employeeReferralCode: '',
         coverLetter: '',
         signature: '',
         applicationDate: getTodayDate(),
@@ -443,6 +449,7 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                                     </select>
                                 </label>
 
+
                                 <div className="space-y-2 md:col-span-2">
                                     <span className="text-sm font-semibold text-slate-700">Upload Resume *</span>
                                     <label className="flex cursor-pointer items-center justify-center gap-3 rounded-xl bg-slate-100 px-4 py-5 text-sm text-slate-600 ring-1 ring-transparent transition-all duration-200 hover:bg-slate-200/70 hover:text-[#03245a]">
@@ -503,6 +510,54 @@ export default function ApplyJobModal({ isOpen, job, onClose }: ApplyJobModalPro
                                         />
                                     </div>
                                 </label>
+
+                                 <label className="flex items-start gap-3 rounded-xl bg-slate-100 px-4 py-4 md:col-span-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={formState.isEmployeeReferral}
+                                        onChange={(event) => {
+                                            const isChecked = event.target.checked;
+
+                                            setFormState((currentState) => ({
+                                                ...currentState,
+                                                isEmployeeReferral: isChecked,
+                                                employeeReferralEmail: isChecked ? currentState.employeeReferralEmail : '',
+                                                employeeReferralCode: isChecked ? currentState.employeeReferralCode : ''
+                                            }));
+                                        }}
+                                        className="mt-1 h-4 w-4 rounded border-slate-300 text-[#03245a] focus:ring-[#03245a]"
+                                    />
+                                    <span className="text-sm font-semibold leading-6 text-slate-700">
+                                        Is Employee Referral
+                                    </span>
+                                </label>
+
+                                {formState.isEmployeeReferral && (
+                                    <>
+                                        <label className="space-y-2">
+                                            <span className="text-sm font-semibold text-slate-700">Referral Employee Email *</span>
+                                            <input
+                                                type="email"
+                                                value={formState.employeeReferralEmail}
+                                                onChange={(event) => handleInputChange('employeeReferralEmail', event.target.value)}
+                                                required
+                                                className={inputClassName}
+                                                placeholder="employee@example.com"
+                                            />
+                                        </label>
+
+                                        <label className="space-y-2">
+                                            <span className="text-sm font-semibold text-slate-700">Referral Employee Code *</span>
+                                            <input
+                                                value={formState.employeeReferralCode}
+                                                onChange={(event) => handleInputChange('employeeReferralCode', event.target.value)}
+                                                required
+                                                className={inputClassName}
+                                                placeholder="Enter employee code"
+                                            />
+                                        </label>
+                                    </>
+                                )}
 
                                 <label className="flex items-start gap-3 rounded-xl bg-slate-100 px-4 py-4 md:col-span-2">
                                     <input

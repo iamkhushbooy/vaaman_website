@@ -39,7 +39,7 @@ export async function GET() {
   url.searchParams.set("fields", JSON.stringify(jobOpeningListFields));
   url.searchParams.set(
     "filters",
-    JSON.stringify([["status", "=", "Open"]]),
+    JSON.stringify([["status", "=", "Open"],["publish", "=", 1]]),
   );
   url.searchParams.set("limit_page_length", "100");
   url.searchParams.set("order_by", "name asc");
